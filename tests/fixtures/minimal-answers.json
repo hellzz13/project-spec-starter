@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "name": "Billing API",
+    "summary": {
+      "state": "pending"
+    },
+    "organization": {
+      "kind": "single-app"
+    },
+    "nature": {
+      "kind": "backend"
+    },
+    "capabilities": ["http-api", "scheduled-jobs"],
+    "agentSupport": true
+  }
+}

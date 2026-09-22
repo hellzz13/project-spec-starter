@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderProjectDocument > renders the minimal answers fixture without unresolved markers 1`] = `
+"# Billing API
+
+## Visão inicial
+
+Decisão pendente
+
+## Estrutura do projeto
+
+| Item | Decisão |
+| --- | --- |
+| Organização | Aplicação única |
+| Natureza | Backend |
+| Suporte a agentes | Habilitado |
+
+## Capacidades declaradas
+
+- http-api
+- scheduled-jobs
+
+## Refinamento
+
+Decisões marcadas como pendentes devem ser perguntadas somente quando afetarem
+a tarefa atual. Depois da resposta, este documento deve ser atualizado e passa
+a representar a fonte de verdade do projeto.
+"
+`;

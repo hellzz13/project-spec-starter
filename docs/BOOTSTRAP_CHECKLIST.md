@@ -18,12 +18,12 @@
 
 ## Primeiro comportamento
 
-- [ ] Criar fixture mínima de respostas válidas.
-- [ ] Escrever teste para a geração de `PROJECT.md` em memória.
-- [ ] Confirmar a falha inicial pelo motivo correto.
-- [ ] Implementar schema, normalização e modelo documental mínimos.
-- [ ] Implementar a menor renderização que passe no teste.
-- [ ] Validar ausência de marcadores não resolvidos.
+- [x] Criar fixture mínima de respostas válidas.
+- [x] Escrever teste para a geração de `PROJECT.md` em memória.
+- [x] Confirmar a falha inicial pelo motivo correto.
+- [x] Implementar schema, normalização e modelo documental mínimos.
+- [x] Implementar a menor renderização que passe no teste.
+- [x] Validar ausência de marcadores não resolvidos.
 
 ## Qualidade e distribuição
 

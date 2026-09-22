@@ -17,16 +17,16 @@
 
 ## Marco 2 — Domínio e schema
 
-- [ ] Modelar projeto, organização, unidades e capacidades.
-- [ ] Modelar decisões definidas, pendentes e não aplicáveis.
-- [ ] Criar schema versionado e validação.
+- [x] Modelar projeto, organização, unidades e capacidades.
+- [x] Modelar decisões definidas, pendentes e não aplicáveis.
+- [x] Criar schema versionado e validação.
 - [ ] Criar migrações isoladas e fixtures representativas.
 
 ## Marco 3 — Motor documental
 
 - [ ] Criar manifesto central de documentos.
 - [ ] Criar perfil padrão e perguntas declarativas.
-- [ ] Construir o modelo documental intermediário.
+- [x] Construir o modelo documental intermediário.
 - [ ] Renderizar todos os documentos em memória.
 - [ ] Cobrir os cenários principais com snapshots e invariantes.
 
