@@ -6,9 +6,21 @@ o projeto para ser refinado progressivamente por pessoas e agentes.
 
 ## Estado
 
-O projeto está na fase de especificação. A primeira versão entregará o
-bootstrap documental; geradores de código serão adicionados posteriormente por
-meio de receitas e presets explícitos.
+O projeto concluiu sua especificação inicial e está na fundação técnica. A
+primeira versão entregará o bootstrap documental; geradores de código serão
+adicionados posteriormente por meio de receitas e presets explícitos.
+
+## Desenvolvimento
+
+O projeto requer Node.js 22 ou superior e usa npm:
+
+```bash
+npm install
+npm test
+npm run lint
+npm run typecheck
+npm run build
+```
 
 ## Princípios
 

@@ -1,0 +1,38 @@
+{
+  "name": "project-spec-starter",
+  "version": "0.0.0",
+  "description": "CLI for bootstrapping specification-driven projects",
+  "type": "module",
+  "bin": {
+    "project-spec-starter": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "profiles",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.4",
+    "eslint": "^10.11.0",
+    "prettier": "^3.9.8",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "vitest": "^5.0.1"
+  }
+}

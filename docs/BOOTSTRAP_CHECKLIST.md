@@ -10,11 +10,11 @@
 
 ## Fundação técnica
 
-- [ ] Confirmar versões suportadas do Node.js.
-- [ ] Inicializar o pacote npm e criar `package-lock.json`.
-- [ ] Configurar TypeScript e build do executável.
+- [x] Confirmar Node.js 22 como versão mínima suportada.
+- [x] Inicializar o pacote npm e criar `package-lock.json`.
+- [x] Configurar TypeScript e build do executável.
 - [ ] Escolher ferramentas de argumentos, prompts, validação e templates.
-- [ ] Configurar formatação, lint, typecheck e Vitest.
+- [x] Configurar formatação, lint, typecheck e Vitest.
 
 ## Primeiro comportamento
 

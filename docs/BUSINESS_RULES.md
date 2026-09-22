@@ -2,24 +2,24 @@
 
 ## Glossário
 
-| Termo | Definição |
-| --- | --- |
-| Perfil | Conjunto versionado de perguntas, manifesto e templates |
-| Capacidade | Característica funcional independente do tipo declarado |
-| Unidade | Aplicação ou pacote pertencente a um monorepo |
-| Pendência | Decisão necessária que ainda não foi tomada |
-| Não aplicável | Decisão avaliada que não pertence ao projeto |
-| Plano de geração | Descrição completa das alterações antes da escrita |
-| Receita | Definição declarativa de um gerador de artefatos |
+| Termo            | Definição                                               |
+| ---------------- | ------------------------------------------------------- |
+| Perfil           | Conjunto versionado de perguntas, manifesto e templates |
+| Capacidade       | Característica funcional independente do tipo declarado |
+| Unidade          | Aplicação ou pacote pertencente a um monorepo           |
+| Pendência        | Decisão necessária que ainda não foi tomada             |
+| Não aplicável    | Decisão avaliada que não pertence ao projeto            |
+| Plano de geração | Descrição completa das alterações antes da escrita      |
+| Receita          | Definição declarativa de um gerador de artefatos        |
 
 ## Atores
 
-| Ator | Responsabilidade |
-| --- | --- |
-| Usuário | Fornecer contexto e aprovar a geração |
-| Mantenedor | Evoluir CLI, schema e perfil padrão |
-| Autor de perfil | Adaptar perguntas e documentos sem alterar o núcleo |
-| Agente | Ler documentos, detectar lacunas e pedir decisões necessárias |
+| Ator            | Responsabilidade                                              |
+| --------------- | ------------------------------------------------------------- |
+| Usuário         | Fornecer contexto e aprovar a geração                         |
+| Mantenedor      | Evoluir CLI, schema e perfil padrão                           |
+| Autor de perfil | Adaptar perguntas e documentos sem alterar o núcleo           |
+| Agente          | Ler documentos, detectar lacunas e pedir decisões necessárias |
 
 ## Catálogo de regras
 
@@ -87,11 +87,11 @@ reais de credenciais, tokens ou endereços privados.
 
 ## Erros observáveis
 
-| Código | Situação | Recuperação |
-| --- | --- | --- |
-| `INVALID_ANSWERS` | Respostas não atendem ao schema | Corrigir os campos indicados |
-| `UNSUPPORTED_SCHEMA` | Versão não suportada | Executar uma migração disponível |
-| `FILE_CONFLICT` | Destino já existe | Escolher outro destino ou revisar manualmente |
-| `UNSAFE_PATH` | Caminho escapa do projeto | Corrigir perfil ou configuração |
-| `UNRESOLVED_TEMPLATE` | Marcador inesperado permaneceu | Corrigir modelo ou template |
-| `MISSING_RECIPE` | Gerador não está configurado | Instalar ou criar uma receita compatível |
+| Código                | Situação                        | Recuperação                                   |
+| --------------------- | ------------------------------- | --------------------------------------------- |
+| `INVALID_ANSWERS`     | Respostas não atendem ao schema | Corrigir os campos indicados                  |
+| `UNSUPPORTED_SCHEMA`  | Versão não suportada            | Executar uma migração disponível              |
+| `FILE_CONFLICT`       | Destino já existe               | Escolher outro destino ou revisar manualmente |
+| `UNSAFE_PATH`         | Caminho escapa do projeto       | Corrigir perfil ou configuração               |
+| `UNRESOLVED_TEMPLATE` | Marcador inesperado permaneceu  | Corrigir modelo ou template                   |
+| `MISSING_RECIPE`      | Gerador não está configurado    | Instalar ou criar uma receita compatível      |

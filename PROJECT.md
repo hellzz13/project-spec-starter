@@ -107,13 +107,13 @@ npx project-spec-starter init
 
 ## Riscos
 
-| Risco | Mitigação |
-| --- | --- |
-| Entrevista crescer demais | Núcleo mínimo e aprofundamento progressivo |
-| Templates acoplados ao schema | Modelo documental intermediário |
-| Sobrescrita de trabalho humano | Plano prévio e bloqueio de conflitos |
+| Risco                                   | Mitigação                                           |
+| --------------------------------------- | --------------------------------------------------- |
+| Entrevista crescer demais               | Núcleo mínimo e aprofundamento progressivo          |
+| Templates acoplados ao schema           | Modelo documental intermediário                     |
+| Sobrescrita de trabalho humano          | Plano prévio e bloqueio de conflitos                |
 | Extensibilidade virar execução insegura | Extensões declarativas antes de plugins executáveis |
-| Presets imporem uma stack | Ativação explícita e compatibilidade declarada |
+| Presets imporem uma stack               | Ativação explícita e compatibilidade declarada      |
 
 ## Decisões pendentes
 

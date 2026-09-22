@@ -2,11 +2,11 @@
 
 ## Ambientes
 
-| Ambiente | Finalidade | Dados |
-| --- | --- | --- |
-| Local | Desenvolvimento e TDD | Fixtures sintéticas |
-| CI | Gates e empacotamento | Fixtures sintéticas e diretórios temporários |
-| Distribuição | Registro npm | Artefato público, sem segredos |
+| Ambiente     | Finalidade            | Dados                                        |
+| ------------ | --------------------- | -------------------------------------------- |
+| Local        | Desenvolvimento e TDD | Fixtures sintéticas                          |
+| CI           | Gates e empacotamento | Fixtures sintéticas e diretórios temporários |
+| Distribuição | Registro npm          | Artefato público, sem segredos               |
 
 Não existe aplicação hospedada no MVP. Exemplos e testes nunca usam projetos,
 credenciais, URLs privadas ou dados pessoais reais.
@@ -34,8 +34,9 @@ e usado para executar `--help`, validação e um bootstrap completo.
 
 ## Compatibilidade
 
-A matriz de versões do Node.js será definida no Marco 1. A CI deverá testar todas
-as versões declaradas como suportadas antes de uma release.
+O pacote requer Node.js 22 ou superior e deve ser testado nas linhas LTS ainda
+suportadas. A versão mínima não deve permanecer em uma linha que atingiu fim de
+vida.
 
 ## Recuperação
 

@@ -10,10 +10,10 @@
 
 ## Marco 1 — Fundação técnica
 
-- [ ] Configurar Node.js, TypeScript e npm.
-- [ ] Configurar testes, lint, formatação, tipos e build.
-- [ ] Criar o executável com `--help` e códigos de saída consistentes.
-- [ ] Verificar o conteúdo real do pacote npm empacotado.
+- [x] Configurar Node.js, TypeScript e npm.
+- [x] Configurar testes, lint, formatação, tipos e build.
+- [x] Criar o executável com `--help` e códigos de saída consistentes.
+- [x] Verificar o conteúdo real do pacote npm empacotado.
 
 ## Marco 2 — Domínio e schema
 

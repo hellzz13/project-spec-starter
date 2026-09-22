@@ -2,16 +2,16 @@
 
 ## Stack definida
 
-| Área | Escolha | Estado |
-| --- | --- | --- |
-| Runtime | Node.js | Definido |
-| Linguagem | TypeScript | Definido |
-| Gerenciador | npm | Definido |
-| Testes | Vitest | Definido |
-| Argumentos da CLI | A decidir | Pendente |
-| Prompts | A decidir | Pendente |
-| Validação | A decidir | Pendente |
-| Renderização | A decidir | Pendente |
+| Área              | Escolha    | Estado   |
+| ----------------- | ---------- | -------- |
+| Runtime           | Node.js    | Definido |
+| Linguagem         | TypeScript | Definido |
+| Gerenciador       | npm        | Definido |
+| Testes            | Vitest     | Definido |
+| Argumentos da CLI | A decidir  | Pendente |
+| Prompts           | A decidir  | Pendente |
+| Validação         | A decidir  | Pendente |
+| Renderização      | A decidir  | Pendente |
 
 Dependências pendentes só serão escolhidas quando existir um comportamento e um
 teste que demonstrem a necessidade.
@@ -154,17 +154,15 @@ CLI, worker, tipo personalizado, decisões pendentes e agentes desabilitados.
 - Fluxos interativos têm equivalentes não interativos por configuração.
 - A saída funciona em terminais sem recursos visuais avançados.
 
-## Gates planejados
+## Gates
 
-| Gate | Comando planejado |
-| --- | --- |
+| Gate       | Comando                |
+| ---------- | ---------------------- |
 | Formatação | `npm run format:check` |
-| Lint | `npm run lint` |
-| Tipos | `npm run typecheck` |
-| Testes | `npm test` |
-| Build | `npm run build` |
-
-Os comandos serão confirmados no Marco 1, depois da escolha das ferramentas.
+| Lint       | `npm run lint`         |
+| Tipos      | `npm run typecheck`    |
+| Testes     | `npm test`             |
+| Build      | `npm run build`        |
 
 ## Definition of Done
 
