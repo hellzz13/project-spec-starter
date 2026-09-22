@@ -38,6 +38,9 @@ O pacote requer Node.js 22 ou superior e deve ser testado nas linhas LTS ainda
 suportadas. A versão mínima não deve permanecer em uma linha que atingiu fim de
 vida.
 
+`.nvmrc`, `package.json#engines.node`, CI e documentação devem permanecer
+alinhados.
+
 ## Recuperação
 
 - Uma release incorreta será corrigida por nova versão; versões publicadas não

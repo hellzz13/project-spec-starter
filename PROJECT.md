@@ -85,6 +85,9 @@ npx project-spec-starter init
 - `RF-010` — Permitir inspecionar a geração com `--dry-run`.
 - `RF-011` — Gerar `AGENTS.md` quando o uso de agentes estiver habilitado.
 - `RF-012` — Permitir sobrescritas locais de perfil, perguntas e templates.
+- `RF-013` — Oferecer um padrão de engenharia recomendado e editável.
+- `RF-014` — Gerar `.nvmrc` quando Node.js for escolhido, usando a versão
+  confirmada no setup.
 
 ## Requisitos não funcionais
 

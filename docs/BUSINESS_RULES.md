@@ -85,6 +85,19 @@ compatível. O núcleo não inventa a estrutura de componentes ou serviços.
 A CLI coleta nomes de variáveis e mecanismos de armazenamento, nunca valores
 reais de credenciais, tokens ou endereços privados.
 
+### `BR-013` — Padrão recomendado editável
+
+O perfil padrão oferece convenções de engenharia neutras. O usuário pode
+aceitar, substituir ou desabilitar regras e módulos condicionais. Convenções de
+uma tecnologia só aparecem quando a tecnologia ou capacidade correspondente
+for escolhida.
+
+### `BR-014` — Versão do Node.js reproduzível
+
+Quando o projeto usar Node.js, a CLI sugere uma versão LTS suportada, permite
+alterá-la e gera `.nvmrc`. O arquivo de versão, engines, CI e documentação devem
+representar versões compatíveis.
+
 ## Erros observáveis
 
 | Código                | Situação                        | Recuperação                                   |

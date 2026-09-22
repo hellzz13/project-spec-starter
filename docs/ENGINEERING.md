@@ -16,6 +16,13 @@
 Dependências pendentes só serão escolhidas quando existir um comportamento e um
 teste que demonstrem a necessidade.
 
+## Runtime
+
+- Node.js 22 é a versão mínima suportada.
+- `.nvmrc` contém a linha padrão usada no desenvolvimento local.
+- `.nvmrc`, `package.json#engines.node`, CI e documentação permanecem alinhados.
+- A versão mínima só muda com validação dos testes e do pacote empacotado.
+
 ## Arquitetura
 
 ```text
@@ -51,7 +58,7 @@ src/
   shared/
 profiles/
   default/
-    manifest.json
+    profile.json
     questions/
     templates/
 tests/
@@ -62,6 +69,48 @@ tests/
 
 Pastas serão criadas quando receberem uma responsabilidade real. Não serão
 adicionadas apenas para reproduzir o diagrama.
+
+## Padrão de código
+
+- TypeScript permanece em modo estrito.
+- Não usar `any`; valores desconhecidos usam `unknown` com validação e narrowing.
+- Preferir exports nomeados, funções pequenas e nomes orientados ao domínio.
+- Preferir early returns quando reduzirem indentação sem esconder o fluxo.
+- Extrair condições relevantes ou compostas para booleanos de nome semântico.
+- Separar validação estrutural da regra que consome seu resultado.
+- Não manter código comentado, imports sem uso ou logs de depuração.
+- Configuração repetida possui uma única fonte no menor escopo coerente.
+
+### Nomenclatura
+
+- Variáveis e funções usam `camelCase`; classes e tipos usam `PascalCase`.
+- Constantes primitivas de módulo usam `UPPER_SNAKE_CASE` quando representam
+  valores verdadeiramente imutáveis e relevantes.
+- Objetos de constantes usam `PascalCase` e chaves `UPPER_SNAKE_CASE`.
+- Nomes genéricos como `condition`, `data` ou `flag` devem ser substituídos por
+  termos que revelem intenção.
+
+### Funções e fluxo
+
+- Mais de dois argumentos relacionados são agrupados em objeto tipado.
+- Não usar ternários aninhados.
+- Usar `.some()` quando a pergunta for apenas sobre existência.
+- Quando `0`, string vazia ou `false` forem válidos, usar `??` ou verificação
+  explícita em vez de `||`.
+- Preferir `Boolean(value)` e `Number(value)` para conversões que façam parte da
+  regra.
+- `switch` representa uniões discriminadas e deve ser exaustivo; mapeamentos
+  simples usam `Record`.
+- `try/catch` exige recuperação, tradução do erro ou contexto adicional.
+
+### TypeScript
+
+- Preferir objetos `as const` e tipos derivados para conjuntos simples.
+- Enums só representam entidades estáveis de domínio necessárias em runtime.
+- Assertions não podem forçar compatibilidade nem contornar validação.
+- Usar uniões discriminadas para estados mutuamente exclusivos.
+- Usar `satisfies` para validar estruturas sem perder inferência literal.
+- Usar `Record` quando todas as chaves de uma união forem obrigatórias.
 
 ## Contratos centrais
 

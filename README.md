@@ -15,6 +15,7 @@ adicionados posteriormente por meio de receitas e presets explícitos.
 O projeto requer Node.js 22 ou superior e usa npm:
 
 ```bash
+nvm use
 npm install
 npm test
 npm run lint
