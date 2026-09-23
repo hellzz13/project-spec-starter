@@ -50,6 +50,12 @@ lacuna e peça uma decisão antes de implementar uma mudança ambígua.
 - Preserve mudanças existentes e não sobrescreva trabalho sem autorização.
 - Use somente `[GERENCIADOR_DE_PACOTES_ESCOLHIDO]` e seus arquivos de lock.
 - Não adicione dependências ou altere a stack sem registrar a decisão.
+- Antes de concluir a revisão, confronte cada regra aplicável de
+  `docs/ENGINEERING.md` com os arquivos alterados. Gates automatizados não
+  substituem essa verificação.
+- Em TypeScript e linguagens com recursos equivalentes, conjuntos estáveis de
+  estados, códigos e kinds usam objetos constantes e tipos derivados. Prefira
+  mapeamentos exaustivos a `switch`.
 
 ## Ações externas e segurança
 
@@ -92,3 +98,6 @@ mudança os exigir. Registre falhas, exceções e validações adiadas.
 Uma fase só está concluída quando comportamento, erros, autorização, testes,
 documentação e gates estiverem tratados. Se algo permanecer pendente, liste o
 item explicitamente e não o apresente como concluído.
+
+Regras sem verificação automática devem ser conferidas no diff por uma matriz
+de revisão explícita.

@@ -14,9 +14,16 @@
   },
   "customizable": [
     "engineeringStandard",
+    "documents.project.template",
     "runtime.node.version",
     "runtime.node.versionFile"
   ],
+  "documents": {
+    "project": {
+      "output": "PROJECT.md",
+      "template": "templates/project/PROJECT_TEMPLATE.md"
+    }
+  },
   "engineeringStandards": {
     "recommended": {
       "template": "templates/project/ENGINEERING_TEMPLATE.md",

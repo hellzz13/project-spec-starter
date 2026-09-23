@@ -103,6 +103,8 @@ um ambiente isolado.
 - [ ] Acessibilidade e estados de erro/loading foram revisados quando aplicável.
 - [ ] Migrations, contratos e documentação estão atualizados.
 - [ ] O rollback ou plano de recuperação está definido para mudanças de risco.
+- [ ] Cada regra aplicável de `docs/ENGINEERING.md` foi confrontada com o diff,
+      incluindo verificações manuais não cobertas pelos checks automatizados.
 
 ## Sincronização e limpeza
 

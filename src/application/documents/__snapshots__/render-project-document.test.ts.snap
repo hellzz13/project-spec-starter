@@ -1,18 +1,24 @@
-# {{PROJECT_NAME}}
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderProjectDocument > renders the minimal answers fixture without unresolved markers 1`] = `
+"# Billing API
 
 ## Contexto inicial
 
-{{PROJECT_SUMMARY}}
+Decisão pendente
 
 | Item | Decisão |
 | ---- | ------- |
-{{PROJECT_STRUCTURE_ROWS}}
+| Organização | Aplicação única |
+| Natureza | Backend |
+| Suporte a agentes | Habilitado |
 
 ### Capacidades declaradas
 
-{{PROJECT_CAPABILITIES}}
+- http-api
+- scheduled-jobs
 
-{{PROJECT_UNITS}}## Visão
+## Visão
 
 ### Problema
 
@@ -21,7 +27,7 @@ quem ele existe e em qual contexto quando essas informações afetarem a tarefa.
 
 ### Proposta de valor
 
-{{PROJECT_SUMMARY}}
+Decisão pendente
 
 ### Hipóteses
 
@@ -132,3 +138,5 @@ a representar a fonte de verdade do projeto.
 | Data             | Alteração         | Motivo               | Autor            |
 | ---------------- | ----------------- | -------------------- | ---------------- |
 | Decisão pendente | Documento inicial | Bootstrap do projeto | Decisão pendente |
+"
+`;

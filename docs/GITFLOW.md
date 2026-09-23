@@ -46,6 +46,8 @@ Uma revisão deve verificar:
 - Ausência de tecnologia imposta pelo perfil padrão.
 - Documentação e ADRs afetados.
 - Conteúdo do pacote npm quando templates ou perfis mudarem.
+- Matriz entre regras aplicáveis de `docs/ENGINEERING.md` e arquivos alterados,
+  incluindo verificações manuais que não estejam cobertas por lint ou testes.
 
 ## Releases
 

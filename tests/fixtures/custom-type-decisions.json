@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "name": "Research Workbench",
+    "summary": { "state": "not-applicable" },
+    "organization": { "kind": "single-app" },
+    "nature": {
+      "kind": "custom",
+      "description": "Interactive scientific experiment workbench"
+    },
+    "capabilities": ["data-visualization", "local-storage"],
+    "agentSupport": false
+  }
+}
