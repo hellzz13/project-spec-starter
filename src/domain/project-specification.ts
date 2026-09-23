@@ -2,22 +2,39 @@ import type { Decision } from "./decision.js";
 
 export const PROJECT_SPECIFICATION_SCHEMA_VERSION = 1;
 
-export const ProjectNatures = [
-  "frontend",
-  "backend",
-  "full-stack",
-  "library",
-  "cli",
-  "worker",
-  "infrastructure",
-  "mobile",
-] as const;
+export const ProjectNatures = {
+  FRONTEND: "frontend",
+  BACKEND: "backend",
+  FULL_STACK: "full-stack",
+  LIBRARY: "library",
+  CLI: "cli",
+  WORKER: "worker",
+  INFRASTRUCTURE: "infrastructure",
+  MOBILE: "mobile",
+  CUSTOM: "custom",
+} as const;
 
-export type ProjectNatureKind = (typeof ProjectNatures)[number];
+export const ProjectOrganizationKinds = {
+  SINGLE_APP: "single-app",
+  MONOREPO: "monorepo",
+} as const;
+
+type ProjectNatureValue = (typeof ProjectNatures)[keyof typeof ProjectNatures];
+
+export type ProjectNatureKind = Exclude<
+  ProjectNatureValue,
+  typeof ProjectNatures.CUSTOM
+>;
+
+export type ProjectOrganizationKind =
+  (typeof ProjectOrganizationKinds)[keyof typeof ProjectOrganizationKinds];
 
 export type ProjectNature =
   | { readonly kind: ProjectNatureKind }
-  | { readonly description: string; readonly kind: "custom" };
+  | {
+      readonly description: string;
+      readonly kind: typeof ProjectNatures.CUSTOM;
+    };
 
 export interface ProjectUnit {
   readonly name: string;
@@ -27,8 +44,11 @@ export interface ProjectUnit {
 }
 
 export type ProjectOrganization =
-  | { readonly kind: "single-app" }
-  | { readonly kind: "monorepo"; readonly units: readonly ProjectUnit[] };
+  | { readonly kind: typeof ProjectOrganizationKinds.SINGLE_APP }
+  | {
+      readonly kind: typeof ProjectOrganizationKinds.MONOREPO;
+      readonly units: readonly ProjectUnit[];
+    };
 
 export interface ProjectSpecification {
   readonly schemaVersion: typeof PROJECT_SPECIFICATION_SCHEMA_VERSION;

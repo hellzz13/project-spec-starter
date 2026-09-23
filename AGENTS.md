@@ -31,6 +31,11 @@ Antes de alterar o projeto, leia nesta ordem:
 - Não acople perguntas ou templates aos comandos da CLI.
 - Não adicione dependências sem justificar a necessidade e avaliar alternativas.
 - Use npm e mantenha somente `package-lock.json` como lockfile.
+- Antes de concluir a revisão, confronte cada regra aplicável de
+  `docs/ENGINEERING.md` com os arquivos alterados. Gates automatizados não
+  substituem essa verificação.
+- Conjuntos estáveis de estados, códigos e kinds usam objetos `as const` e tipos
+  derivados. Prefira mapeamentos exaustivos a `switch`.
 
 ## Delegação e custo
 
@@ -67,4 +72,5 @@ Antes de alterar o projeto, leia nesta ordem:
 
 Antes de concluir uma mudança, execute os gates disponíveis, revise o pacote
 distribuível quando afetado e informe comportamento alterado, validações, riscos
-e pendências reais.
+e pendências reais. Regras sem verificação automática devem ser conferidas no
+diff por uma matriz de revisão explícita.

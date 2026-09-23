@@ -26,6 +26,7 @@
 - [x] Implementar schema, normalização e modelo documental mínimos.
 - [x] Implementar a menor renderização que passe no teste.
 - [x] Validar ausência de marcadores não resolvidos.
+- [x] Usar o template declarado pelo perfil como fonte canônica da renderização.
 
 ## Qualidade e distribuição
 

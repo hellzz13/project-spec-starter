@@ -16,6 +16,10 @@ async function readJsonRecord(path: string): Promise<Record<string, unknown>> {
   return parsed;
 }
 
+async function readText(path: string): Promise<string> {
+  return readFile(new URL(path, PROJECT_ROOT), "utf8");
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -42,6 +46,34 @@ describe("default profile", () => {
       },
     });
     expect(profile.customizable).toContain("engineeringStandard");
+  });
+
+  it("declares the replaceable project document template", async () => {
+    const profile = await readJsonRecord("profiles/default/profile.json");
+
+    expect(profile).toMatchObject({
+      documents: {
+        project: {
+          output: "PROJECT.md",
+          template: "templates/project/PROJECT_TEMPLATE.md",
+        },
+      },
+    });
+    expect(profile.customizable).toContain("documents.project.template");
+  });
+
+  it("keeps mandatory flow rules in the internal and distributed standards", async () => {
+    const standards = await Promise.all([
+      readText("docs/ENGINEERING.md"),
+      readText("templates/project/ENGINEERING_TEMPLATE.md"),
+    ]);
+
+    for (const standard of standards) {
+      expect(standard).toMatch(/condiç.+nome semântico/isu);
+      expect(standard).toMatch(/Evitar `switch`/u);
+      expect(standard).toMatch(/Resultados compostos recebem um nome/u);
+      expect(standard).toMatch(/object literals/u);
+    }
   });
 
   it("keeps the default Node version aligned with this project", async () => {

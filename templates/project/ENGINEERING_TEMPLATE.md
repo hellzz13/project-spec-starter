@@ -44,6 +44,10 @@ explicitamente.
 - Preferir funções pequenas, nomes orientados à intenção e exports explícitos.
 - Toda condição que controla fluxo recebe um nome semântico antes do uso, mesmo
   quando a comparação for simples.
+- Evitar `switch`; conjuntos fechados usam objetos literais e mapeamentos
+  exaustivos sempre que isso preservar a clareza.
+- Resultados compostos recebem um nome quando esse nome revelar seu papel no
+  domínio. Retornos simples e autoexplicativos podem permanecer diretos.
 - Centralizar configuração repetida no menor escopo compartilhado coerente.
 - Não deixar requisições ou regras de persistência em componentes de
   apresentação.
@@ -81,8 +85,9 @@ convenções equivalentes às de JavaScript e TypeScript, o padrão inicial é:
   verificação explícita em vez de fallback baseado em valor falsy.
 - Preferir conversões explícitas de booleanos e números quando fizerem parte da
   regra.
-- Usar `switch` para uniões discriminadas com checagem exaustiva; para simples
-  mapeamentos de valor, preferir uma estrutura de mapeamento completa.
+- Preferir object literals e mapeamentos completos a `switch`. Uma exceção
+  exige que o mapeamento torne o fluxo menos claro e deve ser justificada na
+  revisão.
 - Usar `try/catch` somente para recuperação, tradução de erro ou inclusão de
   contexto. Não capturar apenas para relançar o mesmo erro.
 
@@ -252,8 +257,9 @@ camada apropriada e injete dados e callbacks na view.
 - Manter contratos próximos ao domínio que os utiliza.
 - Preferir uniões discriminadas para estados mutuamente exclusivos.
 - Usar objetos imutáveis e tipos derivados para conjuntos simples de valores.
-- Usar enums apenas quando uma entidade de domínio precisar de representação
-  em runtime.
+- Usar enums apenas quando uma integração ou API pública exigir essa construção
+  em runtime; estados, códigos e kinds textuais usam objetos imutáveis e tipos
+  derivados.
 - Validar entradas e respostas externas na fronteira.
 - Não usar assertions para contornar validação.
 - Usar `satisfies` quando for importante validar uma estrutura sem perder

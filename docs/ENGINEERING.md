@@ -79,6 +79,10 @@ adicionadas apenas para reproduzir o diagrama.
 - Toda condição que controla fluxo deve ter nome semântico antes do uso, mesmo
   quando a comparação for simples. A regra vale para `if`, `while`, ternários e
   callbacks condicionais; predicados nomeados também atendem ao padrão.
+- Evitar `switch`; conjuntos fechados usam objetos literais `as const` e
+  mapeamentos exaustivos com `Record` sempre que isso preservar a clareza.
+- Resultados compostos recebem um nome quando esse nome revelar seu papel no
+  domínio. Retornos simples e autoexplicativos podem permanecer diretos.
 - Separar validação estrutural da regra que consome seu resultado.
 - Não manter código comentado, imports sem uso ou logs de depuração.
 - Configuração repetida possui uma única fonte no menor escopo coerente.
@@ -103,14 +107,16 @@ adicionadas apenas para reproduzir o diagrama.
   explícita em vez de `||`.
 - Preferir `Boolean(value)` e `Number(value)` para conversões que façam parte da
   regra.
-- `switch` representa uniões discriminadas e deve ser exaustivo; mapeamentos
-  simples usam `Record`.
+- Preferir object literals e `Record` exaustivos a `switch`. Uma exceção exige
+  que o mapeamento torne o fluxo menos claro e deve ser justificada na revisão.
 - `try/catch` exige recuperação, tradução do erro ou contexto adicional.
 
 ### TypeScript
 
-- Preferir objetos `as const` e tipos derivados para conjuntos simples.
-- Enums só representam entidades estáveis de domínio necessárias em runtime.
+- Preferir objetos `as const` e tipos derivados para estados, códigos, kinds e
+  outros conjuntos simples compartilhados em runtime.
+- Enums só são usados quando uma integração ou API pública exigir a construção
+  `enum` em runtime; estados, códigos e kinds textuais usam `as const`.
 - Assertions não podem forçar compatibilidade nem contornar validação.
 - Usar uniões discriminadas para estados mutuamente exclusivos.
 - Usar `satisfies` para validar estruturas sem perder inferência literal.

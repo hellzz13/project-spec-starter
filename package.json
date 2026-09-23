@@ -14,12 +14,13 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "node scripts/clean-dist.mjs && tsc -p tsconfig.build.json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "prepack": "npm run build",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "engines": {

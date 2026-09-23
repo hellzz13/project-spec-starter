@@ -1,134 +1,134 @@
-# [NOME_DO_PROJETO]
+# {{PROJECT_NAME}}
 
-> Documento de contexto do produto. Substitua os marcadores e remova as
-> orientações antes de considerar o documento final.
+## Contexto inicial
 
-## Visão
+{{PROJECT_SUMMARY}}
+
+| Item | Decisão |
+| ---- | ------- |
+{{PROJECT_STRUCTURE_ROWS}}
+
+### Capacidades declaradas
+
+{{PROJECT_CAPABILITIES}}
+
+{{PROJECT_UNITS}}## Visão
 
 ### Problema
 
-- Qual problema está sendo resolvido?
-- Para quem ele existe?
-- Em qual contexto ele ocorre?
+Decisão pendente. O agente deve perguntar qual problema será resolvido, para
+quem ele existe e em qual contexto quando essas informações afetarem a tarefa.
 
 ### Proposta de valor
 
-`[Descreva, em uma frase, qual resultado o projeto entrega e para quem.]`
+{{PROJECT_SUMMARY}}
 
 ### Hipóteses
 
-| Hipótese   | Evidência esperada | Como validar  | Status                      |
-| ---------- | ------------------ | ------------- | --------------------------- |
-| [Hipótese] | [Sinal observável] | [Experimento] | [Aberta/validada/rejeitada] |
+| Hipótese         | Evidência esperada | Como validar     | Status |
+| ---------------- | ------------------ | ---------------- | ------ |
+| Decisão pendente | Decisão pendente   | Decisão pendente | Aberta |
 
 ## Usuários e cenários
 
-| Perfil   | Necessidade   | Cenário principal | Fora do escopo |
-| -------- | ------------- | ----------------- | -------------- |
-| [Perfil] | [Necessidade] | [Cenário]         | [Limite]       |
+| Perfil           | Necessidade      | Cenário principal | Fora do escopo   |
+| ---------------- | ---------------- | ----------------- | ---------------- |
+| Decisão pendente | Decisão pendente | Decisão pendente  | Decisão pendente |
 
 ## Escopo
 
 ### Incluído
 
-- [Capacidade ou fluxo]
-- [Capacidade ou fluxo]
+Decisão pendente.
 
 ### Não incluído
 
-- [Capacidade explicitamente adiada]
-- [Capacidade fora do produto]
+Decisão pendente.
 
 ### Restrições
 
-- [Prazo, orçamento, regulamentação ou dependência]
+Decisão pendente.
 
 ## Requisitos
 
 ### Requisitos funcionais
 
-- `RF-001` — [O sistema deve ...]
-- `RF-002` — [O sistema deve ...]
+Decisão pendente.
 
 ### Requisitos não funcionais
 
-- `RNF-001` — [Disponibilidade, desempenho ou escala]
-- `RNF-002` — [Privacidade, segurança ou retenção]
-- `RNF-003` — [Acessibilidade e compatibilidade]
+Decisão pendente.
 
 ### Critérios de aceite
 
-```text
-Dado [contexto]
-Quando [ação]
-Então [resultado esperado]
-E [restrição ou resultado adicional]
-```
+Decisão pendente. Quando necessário, registre critérios observáveis no formato
+“Dado, Quando, Então”.
 
 ## Arquitetura
 
 ### Visão de alto nível
 
-```text
-[Cliente] -> [Interface/API] -> [Serviço de aplicação] -> [Persistência]
-                                  -> [Integrações externas]
-```
+Decisão pendente.
 
 ### Componentes
 
-| Componente   | Responsabilidade   | Interface  | Dono          |
-| ------------ | ------------------ | ---------- | ------------- |
-| [Componente] | [Responsabilidade] | [Contrato] | [Time/pessoa] |
+| Componente       | Responsabilidade | Interface        | Responsável      |
+| ---------------- | ---------------- | ---------------- | ---------------- |
+| Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente |
 
 ### Dados e integrações
 
-- Dados principais: `[entidades ou recursos]`.
-- Fonte de verdade: `[sistema ou componente]`.
-- Integrações externas: `[integração, finalidade e escopo]`.
-- Retenção e exclusão: `[política aplicável]`.
+- Dados principais: decisão pendente.
+- Fonte de verdade: decisão pendente.
+- Integrações externas: decisão pendente.
+- Retenção e exclusão: decisão pendente.
 
 ### Decisões arquiteturais
 
-| ID        | Decisão   | Contexto                 | Alternativas       | Data         |
-| --------- | --------- | ------------------------ | ------------------ | ------------ |
-| `ADR-001` | [Decisão] | [Por que foi necessária] | [Opções avaliadas] | [AAAA-MM-DD] |
+Nenhuma decisão arquitetural registrada inicialmente. Crie um ADR quando uma
+decisão ampla ou difícil de reverter for tomada.
 
 ## Marcos de entrega
 
-| Marco        | Resultado   | Entregáveis | Critério de conclusão | Status      |
-| ------------ | ----------- | ----------- | --------------------- | ----------- |
-| 0 — Fundação | [Resultado] | [Itens]     | [Critério]            | [Planejado] |
-| 1 — [Nome]   | [Resultado] | [Itens]     | [Critério]            | [Planejado] |
+| Marco    | Resultado        | Entregáveis      | Critério de conclusão | Status    |
+| -------- | ---------------- | ---------------- | --------------------- | --------- |
+| Fundação | Decisão pendente | Decisão pendente | Decisão pendente      | Planejado |
 
 ## Critérios de sucesso
 
-| Resultado   | Métrica   | Meta   | Fonte   | Janela    |
-| ----------- | --------- | ------ | ------- | --------- |
-| [Resultado] | [Métrica] | [Meta] | [Fonte] | [Período] |
+| Resultado        | Métrica          | Meta             | Fonte            | Janela           |
+| ---------------- | ---------------- | ---------------- | ---------------- | ---------------- |
+| Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente |
 
 ## Riscos e dependências
 
-| Risco ou dependência | Probabilidade      | Impacto            | Mitigação | Responsável   |
-| -------------------- | ------------------ | ------------------ | --------- | ------------- |
-| [Item]               | [Baixa/Média/Alta] | [Baixo/Médio/Alto] | [Ação]    | [Responsável] |
+| Risco ou dependência | Probabilidade    | Impacto          | Mitigação        | Responsável      |
+| -------------------- | ---------------- | ---------------- | ---------------- | ---------------- |
+| Decisão pendente     | Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente |
 
 ## Backlog
 
 ### Próximos itens
 
-- `[P0]` [Item com resultado esperado]
-- `[P1]` [Item com resultado esperado]
+Decisão pendente.
 
 ### Melhorias futuras
 
-- [Item que depende de aprendizado ou escala]
+Decisão pendente.
 
 ### Decisões pendentes
 
-- [Pergunta, opções e pessoa responsável pela decisão]
+- Refinar problema, público, escopo, requisitos, arquitetura e critérios de
+  sucesso conforme essas informações forem necessárias para o trabalho.
+
+## Refinamento
+
+Decisões marcadas como pendentes devem ser perguntadas somente quando afetarem
+a tarefa atual. Depois da resposta, este documento deve ser atualizado e passa
+a representar a fonte de verdade do projeto.
 
 ## Histórico de alterações
 
-| Data         | Alteração   | Motivo   | Autor   |
-| ------------ | ----------- | -------- | ------- |
-| [AAAA-MM-DD] | [Alteração] | [Motivo] | [Autor] |
+| Data             | Alteração         | Motivo               | Autor            |
+| ---------------- | ----------------- | -------------------- | ---------------- |
+| Decisão pendente | Documento inicial | Bootstrap do projeto | Decisão pendente |

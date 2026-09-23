@@ -1,4 +1,5 @@
 import {
+  ProjectOrganizationKinds,
   ProjectNatures,
   PROJECT_SPECIFICATION_SCHEMA_VERSION,
   type ProjectNature,
@@ -7,9 +8,9 @@ import {
   type ProjectSpecification,
   type ProjectUnit,
 } from "../../domain/project-specification.js";
-import type { Decision } from "../../domain/decision.js";
+import { DecisionStates, type Decision } from "../../domain/decision.js";
 import { migrateAnswers, type AnswersMigration } from "./migrate-answers.js";
-import { AnswersError } from "./answers-error.js";
+import { AnswersError, AnswersErrorCodes } from "./answers-error.js";
 
 export { AnswersError } from "./answers-error.js";
 
@@ -26,7 +27,7 @@ export function parseAnswers(
 
   if (isUnsupportedSchemaVersion) {
     throw new AnswersError({
-      code: "UNSUPPORTED_SCHEMA",
+      code: AnswersErrorCodes.UNSUPPORTED_SCHEMA,
       path: "schemaVersion",
       message: `Unsupported schema version: ${String(schemaVersion)}`,
     });
@@ -53,13 +54,15 @@ export function parseAnswers(
 
 function parseOrganization(input: unknown, path: string): ProjectOrganization {
   const organization = requireRecord(input, path);
-  const isSingleApplication = organization.kind === "single-app";
+  const isSingleApplication =
+    organization.kind === ProjectOrganizationKinds.SINGLE_APP;
 
   if (isSingleApplication) {
-    return { kind: "single-app" };
+    return { kind: ProjectOrganizationKinds.SINGLE_APP };
   }
 
-  const isUnsupportedOrganization = organization.kind !== "monorepo";
+  const isUnsupportedOrganization =
+    organization.kind !== ProjectOrganizationKinds.MONOREPO;
 
   if (isUnsupportedOrganization) {
     invalid(`${path}.kind`, 'Expected "single-app" or "monorepo".');
@@ -73,7 +76,7 @@ function parseOrganization(input: unknown, path: string): ProjectOrganization {
   }
 
   return {
-    kind: "monorepo",
+    kind: ProjectOrganizationKinds.MONOREPO,
     units: units.map((unit, index) =>
       parseUnit(unit, `${path}.units[${index}]`),
     ),
@@ -93,11 +96,11 @@ function parseUnit(input: unknown, path: string): ProjectUnit {
 
 function parseNature(input: unknown, path: string): ProjectNature {
   const nature = requireRecord(input, path);
-  const isCustomNature = nature.kind === "custom";
+  const isCustomNature = nature.kind === ProjectNatures.CUSTOM;
 
   if (isCustomNature) {
     return {
-      kind: "custom",
+      kind: ProjectNatures.CUSTOM,
       description: requireNonEmptyString(
         nature.description,
         `${path}.description`,
@@ -116,32 +119,34 @@ function parseNature(input: unknown, path: string): ProjectNature {
 }
 
 function isKnownNature(input: unknown): input is ProjectNatureKind {
-  return ProjectNatures.some((candidate) => {
+  return Object.values(ProjectNatures).some((candidate) => {
     const matchesRequestedNature = candidate === input;
+    const isStandardNature = candidate !== ProjectNatures.CUSTOM;
 
-    return matchesRequestedNature;
+    return matchesRequestedNature && isStandardNature;
   });
 }
 
 function parseStringDecision(input: unknown, path: string): Decision<string> {
   const decision = requireRecord(input, path);
-  const isPendingDecision = decision.state === "pending";
+  const isPendingDecision = decision.state === DecisionStates.PENDING;
 
   if (isPendingDecision) {
-    return { state: "pending" };
+    return { state: DecisionStates.PENDING };
   }
 
-  const isNotApplicableDecision = decision.state === "not-applicable";
+  const isNotApplicableDecision =
+    decision.state === DecisionStates.NOT_APPLICABLE;
 
   if (isNotApplicableDecision) {
-    return { state: "not-applicable" };
+    return { state: DecisionStates.NOT_APPLICABLE };
   }
 
-  const isDefinedDecision = decision.state === "defined";
+  const isDefinedDecision = decision.state === DecisionStates.DEFINED;
 
   if (isDefinedDecision) {
     return {
-      state: "defined",
+      state: DecisionStates.DEFINED,
       value: requireNonEmptyString(decision.value, `${path}.value`),
     };
   }
@@ -207,7 +212,7 @@ function requireBoolean(input: unknown, path: string): boolean {
 
 function invalid(path: string, message: string): never {
   throw new AnswersError({
-    code: "INVALID_ANSWERS",
+    code: AnswersErrorCodes.INVALID_ANSWERS,
     path,
     message: `${path}: ${message}`,
   });

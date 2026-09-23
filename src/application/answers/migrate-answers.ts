@@ -1,5 +1,5 @@
 import { PROJECT_SPECIFICATION_SCHEMA_VERSION } from "../../domain/project-specification.js";
-import { AnswersError } from "./answers-error.js";
+import { AnswersError, AnswersErrorCodes } from "./answers-error.js";
 
 export interface AnswersMigration {
   readonly fromVersion: number;
@@ -83,7 +83,7 @@ function isRecord(input: unknown): input is Record<string, unknown> {
 
 function unsupportedSchema(version: unknown): never {
   throw new AnswersError({
-    code: "UNSUPPORTED_SCHEMA",
+    code: AnswersErrorCodes.UNSUPPORTED_SCHEMA,
     path: "schemaVersion",
     message: `Unsupported schema version: ${String(version)}`,
   });

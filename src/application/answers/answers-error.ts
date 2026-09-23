@@ -1,4 +1,10 @@
-export type AnswersErrorCode = "INVALID_ANSWERS" | "UNSUPPORTED_SCHEMA";
+export const AnswersErrorCodes = {
+  INVALID_ANSWERS: "INVALID_ANSWERS",
+  UNSUPPORTED_SCHEMA: "UNSUPPORTED_SCHEMA",
+} as const;
+
+export type AnswersErrorCode =
+  (typeof AnswersErrorCodes)[keyof typeof AnswersErrorCodes];
 
 export class AnswersError extends Error {
   readonly code: AnswersErrorCode;
