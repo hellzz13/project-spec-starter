@@ -44,10 +44,14 @@ function renderUnits(units: DocumentModel["project"]["units"]): string {
   }
 
   const rows = units
-    .map(
-      (unit) =>
-        `| ${unit.name} | ${unit.path} | ${unit.nature} | ${unit.capabilities.join(", ") || "Nenhuma declarada"} |`,
-    )
+    .map((unit) => {
+      const capabilities =
+        unit.capabilities.length === 0
+          ? "Nenhuma declarada"
+          : unit.capabilities.join(", ");
+
+      return `| ${unit.name} | ${unit.path} | ${unit.nature} | ${capabilities} |`;
+    })
     .join("\n");
 
   return `

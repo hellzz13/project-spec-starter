@@ -37,24 +37,21 @@ const NatureLabels = {
 export function createDocumentModel(
   specification: ProjectSpecification,
 ): DocumentModel {
-  const units =
-    specification.organization.kind === "monorepo"
-      ? specification.organization.units.map((unit) => ({
-          name: unit.name,
-          path: formatDecision(unit.path),
-          nature: formatNature(unit.nature),
-          capabilities: unit.capabilities,
-        }))
-      : [];
+  const isMonorepo = specification.organization.kind === "monorepo";
+  const units = isMonorepo
+    ? specification.organization.units.map((unit) => ({
+        name: unit.name,
+        path: formatDecision(unit.path),
+        nature: formatNature(unit.nature),
+        capabilities: unit.capabilities,
+      }))
+    : [];
 
   return {
     project: {
       name: specification.name,
       summary: formatDecision(specification.summary),
-      organization:
-        specification.organization.kind === "monorepo"
-          ? "Monorepo"
-          : "Aplicação única",
+      organization: isMonorepo ? "Monorepo" : "Aplicação única",
       nature: formatNature(specification.nature),
       capabilities: specification.capabilities,
       agentSupport: specification.agentSupport ? "Habilitado" : "Desabilitado",

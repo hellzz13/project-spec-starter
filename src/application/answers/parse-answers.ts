@@ -1,5 +1,6 @@
 import {
   ProjectNatures,
+  PROJECT_SPECIFICATION_SCHEMA_VERSION,
   type ProjectNature,
   type ProjectNatureKind,
   type ProjectOrganization,
@@ -30,7 +31,7 @@ export function parseAnswers(input: unknown): ProjectSpecification {
   const root = requireRecord(input, "answers");
   const schemaVersion = root.schemaVersion;
 
-  if (schemaVersion !== 1) {
+  if (schemaVersion !== PROJECT_SPECIFICATION_SCHEMA_VERSION) {
     throw new AnswersError({
       code: "UNSUPPORTED_SCHEMA",
       path: "schemaVersion",
@@ -68,13 +69,14 @@ function parseOrganization(input: unknown, path: string): ProjectOrganization {
     invalid(`${path}.kind`, 'Expected "single-app" or "monorepo".');
   }
 
-  if (!Array.isArray(organization.units) || organization.units.length === 0) {
+  const units = organization.units;
+  if (!isNonEmptyArray(units)) {
     invalid(`${path}.units`, "A monorepo must contain at least one unit.");
   }
 
   return {
     kind: "monorepo",
-    units: organization.units.map((unit, index) =>
+    units: units.map((unit, index) =>
       parseUnit(unit, `${path}.units[${index}]`),
     ),
   };
@@ -152,15 +154,26 @@ function parseCapabilities(input: unknown, path: string): readonly string[] {
 }
 
 function requireRecord(input: unknown, path: string): Record<string, unknown> {
-  if (typeof input !== "object" || input === null || Array.isArray(input)) {
+  if (!isRecord(input)) {
     invalid(path, "Expected an object.");
   }
 
-  return input as Record<string, unknown>;
+  return input;
+}
+
+function isRecord(input: unknown): input is Record<string, unknown> {
+  return typeof input === "object" && input !== null && !Array.isArray(input);
+}
+
+function isNonEmptyArray(input: unknown): input is unknown[] {
+  return Array.isArray(input) && input.length > 0;
 }
 
 function requireNonEmptyString(input: unknown, path: string): string {
-  if (typeof input !== "string" || input.trim().length === 0) {
+  const isInvalidString =
+    typeof input !== "string" || input.trim().length === 0;
+
+  if (isInvalidString) {
     invalid(path, "Expected a non-empty string.");
   }
 

@@ -1,5 +1,7 @@
 import type { Decision } from "./decision.js";
 
+export const PROJECT_SPECIFICATION_SCHEMA_VERSION = 1;
+
 export const ProjectNatures = [
   "frontend",
   "backend",
@@ -29,7 +31,7 @@ export type ProjectOrganization =
   | { readonly kind: "monorepo"; readonly units: readonly ProjectUnit[] };
 
 export interface ProjectSpecification {
-  readonly schemaVersion: 1;
+  readonly schemaVersion: typeof PROJECT_SPECIFICATION_SCHEMA_VERSION;
   readonly name: string;
   readonly summary: Decision<string>;
   readonly organization: ProjectOrganization;
