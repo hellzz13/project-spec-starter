@@ -7,8 +7,9 @@ const PROJECT_ROOT = new URL("../../", import.meta.url);
 async function readJsonRecord(path: string): Promise<Record<string, unknown>> {
   const contents = await readFile(new URL(path, PROJECT_ROOT), "utf8");
   const parsed: unknown = JSON.parse(contents);
+  const isInvalidJsonRecord = !isRecord(parsed);
 
-  if (!isRecord(parsed)) {
+  if (isInvalidJsonRecord) {
     throw new Error(`Expected ${path} to contain a JSON object.`);
   }
 
@@ -20,7 +21,9 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 function requireRecord(value: unknown): Record<string, unknown> {
-  if (!isRecord(value)) {
+  const isInvalidJsonRecord = !isRecord(value);
+
+  if (isInvalidJsonRecord) {
     throw new Error("Expected a JSON object.");
   }
 

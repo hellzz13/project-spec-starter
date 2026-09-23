@@ -38,6 +38,7 @@ export function createDocumentModel(
   specification: ProjectSpecification,
 ): DocumentModel {
   const isMonorepo = specification.organization.kind === "monorepo";
+  const hasAgentSupport = specification.agentSupport;
   const units = isMonorepo
     ? specification.organization.units.map((unit) => ({
         name: unit.name,
@@ -54,7 +55,7 @@ export function createDocumentModel(
       organization: isMonorepo ? "Monorepo" : "Aplicação única",
       nature: formatNature(specification.nature),
       capabilities: specification.capabilities,
-      agentSupport: specification.agentSupport ? "Habilitado" : "Desabilitado",
+      agentSupport: hasAgentSupport ? "Habilitado" : "Desabilitado",
       units,
     },
   };
@@ -72,7 +73,7 @@ function formatDecision(decision: Decision<string>): string {
 }
 
 function formatNature(nature: ProjectNature): string {
-  return nature.kind === "custom"
-    ? nature.description
-    : NatureLabels[nature.kind];
+  const isCustomNature = nature.kind === "custom";
+
+  return isCustomNature ? nature.description : NatureLabels[nature.kind];
 }

@@ -20,7 +20,7 @@
 - [x] Modelar projeto, organização, unidades e capacidades.
 - [x] Modelar decisões definidas, pendentes e não aplicáveis.
 - [x] Criar schema versionado e validação.
-- [ ] Criar migrações isoladas e fixtures representativas.
+- [x] Criar pipeline isolado de migrações e fixtures representativas.
 
 ## Marco 3 — Motor documental
 

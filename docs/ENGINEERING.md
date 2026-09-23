@@ -76,7 +76,9 @@ adicionadas apenas para reproduzir o diagrama.
 - Não usar `any`; valores desconhecidos usam `unknown` com validação e narrowing.
 - Preferir exports nomeados, funções pequenas e nomes orientados ao domínio.
 - Preferir early returns quando reduzirem indentação sem esconder o fluxo.
-- Extrair condições relevantes ou compostas para booleanos de nome semântico.
+- Toda condição que controla fluxo deve ter nome semântico antes do uso, mesmo
+  quando a comparação for simples. A regra vale para `if`, `while`, ternários e
+  callbacks condicionais; predicados nomeados também atendem ao padrão.
 - Separar validação estrutural da regra que consome seu resultado.
 - Não manter código comentado, imports sem uso ou logs de depuração.
 - Configuração repetida possui uma única fonte no menor escopo coerente.
@@ -93,6 +95,8 @@ adicionadas apenas para reproduzir o diagrama.
 ### Funções e fluxo
 
 - Mais de dois argumentos relacionados são agrupados em objeto tipado.
+- Não usar comparações ou expressões booleanas anônimas diretamente em
+  estruturas de controle; declarar a intenção em uma constante ou predicado.
 - Não usar ternários aninhados.
 - Usar `.some()` quando a pergunta for apenas sobre existência.
 - Quando `0`, string vazia ou `false` forem válidos, usar `??` ou verificação

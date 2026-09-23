@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 import { AnswersError, parseAnswers } from "./parse-answers.js";
@@ -147,4 +148,19 @@ describe("parseAnswers", () => {
       }),
     );
   });
+
+  it.each(["heterogeneous-monorepo.json", "custom-type-decisions.json"])(
+    "parses representative fixture %s",
+    (fixtureName) => {
+      const input: unknown = JSON.parse(
+        readFileSync(fixturePath(fixtureName), "utf8"),
+      );
+
+      expect(() => parseAnswers(input)).not.toThrow();
+    },
+  );
 });
+
+function fixturePath(name: string): URL {
+  return new URL(`../../../tests/fixtures/${name}`, import.meta.url);
+}

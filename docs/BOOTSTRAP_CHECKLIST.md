@@ -19,6 +19,8 @@
 ## Primeiro comportamento
 
 - [x] Criar fixture mínima de respostas válidas.
+- [x] Validar fixtures representativas de monorepo heterogêneo, tipo customizado
+      e estados de decisão pelo parser.
 - [x] Escrever teste para a geração de `PROJECT.md` em memória.
 - [x] Confirmar a falha inicial pelo motivo correto.
 - [x] Implementar schema, normalização e modelo documental mínimos.

@@ -33,22 +33,26 @@ a representar a fonte de verdade do projeto.
 }
 
 function renderList(items: readonly string[], emptyMessage: string): string {
-  return items.length === 0
+  const hasNoItems = items.length === 0;
+
+  return hasNoItems
     ? emptyMessage
     : items.map((item) => `- ${item}`).join("\n");
 }
 
 function renderUnits(units: DocumentModel["project"]["units"]): string {
-  if (units.length === 0) {
+  const hasNoUnits = units.length === 0;
+
+  if (hasNoUnits) {
     return "\n";
   }
 
   const rows = units
     .map((unit) => {
-      const capabilities =
-        unit.capabilities.length === 0
-          ? "Nenhuma declarada"
-          : unit.capabilities.join(", ");
+      const hasNoCapabilities = unit.capabilities.length === 0;
+      const capabilities = hasNoCapabilities
+        ? "Nenhuma declarada"
+        : unit.capabilities.join(", ");
 
       return `| ${unit.name} | ${unit.path} | ${unit.nature} | ${capabilities} |`;
     })

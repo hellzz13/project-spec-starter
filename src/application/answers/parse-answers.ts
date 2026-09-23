@@ -8,30 +8,23 @@ import {
   type ProjectUnit,
 } from "../../domain/project-specification.js";
 import type { Decision } from "../../domain/decision.js";
+import { migrateAnswers, type AnswersMigration } from "./migrate-answers.js";
+import { AnswersError } from "./answers-error.js";
 
-type AnswersErrorCode = "INVALID_ANSWERS" | "UNSUPPORTED_SCHEMA";
+export { AnswersError } from "./answers-error.js";
 
-export class AnswersError extends Error {
-  readonly code: AnswersErrorCode;
-  readonly path: string;
-
-  constructor(options: {
-    readonly code: AnswersErrorCode;
-    readonly message: string;
-    readonly path: string;
-  }) {
-    super(options.message);
-    this.name = "AnswersError";
-    this.code = options.code;
-    this.path = options.path;
-  }
-}
-
-export function parseAnswers(input: unknown): ProjectSpecification {
+export function parseAnswers(
+  input: unknown,
+  migrations: readonly AnswersMigration[] = [],
+): ProjectSpecification {
   const root = requireRecord(input, "answers");
-  const schemaVersion = root.schemaVersion;
+  const migratedInput = migrateAnswers(root, migrations);
+  const migratedRoot = requireRecord(migratedInput, "answers");
+  const schemaVersion = migratedRoot.schemaVersion;
+  const isUnsupportedSchemaVersion =
+    schemaVersion !== PROJECT_SPECIFICATION_SCHEMA_VERSION;
 
-  if (schemaVersion !== PROJECT_SPECIFICATION_SCHEMA_VERSION) {
+  if (isUnsupportedSchemaVersion) {
     throw new AnswersError({
       code: "UNSUPPORTED_SCHEMA",
       path: "schemaVersion",
@@ -39,7 +32,7 @@ export function parseAnswers(input: unknown): ProjectSpecification {
     });
   }
 
-  const project = requireRecord(root.project, "project");
+  const project = requireRecord(migratedRoot.project, "project");
 
   return {
     schemaVersion,
@@ -60,17 +53,22 @@ export function parseAnswers(input: unknown): ProjectSpecification {
 
 function parseOrganization(input: unknown, path: string): ProjectOrganization {
   const organization = requireRecord(input, path);
+  const isSingleApplication = organization.kind === "single-app";
 
-  if (organization.kind === "single-app") {
+  if (isSingleApplication) {
     return { kind: "single-app" };
   }
 
-  if (organization.kind !== "monorepo") {
+  const isUnsupportedOrganization = organization.kind !== "monorepo";
+
+  if (isUnsupportedOrganization) {
     invalid(`${path}.kind`, 'Expected "single-app" or "monorepo".');
   }
 
   const units = organization.units;
-  if (!isNonEmptyArray(units)) {
+  const hasNoUnits = !isNonEmptyArray(units);
+
+  if (hasNoUnits) {
     invalid(`${path}.units`, "A monorepo must contain at least one unit.");
   }
 
@@ -95,8 +93,9 @@ function parseUnit(input: unknown, path: string): ProjectUnit {
 
 function parseNature(input: unknown, path: string): ProjectNature {
   const nature = requireRecord(input, path);
+  const isCustomNature = nature.kind === "custom";
 
-  if (nature.kind === "custom") {
+  if (isCustomNature) {
     return {
       kind: "custom",
       description: requireNonEmptyString(
@@ -106,29 +105,41 @@ function parseNature(input: unknown, path: string): ProjectNature {
     };
   }
 
-  if (isKnownNature(nature.kind)) {
-    return { kind: nature.kind };
+  const natureKind = nature.kind;
+  const isSupportedNature = isKnownNature(natureKind);
+
+  if (isSupportedNature) {
+    return { kind: natureKind };
   }
 
   invalid(`${path}.kind`, `Expected a known project nature or "custom".`);
 }
 
 function isKnownNature(input: unknown): input is ProjectNatureKind {
-  return ProjectNatures.some((candidate) => candidate === input);
+  return ProjectNatures.some((candidate) => {
+    const matchesRequestedNature = candidate === input;
+
+    return matchesRequestedNature;
+  });
 }
 
 function parseStringDecision(input: unknown, path: string): Decision<string> {
   const decision = requireRecord(input, path);
+  const isPendingDecision = decision.state === "pending";
 
-  if (decision.state === "pending") {
+  if (isPendingDecision) {
     return { state: "pending" };
   }
 
-  if (decision.state === "not-applicable") {
+  const isNotApplicableDecision = decision.state === "not-applicable";
+
+  if (isNotApplicableDecision) {
     return { state: "not-applicable" };
   }
 
-  if (decision.state === "defined") {
+  const isDefinedDecision = decision.state === "defined";
+
+  if (isDefinedDecision) {
     return {
       state: "defined",
       value: requireNonEmptyString(decision.value, `${path}.value`),
@@ -142,7 +153,9 @@ function parseStringDecision(input: unknown, path: string): Decision<string> {
 }
 
 function parseCapabilities(input: unknown, path: string): readonly string[] {
-  if (!Array.isArray(input)) {
+  const isInvalidCapabilitiesList = !Array.isArray(input);
+
+  if (isInvalidCapabilitiesList) {
     invalid(path, "Expected a list of capabilities.");
   }
 
@@ -154,7 +167,9 @@ function parseCapabilities(input: unknown, path: string): readonly string[] {
 }
 
 function requireRecord(input: unknown, path: string): Record<string, unknown> {
-  if (!isRecord(input)) {
+  const isInvalidRecord = !isRecord(input);
+
+  if (isInvalidRecord) {
     invalid(path, "Expected an object.");
   }
 
@@ -181,7 +196,9 @@ function requireNonEmptyString(input: unknown, path: string): string {
 }
 
 function requireBoolean(input: unknown, path: string): boolean {
-  if (typeof input !== "boolean") {
+  const isInvalidBoolean = typeof input !== "boolean";
+
+  if (isInvalidBoolean) {
     invalid(path, "Expected a boolean.");
   }
 

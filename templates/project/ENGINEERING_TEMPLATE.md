@@ -42,14 +42,14 @@ explicitamente.
 - Usar tipagem estrita quando a linguagem oferecer esse recurso.
 - Evitar tipos frouxos; validar valores desconhecidos na fronteira.
 - Preferir funções pequenas, nomes orientados à intenção e exports explícitos.
-- Extrair condições relevantes para nomes semânticos.
+- Toda condição que controla fluxo recebe um nome semântico antes do uso, mesmo
+  quando a comparação for simples.
 - Centralizar configuração repetida no menor escopo compartilhado coerente.
 - Não deixar requisições ou regras de persistência em componentes de
   apresentação.
 - Não manter código comentado, imports sem uso ou logs de depuração.
 - Preferir código explícito e legível a abstrações engenhosas.
 - Preferir early returns quando reduzirem indentação sem esconder o fluxo.
-- Extrair condições relevantes para constantes booleanas de nome semântico.
 - Separar validação estrutural da regra de fluxo que consome seu resultado.
 
 ## Nomenclatura recomendada
@@ -71,6 +71,9 @@ convenções equivalentes às de JavaScript e TypeScript, o padrão inicial é:
 
 - Funções com mais de dois argumentos relacionados recebem um objeto tipado;
   dois argumentos naturais e inequívocos continuam permitidos.
+- Não usar comparações ou expressões booleanas anônimas diretamente em `if`,
+  `while`, ternários ou callbacks condicionais. Declarar a intenção em uma
+  constante booleana ou predicado de nome semântico antes do uso.
 - Não usar ternários aninhados.
 - Usar uma operação de existência, como `.some()`, quando não for necessário
   produzir ou contar itens.
