@@ -15,13 +15,17 @@ export function runCli(
   { output, version }: RunCliOptions,
 ): number {
   const [command] = arguments_;
+  const isHelpRequested =
+    command === undefined || command === "--help" || command === "-h";
 
-  if (command === undefined || command === "--help" || command === "-h") {
+  if (isHelpRequested) {
     output.log(formatHelp());
     return 0;
   }
 
-  if (command === "--version" || command === "-v") {
+  const isVersionRequested = command === "--version" || command === "-v";
+
+  if (isVersionRequested) {
     output.log(version);
     return 0;
   }
