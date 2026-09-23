@@ -24,6 +24,16 @@ guarda os valores reais.
 - Credenciais de produção nunca são reutilizadas em ambientes inferiores.
 - Rotacione e revogue credenciais conforme `[POLITICA_DE_ROTACAO]`.
 
+## Runtime e reprodutibilidade
+
+- Runtime: `[RUNTIME ou Não se aplica]`.
+- Versão suportada: `[VERSAO]`.
+- Arquivo de versão: `[ARQUIVO ou Não se aplica]`.
+- Matriz de CI: `[VERSOES_TESTADAS]`.
+
+Quando o projeto usar Node.js, `.nvmrc`, `package.json#engines.node`, imagens de
+CI e documentação devem indicar versões compatíveis.
+
 ## Deploy
 
 | Ambiente     | Gatilho               | Processo                     | Aprovação     | Janela     |

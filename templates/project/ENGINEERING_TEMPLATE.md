@@ -25,6 +25,18 @@ se torna obrigatória depois de ser escolhida na seção de decisões.
 | Testes        | [Runner e ferramentas]   | [Escolha] | [Motivo] | [AAAA-MM-DD] |
 | Hospedagem    | [Opções]                 | [Escolha] | [Motivo] | [AAAA-MM-DD] |
 
+## Runtime e versão (se aplicável)
+
+- Runtime: `[RUNTIME_ESCOLHIDO ou Não se aplica]`.
+- Versão: `[VERSAO_DO_RUNTIME]`.
+- Arquivo de versão: `[ARQUIVO_DE_VERSAO ou Não se aplica]`.
+- Política de atualização: `[Política]`.
+
+Quando Node.js for escolhido, versione `.nvmrc` na raiz com a versão definida e
+mantenha `package.json#engines.node`, CI e documentação alinhados. O perfil
+padrão sugere uma linha LTS suportada, mas o projeto pode escolher outra versão
+explicitamente.
+
 ## Princípios mínimos
 
 - Usar tipagem estrita quando a linguagem oferecer esse recurso.
@@ -35,6 +47,41 @@ se torna obrigatória depois de ser escolhida na seção de decisões.
 - Não deixar requisições ou regras de persistência em componentes de
   apresentação.
 - Não manter código comentado, imports sem uso ou logs de depuração.
+- Preferir código explícito e legível a abstrações engenhosas.
+- Preferir early returns quando reduzirem indentação sem esconder o fluxo.
+- Extrair condições relevantes para constantes booleanas de nome semântico.
+- Separar validação estrutural da regra de fluxo que consome seu resultado.
+
+## Nomenclatura recomendada
+
+Adapte esta seção à linguagem escolhida e registre exceções. Para linguagens com
+convenções equivalentes às de JavaScript e TypeScript, o padrão inicial é:
+
+- Variáveis e funções usam `camelCase`; classes, componentes e tipos usam
+  `PascalCase`.
+- Constantes primitivas de módulo usam `UPPER_SNAKE_CASE` quando forem
+  verdadeiramente imutáveis e relevantes ao domínio.
+- Objetos de constantes usam nome `PascalCase` e chaves `UPPER_SNAKE_CASE`.
+- Rotas reutilizadas usam valores em `kebab-case` e ficam centralizadas.
+- Nomes revelam intenção; evite nomes genéricos como `condition`, `data` ou
+  `flag` quando existir um termo de domínio mais preciso.
+- Referências terminam em `Ref` quando essa convenção existir na stack.
+
+## Funções e fluxo de controle
+
+- Funções com mais de dois argumentos relacionados recebem um objeto tipado;
+  dois argumentos naturais e inequívocos continuam permitidos.
+- Não usar ternários aninhados.
+- Usar uma operação de existência, como `.some()`, quando não for necessário
+  produzir ou contar itens.
+- Quando `0`, string vazia ou `false` forem válidos, usar coalescência nula ou
+  verificação explícita em vez de fallback baseado em valor falsy.
+- Preferir conversões explícitas de booleanos e números quando fizerem parte da
+  regra.
+- Usar `switch` para uniões discriminadas com checagem exaustiva; para simples
+  mapeamentos de valor, preferir uma estrutura de mapeamento completa.
+- Usar `try/catch` somente para recuperação, tradução de erro ou inclusão de
+  contexto. Não capturar apenas para relançar o mesmo erro.
 
 ## Organização
 
@@ -206,6 +253,11 @@ camada apropriada e injete dados e callbacks na view.
   em runtime.
 - Validar entradas e respostas externas na fronteira.
 - Não usar assertions para contornar validação.
+- Usar `satisfies` quando for importante validar uma estrutura sem perder
+  inferência literal.
+- Usar `Record` quando todas as chaves de uma união precisarem ser representadas.
+- Não usar `any`; quando o valor for desconhecido, usar `unknown` e narrowing
+  seguro.
 
 ## Frontend (se aplicável)
 
@@ -220,6 +272,15 @@ camada apropriada e injete dados e callbacks na view.
   for adotada pelo projeto.
 - Componentes e fluxos precisam atender teclado, foco, contraste, semântica e
   leitores de tela.
+- Estado remoto pertence à ferramenta escolhida e não deve ser duplicado em
+  estado local sem uma razão documentada.
+- Não representar operações com vários estados apenas por `isLoading`; use uma
+  união discriminada quando `idle`, `pending`, `success` e `error` forem
+  relevantes.
+- Uma ação iniciada pelo usuário pertence ao handler do evento. Efeitos servem
+  para sincronizar sistemas externos, não para disparar indiretamente a ação.
+- Retornar `null` quando não houver conteúdo a renderizar e evitar condições que
+  possam renderizar `0` acidentalmente.
 
 ## Backend (se aplicável)
 
@@ -230,6 +291,9 @@ camada apropriada e injete dados e callbacks na view.
   mágicos.
 - Centralizar rotas HTTP em um catálogo coerente quando houver cliente próprio.
 - Padronizar erros sem expor segredos, stack traces ou dados internos.
+- Centralizar rotas HTTP reutilizadas; rotas parametrizadas usam builders que
+  codificam individualmente segmentos dinâmicos.
+- Não misturar catálogo de rotas HTTP com rotas de navegação da interface.
 
 ## Desenvolvimento guiado por testes
 
@@ -244,6 +308,22 @@ Para cada comportamento novo ou correção:
 Regras de domínio, permissões, datas, hooks, endpoints e integrações exigem
 testes diretos. Configuração declarativa pode ser coberta indiretamente.
 
+## Ferramentas e hooks
+
+Registre somente ferramentas realmente escolhidas:
+
+| Responsabilidade | Ferramenta | Comando | Obrigatória? |
+| ---------------- | ---------- | ------- | ------------ |
+| Gerenciador      | [Escolha]  | [Uso]   | [Sim/Não]    |
+| Formatação       | [Escolha]  | [Uso]   | [Sim/Não]    |
+| Lint             | [Escolha]  | [Uso]   | [Sim/Não]    |
+| Tipos            | [Escolha]  | [Uso]   | [Sim/Não]    |
+| Testes           | [Escolha]  | [Uso]   | [Sim/Não]    |
+
+Hooks locais devem ser rápidos e nunca substituir os gates de CI. Não usar
+bypass como fluxo normal; quando uma indisponibilidade real exigir exceção,
+registre o motivo e execute as verificações posteriormente.
+
 ## Segurança e privacidade
 
 - Segredos e tokens ficam fora do repositório e dos logs.
@@ -253,6 +333,10 @@ testes diretos. Configuração declarativa pode ser coberta indiretamente.
 - Aplicar menor privilégio, autorização por recurso e isolamento de dados.
 - Definir retenção, exclusão, auditoria e tratamento de dados pessoais.
 - Rotacionar imediatamente qualquer credencial exposta.
+- Cada aplicação mantém arquivo de exemplo com somente nomes e valores fictícios
+  seguros quando usar variáveis de ambiente.
+- Ao adicionar uma variável obrigatória, atualizar o arquivo de exemplo e
+  validar sua presença no início da aplicação.
 
 ## Acessibilidade e experiência
 

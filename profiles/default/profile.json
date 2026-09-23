@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "default",
+  "version": 1,
+  "defaults": {
+    "engineeringStandard": "recommended",
+    "runtime": {
+      "node": {
+        "appliesWhen": "runtime.node.enabled",
+        "version": "22",
+        "versionFile": ".nvmrc"
+      }
+    }
+  },
+  "customizable": [
+    "engineeringStandard",
+    "runtime.node.version",
+    "runtime.node.versionFile"
+  ],
+  "engineeringStandards": {
+    "recommended": {
+      "template": "templates/project/ENGINEERING_TEMPLATE.md",
+      "description": "Neutral engineering defaults with conditional stack-specific sections"
+    },
+    "custom": {
+      "description": "Standards explicitly supplied by the user"
+    }
+  }
+}

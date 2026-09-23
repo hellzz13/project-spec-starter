@@ -26,10 +26,19 @@ lacuna e peça uma decisão antes de implementar uma mudança ambígua.
 
 ## Delegação
 
+- Quando houver uma tarefa independente, bem delimitada e verificável, o agente
+  principal pode delegá-la a um modelo mais econômico.
+- Informe ao agente delegado o contexto necessário, arquivos e escopo permitidos,
+  resultado esperado e critérios de aceite.
+- Prefira delegar inventários, leitura focada, documentação, tarefas mecânicas e
+  implementações isoladas com comportamento claramente verificável.
 - Delegue somente tarefas concretas, delimitadas e sem decisões ambíguas.
 - O agente principal mantém responsabilidade por arquitetura, segurança,
   privacidade, revisão independente e integração final.
+- Não delegue trabalho interdependente, decisões transversais, requisitos em
+  aberto ou mudanças de alto impacto sem supervisão direta.
 - Não delegue tratamento de segredos, ações destrutivas ou autorização externa.
+- A delegação não amplia a autorização nem o escopo original da tarefa.
 - Revise toda entrega delegada e execute novamente os gates no contexto final.
 
 ## Desenvolvimento

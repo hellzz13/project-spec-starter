@@ -27,6 +27,10 @@ carregar regras, dados ou decisões de um projeto de origem.
 
 - A visão e as regras do produto pertencem ao projeto que usar os modelos.
 - Uma tecnologia citada como opção não é uma obrigação.
+- O perfil padrão oferece padrões de engenharia recomendados, mas o projeto pode
+  substituí-los ou desabilitar seções que não se aplicam.
+- Projetos Node.js recebem `.nvmrc` com a versão escolhida; a sugestão do perfil
+  pode ser alterada durante o setup.
 - Toda decisão relevante deve registrar contexto, responsável e data.
 - Segredos, tokens, URLs privadas, identificadores e dados pessoais nunca
   devem ser preenchidos na documentação versionada.

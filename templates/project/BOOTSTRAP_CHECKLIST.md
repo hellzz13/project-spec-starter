@@ -49,6 +49,8 @@ registrar a decisão ou evidência correspondente.
 ## 5. Ferramentas locais
 
 - [ ] Fixar `[GERENCIADOR_DE_PACOTES]` e criar o lockfile correspondente.
+- [ ] Quando Node.js for escolhido, criar `.nvmrc` e alinhar sua versão com
+      `package.json#engines.node`, CI e documentação.
 - [ ] Configurar formatação em `[COMANDO_DE_FORMAT]`.
 - [ ] Configurar lint em `[COMANDO_DE_LINT]`.
 - [ ] Configurar typecheck em `[COMANDO_DE_TYPECHECK]`.
