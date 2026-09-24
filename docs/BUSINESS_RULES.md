@@ -100,11 +100,15 @@ representar versões compatíveis.
 
 ## Erros observáveis
 
-| Código                | Situação                        | Recuperação                                   |
-| --------------------- | ------------------------------- | --------------------------------------------- |
-| `INVALID_ANSWERS`     | Respostas não atendem ao schema | Corrigir os campos indicados                  |
-| `UNSUPPORTED_SCHEMA`  | Versão não suportada            | Executar uma migração disponível              |
-| `FILE_CONFLICT`       | Destino já existe               | Escolher outro destino ou revisar manualmente |
-| `UNSAFE_PATH`         | Caminho escapa do projeto       | Corrigir perfil ou configuração               |
-| `UNRESOLVED_TEMPLATE` | Marcador inesperado permaneceu  | Corrigir modelo ou template                   |
-| `MISSING_RECIPE`      | Gerador não está configurado    | Instalar ou criar uma receita compatível      |
+| Código                               | Situação                          | Recuperação                                   |
+| ------------------------------------ | --------------------------------- | --------------------------------------------- |
+| `INVALID_ANSWERS`                    | Respostas não atendem ao schema   | Corrigir os campos indicados                  |
+| `UNSUPPORTED_SCHEMA`                 | Versão não suportada              | Executar uma migração disponível              |
+| `FILE_CONFLICT`                      | Destino já existe                 | Escolher outro destino ou revisar manualmente |
+| `UNSAFE_PATH`                        | Caminho escapa do projeto         | Corrigir perfil ou configuração               |
+| `UNRESOLVED_TEMPLATE`                | Marcador inesperado permaneceu    | Corrigir modelo ou template                   |
+| `MISSING_RECIPE`                     | Gerador não está configurado      | Instalar ou criar uma receita compatível      |
+| `INVALID_PROFILE`                    | Manifesto de perfil inválido      | Corrigir o campo indicado                     |
+| `UNSUPPORTED_PROFILE_SCHEMA`         | Versão do perfil não suportada    | Usar ou migrar uma versão compatível          |
+| `INVALID_QUESTION_MODULE`            | Módulo de perguntas inválido      | Corrigir a pergunta indicada                  |
+| `UNSUPPORTED_QUESTION_MODULE_SCHEMA` | Versão de perguntas não suportada | Migrar o módulo                               |

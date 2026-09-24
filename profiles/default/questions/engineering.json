@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "engineering",
+  "version": 1,
+  "questions": [
+    {
+      "type": "select",
+      "id": "engineering-standard",
+      "target": "engineeringStandard",
+      "prompt": "Qual padrão de engenharia deve orientar o projeto?",
+      "required": true,
+      "options": [
+        { "value": "recommended", "label": "Padrão recomendado e editável" },
+        { "value": "custom", "label": "Padrão fornecido pelo usuário" },
+        { "value": "disabled", "label": "Não gerar um padrão inicial" }
+      ]
+    }
+  ]
+}
