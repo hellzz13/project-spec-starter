@@ -79,3 +79,7 @@ destinos definitivos.
 
 Este pacote é um ponto de partida. Cada projeto deve adaptar os modelos às suas
 necessidades e manter as decisões específicas em seus próprios documentos.
+
+No perfil padrão da CLI, os oito documentos iniciais são declarados no
+manifesto do perfil. `DECISION_RECORD_TEMPLATE.md` permanece como modelo para o
+gerador de ADRs planejado e não cria uma decisão vazia durante o bootstrap.

@@ -267,6 +267,11 @@ camada apropriada e injete dados e callbacks na view.
 - Usar `Record` quando todas as chaves de uma união precisarem ser representadas.
 - Não usar `any`; quando o valor for desconhecido, usar `unknown` e narrowing
   seguro.
+- Tratar configurações, manifestos e módulos editáveis como contratos
+  versionados, com validação na fronteira e migração explícita para mudanças
+  estruturais.
+- Preferir extensões declarativas e auditáveis. Código externo executável exige
+  um modelo de confiança e uma decisão arquitetural explícita.
 
 ## Frontend (se aplicável)
 

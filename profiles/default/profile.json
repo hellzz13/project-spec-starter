@@ -15,15 +15,62 @@
   "customizable": [
     "engineeringStandard",
     "documents.project.template",
+    "questionModules",
     "runtime.node.version",
     "runtime.node.versionFile"
   ],
-  "documents": {
-    "project": {
+  "questionModules": [
+    "profiles/default/questions/project.json",
+    "profiles/default/questions/runtime.json",
+    "profiles/default/questions/engineering.json"
+  ],
+  "documents": [
+    {
+      "id": "project",
       "output": "PROJECT.md",
       "template": "templates/project/PROJECT_TEMPLATE.md"
+    },
+    {
+      "id": "engineering",
+      "output": "docs/ENGINEERING.md",
+      "template": "templates/project/ENGINEERING_TEMPLATE.md"
+    },
+    {
+      "id": "business-rules",
+      "output": "docs/BUSINESS_RULES.md",
+      "template": "templates/project/BUSINESS_RULES_TEMPLATE.md"
+    },
+    {
+      "id": "gitflow",
+      "output": "docs/GITFLOW.md",
+      "template": "templates/project/GITFLOW_TEMPLATE.md"
+    },
+    {
+      "id": "environments",
+      "output": "docs/ENVIRONMENTS.md",
+      "template": "templates/project/ENVIRONMENTS_TEMPLATE.md"
+    },
+    {
+      "id": "agents",
+      "output": "AGENTS.md",
+      "template": "templates/project/AGENTS_TEMPLATE.md",
+      "condition": {
+        "operator": "equals",
+        "path": "project.agentSupport",
+        "value": true
+      }
+    },
+    {
+      "id": "contributing",
+      "output": "CONTRIBUTING.md",
+      "template": "templates/project/CONTRIBUTING_TEMPLATE.md"
+    },
+    {
+      "id": "bootstrap-checklist",
+      "output": "docs/BOOTSTRAP_CHECKLIST.md",
+      "template": "templates/project/BOOTSTRAP_CHECKLIST.md"
     }
-  },
+  ],
   "engineeringStandards": {
     "recommended": {
       "template": "templates/project/ENGINEERING_TEMPLATE.md",

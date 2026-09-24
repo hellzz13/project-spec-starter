@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "runtime",
+  "version": 1,
+  "questions": [
+    {
+      "type": "boolean",
+      "id": "uses-node",
+      "target": "runtime.node.enabled",
+      "prompt": "O projeto usa Node.js?",
+      "required": true
+    },
+    {
+      "type": "text",
+      "id": "node-version",
+      "target": "runtime.node.version",
+      "prompt": "Qual versão do Node.js o projeto deve usar?",
+      "required": true,
+      "condition": {
+        "operator": "equals",
+        "path": "runtime.node.enabled",
+        "value": true
+      }
+    }
+  ]
+}

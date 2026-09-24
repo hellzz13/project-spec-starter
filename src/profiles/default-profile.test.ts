@@ -2,6 +2,11 @@ import { readFile } from "node:fs/promises";
 
 import { describe, expect, it } from "vitest";
 
+import { FileSystemProfileResourceReader } from "../adapters/profiles/file-system-profile-resource-reader.js";
+import { loadProfile } from "../application/profiles/load-profile.js";
+import { parseProfile } from "../application/profiles/parse-profile.js";
+import { parseQuestionModule } from "../application/profiles/parse-question-module.js";
+
 const PROJECT_ROOT = new URL("../../", import.meta.url);
 
 async function readJsonRecord(path: string): Promise<Record<string, unknown>> {
@@ -35,8 +40,22 @@ function requireRecord(value: unknown): Record<string, unknown> {
 }
 
 describe("default profile", () => {
+  it("loads all packaged profile resources through the filesystem adapter", async () => {
+    const reader = new FileSystemProfileResourceReader(PROJECT_ROOT);
+    const loadedProfile = await loadProfile({
+      manifestPath: "profiles/default/profile.json",
+      reader,
+    });
+
+    expect(loadedProfile.profile.id).toBe("default");
+    expect(loadedProfile.questionModules).toHaveLength(3);
+    expect(Object.keys(loadedProfile.templates)).toHaveLength(8);
+  });
+
   it("offers an editable recommended engineering standard", async () => {
-    const profile = await readJsonRecord("profiles/default/profile.json");
+    const profile = parseProfile(
+      await readJsonRecord("profiles/default/profile.json"),
+    );
 
     expect(profile).toMatchObject({
       id: "default",
@@ -49,17 +68,58 @@ describe("default profile", () => {
   });
 
   it("declares the replaceable project document template", async () => {
-    const profile = await readJsonRecord("profiles/default/profile.json");
+    const profile = parseProfile(
+      await readJsonRecord("profiles/default/profile.json"),
+    );
 
-    expect(profile).toMatchObject({
-      documents: {
-        project: {
+    expect(profile.documents).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: "project",
           output: "PROJECT.md",
           template: "templates/project/PROJECT_TEMPLATE.md",
-        },
-      },
-    });
+        }),
+      ]),
+    );
     expect(profile.customizable).toContain("documents.project.template");
+  });
+
+  it("declares every initial document in deterministic order", async () => {
+    const profile = parseProfile(
+      await readJsonRecord("profiles/default/profile.json"),
+    );
+
+    expect(profile.documents.map((document) => document.id)).toEqual([
+      "project",
+      "engineering",
+      "business-rules",
+      "gitflow",
+      "environments",
+      "agents",
+      "contributing",
+      "bootstrap-checklist",
+    ]);
+
+    await Promise.all(
+      profile.documents.map((document) => readText(document.template)),
+    );
+  });
+
+  it("loads every declarative question module from the packaged profile", async () => {
+    const profile = parseProfile(
+      await readJsonRecord("profiles/default/profile.json"),
+    );
+    const modules = await Promise.all(
+      profile.questionModules.map(async (modulePath) =>
+        parseQuestionModule(await readJsonRecord(modulePath)),
+      ),
+    );
+
+    expect(modules.map((module) => module.id)).toEqual([
+      "project",
+      "runtime",
+      "engineering",
+    ]);
   });
 
   it("keeps mandatory flow rules in the internal and distributed standards", async () => {

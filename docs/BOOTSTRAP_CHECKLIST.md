@@ -27,6 +27,7 @@
 - [x] Implementar a menor renderização que passe no teste.
 - [x] Validar ausência de marcadores não resolvidos.
 - [x] Usar o template declarado pelo perfil como fonte canônica da renderização.
+- [x] Criar manifesto de documentos e módulos declarativos de perguntas.
 
 ## Qualidade e distribuição
 
