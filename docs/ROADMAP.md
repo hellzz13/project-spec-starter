@@ -60,3 +60,20 @@
 - [ ] Permitir receitas locais substituíveis.
 - [ ] Adicionar presets técnicos versionados.
 - [ ] Adicionar geradores de componentes, serviços e features.
+
+## Marco 8 — Integrações opcionais com agentes
+
+- [ ] Definir um contrato portável para integrações com agentes sem tornar um
+      fornecedor obrigatório para o funcionamento da CLI.
+- [ ] Criar uma Skill de setup que leia os documentos gerados, identifique
+      lacunas relevantes e conduza o refinamento do projeto.
+- [ ] Criar uma Skill de revisão que confronte código, documentação e padrões de
+      engenharia aplicáveis.
+- [ ] Criar uma Skill para avaliar decisões arquiteturais e gerar ADRs pelo
+      contrato declarativo existente.
+- [ ] Permitir que a CLI instale integrações compatíveis de forma opcional,
+      mantendo `AGENTS.md` e os documentos como fontes portáveis de contexto.
+- [ ] Garantir que Skills referenciem os contratos e templates existentes, sem
+      manter uma segunda cópia das regras.
+- [ ] Testar instalação, atualização e compatibilidade das integrações em um
+      projeto gerado.

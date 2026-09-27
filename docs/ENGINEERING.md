@@ -150,10 +150,17 @@ começam declarativos para manter comportamento auditável.
 
 ## Compatibilidade
 
+- Toda implementação favorece evolução compatível: responsabilidades ficam
+  isoladas e pontos de extensão são definidos no menor contrato estável
+  possível. Projetos já gerados continuam funcionando sem adotar imediatamente
+  novas opções, templates ou integrações.
 - CLI, schema, perfil e presets possuem versões próprias.
 - Campos novos devem ter default seguro ou permanecer opcionais.
 - Renomear ou dividir campos exige migração testada.
 - Remover uma API pública exige depreciação e versão incompatível apropriada.
+- Uma incompatibilidade inevitável exige impacto documentado, caminho de
+  migração, período de transição quando viável e versão compatível com o alcance
+  da quebra.
 - Configurações antigas nunca são reinterpretadas silenciosamente.
 - Documentos editados por pessoas ou agentes nunca são regenerados por cima.
 - Referências de recursos do perfil usam caminhos relativos seguros e são
@@ -211,6 +218,23 @@ CLI, worker, tipo personalizado, decisões pendentes e agentes desabilitados.
 - Extensões declarativas não executam comandos arbitrários.
 - Logs e erros não exibem conteúdo sensível.
 
+### Ações sensíveis em interfaces
+
+- Interfaces exigem confirmação explícita imediatamente antes de executar uma
+  ação sensível, destrutiva, irreversível ou de alto impacto.
+- A confirmação identifica a ação, o alvo, o alcance e a consequência. O botão
+  principal usa um verbo específico, como `Excluir projeto`, `Publicar versão`
+  ou `Revogar acesso`.
+- Preparação, visualização e preenchimento de rascunhos podem ocorrer antes da
+  confirmação quando ainda não produzirem efeito externo.
+- Uma opção de desfazer pode substituir a confirmação quando a recuperação for
+  confiável, clara e disponível por tempo suficiente.
+- Ações em lote informam a quantidade e os itens afetados.
+- Operações demoradas bloqueiam envios duplicados e apresentam o estado em
+  andamento. Erros informam se houve efeito parcial.
+- A condição que determina a necessidade de confirmação recebe nome semântico
+  antes de controlar o fluxo.
+
 ## Acessibilidade
 
 - Perguntas não dependem apenas de cor ou símbolos.
@@ -232,6 +256,7 @@ CLI, worker, tipo personalizado, decisões pendentes e agentes desabilitados.
 
 - Comportamento e erros possuem testes relevantes.
 - Compatibilidade do schema foi avaliada.
+- O impacto sobre projetos já gerados e integrações existentes foi avaliado.
 - Nenhum arquivo existente é alterado sem intenção explícita.
 - Segurança de caminhos e dados foi revisada.
 - Documentação e ADRs refletem a implementação.
