@@ -273,6 +273,20 @@ camada apropriada e injete dados e callbacks na view.
 - Preferir extensões declarativas e auditáveis. Código externo executável exige
   um modelo de confiança e uma decisão arquitetural explícita.
 
+## Evolução e compatibilidade
+
+- Toda implementação favorece evolução compatível, com responsabilidades
+  isoladas e pontos de extensão claros.
+- Mudanças aditivas e defaults seguros são o caminho padrão para ampliar o
+  sistema.
+- Projetos já gerados e consumidores atuais continuam funcionando sem precisar
+  adotar imediatamente novas opções, templates ou integrações.
+- Contratos persistidos ou públicos são versionados. Mudanças estruturais usam
+  migração explícita e testada, sem reinterpretar dados antigos silenciosamente.
+- Uma incompatibilidade inevitável exige impacto documentado, caminho de
+  migração, período de transição quando viável e versão compatível com a quebra.
+- Atualizações e regenerações preservam arquivos editados por pessoas ou agentes.
+
 ## Frontend (se aplicável)
 
 - Componentes de apresentação recebem dados e callbacks por props.
@@ -351,6 +365,23 @@ registre o motivo e execute as verificações posteriormente.
   seguros quando usar variáveis de ambiente.
 - Ao adicionar uma variável obrigatória, atualizar o arquivo de exemplo e
   validar sua presença no início da aplicação.
+
+### Ações sensíveis em interfaces
+
+- Interfaces exigem confirmação explícita imediatamente antes de executar uma
+  ação sensível, destrutiva, irreversível ou de alto impacto.
+- A confirmação identifica a ação, o alvo, o alcance e a consequência. O botão
+  principal usa um verbo específico, como `Excluir projeto`, `Publicar versão`
+  ou `Revogar acesso`.
+- Preparação, visualização e preenchimento de rascunhos podem ocorrer antes da
+  confirmação quando ainda não produzirem efeito externo.
+- Uma opção de desfazer pode substituir a confirmação quando a recuperação for
+  confiável, clara e disponível por tempo suficiente.
+- Ações em lote informam a quantidade e os itens afetados.
+- Operações demoradas bloqueiam envios duplicados e apresentam o estado em
+  andamento. Erros informam se houve efeito parcial.
+- A condição que determina a necessidade de confirmação recebe nome semântico
+  antes de controlar o fluxo.
 
 ## Acessibilidade e experiência
 

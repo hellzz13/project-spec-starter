@@ -54,6 +54,9 @@ Antes de alterar o projeto, leia nesta ordem:
 
 ## Compatibilidade
 
+- Toda implementação deve favorecer evolução compatível, com responsabilidades
+  isoladas e pontos de extensão claros, sem exigir mudanças nos projetos já
+  gerados para que continuem funcionando.
 - Trate schema, perfis e receitas como contratos versionados.
 - Prefira mudanças aditivas e defaults seguros.
 - Crie migração explícita para alterações estruturais.
@@ -67,6 +70,14 @@ Antes de alterar o projeto, leia nesta ordem:
 - Não execute scripts de perfis ou geradores sem um modelo de confiança
   explicitamente aprovado.
 - Não publique, instale dependências ou altere serviços externos sem autorização.
+- Toda ação sensível executada por interface exige confirmação explícita
+  imediatamente antes do passo que produz efeito externo. Prepare e apresente o
+  resultado para revisão antes de pedir essa confirmação.
+- Considere sensíveis ações como publicar, enviar mensagens ou formulários,
+  fazer merge, excluir dados, alterar permissões, instalar software, realizar
+  transações e modificar serviços externos.
+- Leitura, navegação, preparação reversível e preenchimento de rascunhos podem
+  ocorrer antes da confirmação quando ainda não produzirem efeito externo.
 
 ## Conclusão
 

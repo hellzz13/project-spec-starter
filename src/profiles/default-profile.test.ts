@@ -122,17 +122,36 @@ describe("default profile", () => {
     ]);
   });
 
-  it("keeps mandatory flow rules in the internal and distributed standards", async () => {
-    const standards = await Promise.all([
+  it("keeps mandatory flow and sensitive action rules in distributed guidance", async () => {
+    const engineeringStandards = await Promise.all([
       readText("docs/ENGINEERING.md"),
       readText("templates/project/ENGINEERING_TEMPLATE.md"),
     ]);
 
-    for (const standard of standards) {
+    for (const standard of engineeringStandards) {
       expect(standard).toMatch(/condiç.+nome semântico/isu);
       expect(standard).toMatch(/Evitar `switch`/u);
       expect(standard).toMatch(/Resultados compostos recebem um nome/u);
       expect(standard).toMatch(/object literals/u);
+      expect(standard).toMatch(/confirmação explícita/iu);
+      expect(standard).toMatch(/ação sensível/iu);
+      expect(standard).toMatch(/ação, o alvo, o alcance e a consequência/iu);
+      expect(standard).toMatch(/evolução compatível/iu);
+      expect(standard).toMatch(/projetos já\s+gerados/iu);
+      expect(standard).toMatch(/pontos de extensão/iu);
+    }
+
+    const agentInstructions = await Promise.all([
+      readText("AGENTS.md"),
+      readText("templates/project/AGENTS_TEMPLATE.md"),
+    ]);
+
+    for (const instructions of agentInstructions) {
+      expect(instructions).toMatch(/confirmação explícita/iu);
+      expect(instructions).toMatch(/imediatamente antes/iu);
+      expect(instructions).toMatch(/efeito externo/iu);
+      expect(instructions).toMatch(/evolução compatível/iu);
+      expect(instructions).toMatch(/projetos já\s+gerados/iu);
     }
   });
 

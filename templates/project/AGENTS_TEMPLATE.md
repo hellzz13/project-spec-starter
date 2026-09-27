@@ -44,6 +44,9 @@ lacuna e peça uma decisão antes de implementar uma mudança ambígua.
 ## Desenvolvimento
 
 - Siga TDD: teste esperado, falha correta, implementação mínima e refatoração.
+- Favoreça evolução compatível, responsabilidades isoladas e pontos de extensão
+  claros. Não exija alterações em projetos já gerados ou consumidores atuais
+  para que continuem funcionando.
 - Respeite as fronteiras, pastas, contratos e critérios de componentização de
   `docs/ENGINEERING.md`.
 - Não coloque regra de negócio, HTTP, storage ou persistência em views.
@@ -62,6 +65,14 @@ lacuna e peça uma decisão antes de implementar uma mudança ambígua.
 - Peça autorização antes de enviar mensagens, publicar dados, alterar serviços
   externos ou modificar configurações fora do repositório.
 - Confirme o alvo antes de qualquer ação destrutiva, remoção ou migração.
+- Toda ação sensível executada por interface exige confirmação explícita
+  imediatamente antes do passo que produz efeito externo. Prepare e apresente o
+  resultado para revisão antes de pedir essa confirmação.
+- Considere sensíveis ações como publicar, enviar mensagens ou formulários,
+  fazer merge, excluir dados, alterar permissões, instalar software, realizar
+  transações e modificar serviços externos.
+- Leitura, navegação, preparação reversível e preenchimento de rascunhos podem
+  ocorrer antes da confirmação quando ainda não produzirem efeito externo.
 - Nunca invente, copie ou exponha tokens, credenciais, URLs privadas ou dados
   pessoais.
 - Mantenha segredos somente em `[MECANISMO_DE_SEGREDOS]`.
