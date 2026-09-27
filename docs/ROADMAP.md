@@ -24,8 +24,8 @@
 
 ## Marco 3 — Motor documental
 
-- [ ] Criar manifesto central de documentos.
-- [ ] Criar perfil padrão e perguntas declarativas.
+- [x] Criar manifesto central de documentos.
+- [x] Criar perfil padrão e perguntas declarativas.
 - [x] Construir o modelo documental intermediário.
 - [ ] Renderizar todos os documentos em memória.
 - [ ] Cobrir os cenários principais com snapshots e invariantes.
@@ -34,6 +34,8 @@
 
 - [ ] Implementar entrevista curta e condicional.
 - [ ] Cadastrar unidades de monorepo.
+- [ ] Integrar runtime e padrão de engenharia ao contrato versionado de
+      respostas.
 - [ ] Revisar respostas antes da geração.
 - [ ] Aceitar configuração JSON sem interação.
 

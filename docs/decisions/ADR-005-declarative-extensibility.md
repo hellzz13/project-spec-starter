@@ -17,6 +17,11 @@ O manifesto do perfil associa cada documento ao template e ao caminho de saída.
 O arquivo de template é a fonte canônica do conteúdo; renderizadores não mantêm
 uma segunda cópia do documento em código.
 
+Perguntas ficam em módulos ordenados e versionados. Aplicabilidade usa condições
+declarativas (`equals`, `includes`, `all` e `any`); os módulos não executam
+código. Grupos repetíveis descrevem coleções como unidades de monorepo sem
+acoplar essa estrutura à biblioteca de prompts.
+
 ## Consequências
 
 - Personalizações são auditáveis e mais fáceis de validar.
@@ -25,3 +30,5 @@ uma segunda cópia do documento em código.
 - Alguns comportamentos avançados exigirão evolução do formato declarativo.
 - Presets técnicos devem declarar arquivos e condições sem executar scripts por
   padrão.
+- O carregador valida manifesto, módulos, referências e limites de caminho antes
+  que a CLI apresente perguntas ou produza documentos.

@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "id": "project",
+  "version": 1,
+  "questions": [
+    {
+      "type": "text",
+      "id": "project-name",
+      "target": "project.name",
+      "prompt": "Qual é o nome do projeto?",
+      "required": true
+    },
+    {
+      "type": "text",
+      "id": "project-summary",
+      "target": "project.summary",
+      "prompt": "Como você resume o objetivo inicial do projeto?",
+      "required": true,
+      "allowedDecisionStates": ["pending"]
+    },
+    {
+      "type": "select",
+      "id": "project-organization",
+      "target": "project.organization.kind",
+      "prompt": "Como o projeto será organizado?",
+      "required": true,
+      "options": [
+        { "value": "single-app", "label": "Aplicação única" },
+        { "value": "monorepo", "label": "Monorepo" }
+      ]
+    },
+    {
+      "type": "repeatable-group",
+      "id": "monorepo-units",
+      "target": "project.organization.units",
+      "prompt": "Quais unidades fazem parte do monorepo?",
+      "required": true,
+      "condition": {
+        "operator": "equals",
+        "path": "project.organization.kind",
+        "value": "monorepo"
+      },
+      "questions": [
+        {
+          "type": "text",
+          "id": "unit-name",
+          "target": "name",
+          "prompt": "Qual é o nome da unidade?",
+          "required": true
+        },
+        {
+          "type": "text",
+          "id": "unit-path",
+          "target": "path",
+          "prompt": "Qual será o caminho da unidade?",
+          "required": true,
+          "allowedDecisionStates": ["pending"]
+        },
+        {
+          "type": "select",
+          "id": "unit-nature",
+          "target": "nature.kind",
+          "prompt": "Qual é a natureza da unidade?",
+          "required": true,
+          "options": [
+            { "value": "frontend", "label": "Frontend" },
+            { "value": "backend", "label": "Backend" },
+            { "value": "full-stack", "label": "Full-stack" },
+            { "value": "library", "label": "Biblioteca" },
+            { "value": "cli", "label": "CLI" },
+            { "value": "worker", "label": "Worker" },
+            { "value": "infrastructure", "label": "Infraestrutura" },
+            { "value": "mobile", "label": "Mobile" },
+            { "value": "custom", "label": "Outro" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "unit-custom-nature",
+          "target": "nature.description",
+          "prompt": "Como você descreve esse outro tipo de unidade?",
+          "required": true,
+          "condition": {
+            "operator": "equals",
+            "path": "nature.kind",
+            "value": "custom"
+          }
+        },
+        {
+          "type": "multi-select",
+          "id": "unit-capabilities",
+          "target": "capabilities",
+          "prompt": "Quais capacidades essa unidade possui?",
+          "required": true,
+          "allowCustomValues": true,
+          "options": [
+            { "value": "web-ui", "label": "Interface web" },
+            { "value": "http-api", "label": "API HTTP" },
+            { "value": "scheduled-jobs", "label": "Tarefas agendadas" },
+            {
+              "value": "package-distribution",
+              "label": "Distribuição de pacote"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "project-nature",
+      "target": "project.nature.kind",
+      "prompt": "Qual é a natureza principal do projeto?",
+      "required": true,
+      "options": [
+        { "value": "frontend", "label": "Frontend" },
+        { "value": "backend", "label": "Backend" },
+        { "value": "full-stack", "label": "Full-stack" },
+        { "value": "library", "label": "Biblioteca" },
+        { "value": "cli", "label": "CLI" },
+        { "value": "worker", "label": "Worker" },
+        { "value": "infrastructure", "label": "Infraestrutura" },
+        { "value": "mobile", "label": "Mobile" },
+        { "value": "custom", "label": "Outro" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "project-custom-nature",
+      "target": "project.nature.description",
+      "prompt": "Como você descreve esse outro tipo de projeto?",
+      "required": true,
+      "condition": {
+        "operator": "equals",
+        "path": "project.nature.kind",
+        "value": "custom"
+      }
+    },
+    {
+      "type": "multi-select",
+      "id": "project-capabilities",
+      "target": "project.capabilities",
+      "prompt": "Quais capacidades o projeto precisa ter inicialmente?",
+      "required": true,
+      "allowCustomValues": true,
+      "options": [
+        { "value": "web-ui", "label": "Interface web" },
+        { "value": "http-api", "label": "API HTTP" },
+        { "value": "scheduled-jobs", "label": "Tarefas agendadas" },
+        {
+          "value": "background-processing",
+          "label": "Processamento em segundo plano"
+        },
+        { "value": "data-storage", "label": "Persistência de dados" },
+        { "value": "authentication", "label": "Autenticação" },
+        {
+          "value": "infrastructure-as-code",
+          "label": "Infraestrutura como código"
+        },
+        { "value": "package-distribution", "label": "Distribuição de pacote" }
+      ]
+    },
+    {
+      "type": "boolean",
+      "id": "agent-support",
+      "target": "project.agentSupport",
+      "prompt": "O projeto usará agentes de desenvolvimento?",
+      "required": true
+    }
+  ]
+}

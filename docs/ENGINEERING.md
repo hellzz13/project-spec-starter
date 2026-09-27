@@ -128,7 +128,10 @@ adicionadas apenas para reproduzir o diagrama.
 - `ProjectSpecification`: representação validada e normalizada.
 - `DocumentModel`: dados estáveis consumidos pelos templates.
 - `GenerationPlan`: arquivos planejados, conflitos, avisos e itens ignorados.
-- `Profile`: manifesto, perguntas, templates e geradores declarativos.
+- `Profile`: manifesto versionado que ordena documentos e referencia módulos de
+  perguntas e templates.
+- `QuestionModule`: conjunto versionado e ordenado de perguntas, opções, grupos
+  repetíveis e condições declarativas.
 - `GeneratorRecipe`: receita opcional para gerar um artefato.
 
 ## Extensibilidade
@@ -153,6 +156,8 @@ começam declarativos para manter comportamento auditável.
 - Remover uma API pública exige depreciação e versão incompatível apropriada.
 - Configurações antigas nunca são reinterpretadas silenciosamente.
 - Documentos editados por pessoas ou agentes nunca são regenerados por cima.
+- Referências de recursos do perfil usam caminhos relativos seguros e são
+  validadas antes da geração.
 
 ## Desenvolvimento guiado por testes
 
