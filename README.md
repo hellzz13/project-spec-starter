@@ -23,6 +23,16 @@ npm run typecheck
 npm run build
 ```
 
+Para testar a entrevista interativa e revisar os caminhos dos documentos que
+serão gerados, sem escrever arquivos no projeto:
+
+```bash
+node dist/cli.js init
+```
+
+A escrita segura será habilitada depois da implementação do plano de geração,
+detecção de conflitos e `dry-run`.
+
 ## Princípios
 
 - Nenhuma linguagem, framework ou provedor é obrigatório.

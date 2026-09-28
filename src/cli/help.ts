@@ -6,7 +6,7 @@ Usage:
   project-spec-starter <command> [options]
 
 Commands:
-  init       Create the initial project documentation
+  init       Run the interview and preview the initial documentation
   inspect    Inspect the current project specification
   validate   Validate a project answers file
 

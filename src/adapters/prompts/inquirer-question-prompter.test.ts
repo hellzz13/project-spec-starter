@@ -77,6 +77,33 @@ describe("InquirerQuestionPrompter", () => {
     expect(inputConfig?.validate?.("Projeto")).toBe(true);
   });
 
+  it("uses an existing text answer as the editable default", async () => {
+    const input = vi.fn((config: InquirerInputConfig) =>
+      Promise.resolve(config.default ?? ""),
+    );
+    const prompter = new InquirerQuestionPrompter(createPrompts({ input }));
+    const question = createQuestion({
+      id: "node-version",
+      target: "runtime.node.version",
+      prompt: "Qual versão do Node.js o projeto deve usar?",
+      required: true,
+      type: QuestionTypes.TEXT,
+    });
+
+    const result = await prompter.askQuestion({
+      question,
+      answers: { runtime: { node: { version: "24" } } },
+    });
+
+    expect(input).toHaveBeenCalledWith(
+      expect.objectContaining({ default: "24" }),
+    );
+    expect(result).toEqual({
+      kind: InterviewAnswerKinds.ANSWER,
+      value: "24",
+    });
+  });
+
   it("maps select options to Inquirer choices", async () => {
     const select = vi.fn((config: InquirerSelectConfig) => {
       void config;

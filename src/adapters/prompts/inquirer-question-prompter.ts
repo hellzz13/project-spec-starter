@@ -38,6 +38,7 @@ export class PromptAdapterError extends Error {
 }
 
 export interface InquirerInputConfig {
+  readonly default?: string;
   readonly message: string;
   readonly required?: boolean;
   readonly validate?: (value: string) => boolean | string;
@@ -101,6 +102,7 @@ const DecisionLabels: Record<AllowedQuestionDecisionState, string> = {
 };
 
 type HandlerOptions = {
+  readonly answers: Readonly<Record<string, unknown>>;
   readonly question: Question;
   readonly prompts: InquirerPromptFunctions;
 };
@@ -130,6 +132,7 @@ export class InquirerQuestionPrompter implements QuestionPrompter {
 
     try {
       return await questionHandler({
+        answers: options.answers,
         question: options.question,
         prompts: this.prompts,
       });
@@ -162,13 +165,22 @@ function askTextQuestion(options: HandlerOptions): Promise<InterviewAnswer> {
     question.allowedDecisionStates === undefined;
 
   if (questionDoesNotAllowDecisions) {
-    return askTextAnswer({ question, prompts: options.prompts });
+    return askTextAnswer({
+      answers: options.answers,
+      question,
+      prompts: options.prompts,
+    });
   }
 
-  return askTextOrDecision({ question, prompts: options.prompts });
+  return askTextOrDecision({
+    answers: options.answers,
+    question,
+    prompts: options.prompts,
+  });
 }
 
 async function askTextOrDecision(options: {
+  readonly answers: Readonly<Record<string, unknown>>;
   readonly question: Extract<
     Question,
     { readonly type: typeof QuestionTypes.TEXT }
@@ -192,7 +204,7 @@ async function askTextOrDecision(options: {
     selectedResponse === PromptChoiceValues.ANSWER_NOW;
 
   if (userChoseToAnswerNow) {
-    return askTextAnswer({ question, prompts });
+    return askTextAnswer({ answers: options.answers, question, prompts });
   }
 
   const selectedDecisionState = allowedDecisionStates.find(
@@ -215,6 +227,7 @@ async function askTextOrDecision(options: {
 }
 
 async function askTextAnswer(options: {
+  readonly answers: Readonly<Record<string, unknown>>;
   readonly question: Extract<
     Question,
     { readonly type: typeof QuestionTypes.TEXT }
@@ -222,7 +235,13 @@ async function askTextAnswer(options: {
   readonly prompts: InquirerPromptFunctions;
 }): Promise<InterviewAnswer> {
   const { question, prompts } = options;
+  const currentValue = readTargetValue(options.answers, question.target);
+  const currentValueIsString = typeof currentValue === "string";
+  const defaultValue = currentValueIsString ? currentValue : undefined;
+  const defaultConfig =
+    defaultValue === undefined ? {} : { default: defaultValue };
   const answer = await prompts.input({
+    ...defaultConfig,
     message: question.prompt,
     required: question.required,
     validate: (value) => {
@@ -234,6 +253,31 @@ async function askTextAnswer(options: {
   });
 
   return { kind: InterviewAnswerKinds.ANSWER, value: answer };
+}
+
+function readTargetValue(
+  source: Readonly<Record<string, unknown>>,
+  target: string,
+): unknown {
+  const targetSegments = target.split(".");
+  let currentValue: unknown = source;
+
+  for (const targetSegment of targetSegments) {
+    if (!isRecord(currentValue)) {
+      return undefined;
+    }
+
+    currentValue = currentValue[targetSegment];
+  }
+
+  return currentValue;
+}
+
+function isRecord(value: unknown): value is Readonly<Record<string, unknown>> {
+  const valueIsObject = typeof value === "object" && value !== null;
+  const valueIsNotArray = !Array.isArray(value);
+
+  return valueIsObject && valueIsNotArray;
 }
 
 async function askSelectQuestion(
