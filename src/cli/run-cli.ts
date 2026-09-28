@@ -1,3 +1,11 @@
+import {
+  GenerationTargetStatuses,
+  type GenerationPlan,
+} from "../domain/generation-plan.ts";
+import {
+  ProjectNatures,
+  type ProjectSpecification,
+} from "../domain/project-specification.ts";
 import { formatHelp } from "./help.ts";
 
 export interface CliOutput {
@@ -7,7 +15,8 @@ export interface CliOutput {
 
 export interface RunCliOptions {
   initialize?: () => Promise<{
-    readonly documents: readonly { readonly output: string }[];
+    readonly plan: GenerationPlan;
+    readonly specification: ProjectSpecification;
   }>;
   output: CliOutput;
   version: string;
@@ -29,6 +38,17 @@ export async function runCli(
   const isInitRequested = command === "init";
 
   if (isInitRequested) {
+    const requestedOptions = arguments_.slice(1);
+    const unsupportedOption = requestedOptions.find(
+      (option) => option !== "--dry-run",
+    );
+    const hasUnsupportedOption = unsupportedOption !== undefined;
+
+    if (hasUnsupportedOption) {
+      output.error(`Unknown option for init: ${unsupportedOption}`);
+      return 1;
+    }
+
     const initializeIsMissing = initialize === undefined;
 
     if (initializeIsMissing) {
@@ -46,15 +66,19 @@ export async function runCli(
       );
       return 1;
     }
-    output.log("\nPreview da geração (nenhum arquivo foi escrito):");
+    printSpecificationReview({ output, specification: result.specification });
+    output.log("\nPlano de geração (nenhum arquivo foi escrito):");
 
-    for (const document of result.documents) {
-      output.log(`  ${document.output}`);
+    for (const item of result.plan.items) {
+      const targetIsConflicting =
+        item.status === GenerationTargetStatuses.CONFLICT;
+      const statusLabel = targetIsConflicting ? "conflito" : "novo";
+      output.log(`  [${statusLabel}] ${item.output}`);
     }
 
-    const documentCount = result.documents.length;
+    const { available, conflict, total } = result.plan.summary;
     output.log(
-      `\n${documentCount} documentos prontos para a etapa de escrita segura.`,
+      `\n${total} documentos: ${available} novos, ${conflict} conflitos.`,
     );
     return 0;
   }
@@ -71,6 +95,28 @@ export async function runCli(
     "Run project-spec-starter --help to see the available commands.",
   );
   return 1;
+}
+
+function printSpecificationReview(options: {
+  readonly output: CliOutput;
+  readonly specification: ProjectSpecification;
+}): void {
+  const { output, specification } = options;
+  const natureIsCustom = specification.nature.kind === ProjectNatures.CUSTOM;
+  const nature = natureIsCustom
+    ? specification.nature.description
+    : specification.nature.kind;
+  const capabilities = specification.capabilities.join(", ");
+  const hasNoCapabilities = capabilities.length === 0;
+  const capabilityReview = hasNoCapabilities ? "nenhuma" : capabilities;
+  const agentSupport = specification.agentSupport ? "sim" : "não";
+
+  output.log("\nRevise as respostas principais:");
+  output.log(`  Projeto: ${specification.name}`);
+  output.log(`  Organização: ${specification.organization.kind}`);
+  output.log(`  Natureza: ${nature}`);
+  output.log(`  Capacidades: ${capabilityReview}`);
+  output.log(`  Suporte a agentes: ${agentSupport}`);
 }
 
 function getErrorMessage(error: unknown): string {

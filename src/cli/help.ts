@@ -12,7 +12,8 @@ Commands:
 
 Options:
   -h, --help     Show this help
-  -v, --version  Show the installed version`;
+  -v, --version  Show the installed version
+  --dry-run      Inspect the init plan without writing files`;
 
 export function formatHelp(): string {
   return HELP_TEXT;

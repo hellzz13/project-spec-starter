@@ -1,5 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
 
+import { GenerationTargetStatuses } from "../domain/generation-plan.ts";
+import { DecisionStates } from "../domain/decision.ts";
+import {
+  ProjectNatures,
+  ProjectOrganizationKinds,
+  PROJECT_SPECIFICATION_SCHEMA_VERSION,
+} from "../domain/project-specification.ts";
 import { formatHelp } from "./help.ts";
 import { runCli } from "./run-cli.ts";
 
@@ -37,30 +44,75 @@ describe("runCli", () => {
     },
   );
 
-  it("runs the init command and presents its document preview", async () => {
+  it("runs init in dry-run mode and presents the answers and generation plan", async () => {
     const output = createOutput();
     const initialize = vi.fn().mockResolvedValue({
-      documents: [
-        { id: "project", output: "PROJECT.md", content: "# Billing API" },
-        {
-          id: "engineering",
-          output: "docs/ENGINEERING.md",
-          content: "# Engineering",
-        },
-      ],
+      plan: {
+        items: [
+          {
+            id: "project",
+            output: "PROJECT.md",
+            content: "# Billing API",
+            status: GenerationTargetStatuses.CONFLICT,
+          },
+          {
+            id: "engineering",
+            output: "docs/ENGINEERING.md",
+            content: "# Engineering",
+            status: GenerationTargetStatuses.AVAILABLE,
+          },
+        ],
+        summary: { total: 2, available: 1, conflict: 1 },
+      },
+      specification: {
+        schemaVersion: PROJECT_SPECIFICATION_SCHEMA_VERSION,
+        name: "Billing API",
+        summary: { state: DecisionStates.PENDING },
+        organization: { kind: ProjectOrganizationKinds.SINGLE_APP },
+        nature: { kind: ProjectNatures.BACKEND },
+        capabilities: ["http-api"],
+        agentSupport: true,
+      },
     });
 
     await expect(
-      runCli(["init"], { initialize, output, version: "1.2.3" }),
+      runCli(["init", "--dry-run"], {
+        initialize,
+        output,
+        version: "1.2.3",
+      }),
     ).resolves.toBe(0);
     expect(initialize).toHaveBeenCalledOnce();
     expect(output.log.mock.calls).toEqual([
-      ["\nPreview da geração (nenhum arquivo foi escrito):"],
-      ["  PROJECT.md"],
-      ["  docs/ENGINEERING.md"],
-      ["\n2 documentos prontos para a etapa de escrita segura."],
+      ["\nRevise as respostas principais:"],
+      ["  Projeto: Billing API"],
+      ["  Organização: single-app"],
+      ["  Natureza: backend"],
+      ["  Capacidades: http-api"],
+      ["  Suporte a agentes: sim"],
+      ["\nPlano de geração (nenhum arquivo foi escrito):"],
+      ["  [conflito] PROJECT.md"],
+      ["  [novo] docs/ENGINEERING.md"],
+      ["\n2 documentos: 1 novos, 1 conflitos."],
     ]);
     expect(output.error).not.toHaveBeenCalled();
+  });
+
+  it("rejects unsupported init options before starting the interview", async () => {
+    const output = createOutput();
+    const initialize = vi.fn();
+
+    await expect(
+      runCli(["init", "--force"], {
+        initialize,
+        output,
+        version: "1.2.3",
+      }),
+    ).resolves.toBe(1);
+    expect(initialize).not.toHaveBeenCalled();
+    expect(output.error).toHaveBeenCalledWith(
+      "Unknown option for init: --force",
+    );
   });
 
   it("reports an initialization failure without exposing a stack trace", async () => {

@@ -36,13 +36,13 @@
 - [x] Cadastrar unidades de monorepo.
 - [ ] Integrar runtime e padrão de engenharia ao contrato versionado de
       respostas.
-- [ ] Revisar respostas antes da geração.
+- [x] Revisar respostas antes da geração.
 - [ ] Aceitar configuração JSON sem interação.
 
 ## Marco 5 — Escrita segura
 
-- [ ] Criar `GenerationPlan`.
-- [ ] Implementar `--dry-run` e detecção de conflitos.
+- [x] Criar `GenerationPlan`.
+- [x] Implementar `--dry-run` e detecção de conflitos.
 - [ ] Garantir escrita atômica e caminhos seguros.
 - [ ] Preservar arquivos existentes e cancelamentos limpos.
 

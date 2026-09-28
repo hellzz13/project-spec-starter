@@ -27,7 +27,7 @@ Para testar a entrevista interativa e revisar os caminhos dos documentos que
 serão gerados, sem escrever arquivos no projeto:
 
 ```bash
-node dist/cli.js init
+node dist/cli.js init --dry-run
 ```
 
 A escrita segura será habilitada depois da implementação do plano de geração,
