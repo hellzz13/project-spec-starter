@@ -12,7 +12,7 @@ adicionados posteriormente por meio de receitas e presets explícitos.
 
 ## Desenvolvimento
 
-O projeto requer Node.js 22 ou superior e usa npm:
+Esta CLI requer Node.js 24 ou superior e usa npm:
 
 ```bash
 nvm use

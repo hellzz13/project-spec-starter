@@ -9,7 +9,7 @@
 | Gerenciador       | npm        | Definido |
 | Testes            | Vitest     | Definido |
 | Argumentos da CLI | A decidir  | Pendente |
-| Prompts           | A decidir  | Pendente |
+| Prompts           | Inquirer   | Definido |
 | Validação         | A decidir  | Pendente |
 | Renderização      | A decidir  | Pendente |
 
@@ -18,8 +18,10 @@ teste que demonstrem a necessidade.
 
 ## Runtime
 
-- Node.js 22 é a versão mínima suportada.
+- Node.js 24 é a versão mínima suportada por esta CLI.
 - `.nvmrc` contém a linha padrão usada no desenvolvimento local.
+- O perfil padrão sugere a mesma linha para projetos gerados que usem Node.js;
+  o usuário pode alterá-la durante o setup.
 - `.nvmrc`, `package.json#engines.node`, CI e documentação permanecem alinhados.
 - A versão mínima só muda com validação dos testes e do pacote empacotado.
 

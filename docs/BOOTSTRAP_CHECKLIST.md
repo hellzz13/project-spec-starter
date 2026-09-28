@@ -10,10 +10,11 @@
 
 ## Fundação técnica
 
-- [x] Confirmar Node.js 22 como versão mínima suportada.
+- [x] Confirmar Node.js 24 como versão mínima suportada pela CLI.
 - [x] Inicializar o pacote npm e criar `package-lock.json`.
 - [x] Configurar TypeScript e build do executável.
-- [ ] Escolher ferramentas de argumentos, prompts, validação e templates.
+- [x] Escolher a biblioteca de prompts interativos.
+- [ ] Escolher ferramentas de argumentos, validação e templates.
 - [x] Configurar formatação, lint, typecheck e Vitest.
 
 ## Primeiro comportamento

@@ -34,12 +34,15 @@ e usado para executar `--help`, validação e um bootstrap completo.
 
 ## Compatibilidade
 
-O pacote requer Node.js 22 ou superior e deve ser testado nas linhas LTS ainda
+Esta CLI requer Node.js 24 ou superior e deve ser testada nas linhas LTS ainda
 suportadas. A versão mínima não deve permanecer em uma linha que atingiu fim de
 vida.
 
-`.nvmrc`, `package.json#engines.node`, CI e documentação devem permanecer
-alinhados.
+O perfil padrão sugere Node.js 24 para projetos gerados que escolherem esse
+runtime. Essa sugestão é editável no setup do projeto gerado.
+
+`.nvmrc`, `package.json#engines.node`, CI e documentação da CLI devem
+permanecer alinhados.
 
 ## Recuperação
 
