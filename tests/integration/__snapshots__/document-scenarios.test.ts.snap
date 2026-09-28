@@ -1,0 +1,290 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`default profile document scenarios > matches the complete representative PROJECT.md snapshot for custom-type 1`] = `
+"# Research Workbench
+
+## Contexto inicial
+
+Initial specification for Research Workbench.
+
+| Item | Decisão |
+| ---- | ------- |
+| Organização | Aplicação única |
+| Natureza | Interactive scientific experiment workbench |
+| Suporte a agentes | Habilitado |
+
+### Capacidades declaradas
+
+- data-visualization
+- local-storage
+
+## Visão
+
+### Problema
+
+Decisão pendente. O agente deve perguntar qual problema será resolvido, para
+quem ele existe e em qual contexto quando essas informações afetarem a tarefa.
+
+### Proposta de valor
+
+Initial specification for Research Workbench.
+
+### Hipóteses
+
+| Hipótese         | Evidência esperada | Como validar     | Status |
+| ---------------- | ------------------ | ---------------- | ------ |
+| Decisão pendente | Decisão pendente   | Decisão pendente | Aberta |
+
+## Usuários e cenários
+
+| Perfil           | Necessidade      | Cenário principal | Fora do escopo   |
+| ---------------- | ---------------- | ----------------- | ---------------- |
+| Decisão pendente | Decisão pendente | Decisão pendente  | Decisão pendente |
+
+## Escopo
+
+### Incluído
+
+Decisão pendente.
+
+### Não incluído
+
+Decisão pendente.
+
+### Restrições
+
+Decisão pendente.
+
+## Requisitos
+
+### Requisitos funcionais
+
+Decisão pendente.
+
+### Requisitos não funcionais
+
+Decisão pendente.
+
+### Critérios de aceite
+
+Decisão pendente. Quando necessário, registre critérios observáveis no formato
+“Dado, Quando, Então”.
+
+## Arquitetura
+
+### Visão de alto nível
+
+Decisão pendente.
+
+### Componentes
+
+| Componente       | Responsabilidade | Interface        | Responsável      |
+| ---------------- | ---------------- | ---------------- | ---------------- |
+| Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente |
+
+### Dados e integrações
+
+- Dados principais: decisão pendente.
+- Fonte de verdade: decisão pendente.
+- Integrações externas: decisão pendente.
+- Retenção e exclusão: decisão pendente.
+
+### Decisões arquiteturais
+
+Nenhuma decisão arquitetural registrada inicialmente. Crie um ADR quando uma
+decisão ampla ou difícil de reverter for tomada.
+
+## Marcos de entrega
+
+| Marco    | Resultado        | Entregáveis      | Critério de conclusão | Status    |
+| -------- | ---------------- | ---------------- | --------------------- | --------- |
+| Fundação | Decisão pendente | Decisão pendente | Decisão pendente      | Planejado |
+
+## Critérios de sucesso
+
+| Resultado        | Métrica          | Meta             | Fonte            | Janela           |
+| ---------------- | ---------------- | ---------------- | ---------------- | ---------------- |
+| Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente |
+
+## Riscos e dependências
+
+| Risco ou dependência | Probabilidade    | Impacto          | Mitigação        | Responsável      |
+| -------------------- | ---------------- | ---------------- | ---------------- | ---------------- |
+| Decisão pendente     | Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente |
+
+## Backlog
+
+### Próximos itens
+
+Decisão pendente.
+
+### Melhorias futuras
+
+Decisão pendente.
+
+### Decisões pendentes
+
+- Refinar problema, público, escopo, requisitos, arquitetura e critérios de
+  sucesso conforme essas informações forem necessárias para o trabalho.
+
+## Refinamento
+
+Decisões marcadas como pendentes devem ser perguntadas somente quando afetarem
+a tarefa atual. Depois da resposta, este documento deve ser atualizado e passa
+a representar a fonte de verdade do projeto.
+
+## Histórico de alterações
+
+| Data             | Alteração         | Motivo               | Autor            |
+| ---------------- | ----------------- | -------------------- | ---------------- |
+| Decisão pendente | Documento inicial | Bootstrap do projeto | Decisão pendente |
+"
+`;
+
+exports[`default profile document scenarios > matches the complete representative PROJECT.md snapshot for heterogeneous-monorepo 1`] = `
+"# Commerce Platform
+
+## Contexto inicial
+
+Tools for operating a commerce business.
+
+| Item | Decisão |
+| ---- | ------- |
+| Organização | Monorepo |
+| Natureza | Full-stack |
+| Suporte a agentes | Habilitado |
+
+### Capacidades declaradas
+
+- web-ui
+- http-api
+
+## Unidades do monorepo
+
+| Unidade | Caminho | Natureza | Capacidades |
+| --- | --- | --- | --- |
+| Storefront | apps/storefront | Frontend | web-ui |
+| Import pipeline | Decisão pendente | Batch data processing pipeline | scheduled-jobs |
+
+## Visão
+
+### Problema
+
+Decisão pendente. O agente deve perguntar qual problema será resolvido, para
+quem ele existe e em qual contexto quando essas informações afetarem a tarefa.
+
+### Proposta de valor
+
+Tools for operating a commerce business.
+
+### Hipóteses
+
+| Hipótese         | Evidência esperada | Como validar     | Status |
+| ---------------- | ------------------ | ---------------- | ------ |
+| Decisão pendente | Decisão pendente   | Decisão pendente | Aberta |
+
+## Usuários e cenários
+
+| Perfil           | Necessidade      | Cenário principal | Fora do escopo   |
+| ---------------- | ---------------- | ----------------- | ---------------- |
+| Decisão pendente | Decisão pendente | Decisão pendente  | Decisão pendente |
+
+## Escopo
+
+### Incluído
+
+Decisão pendente.
+
+### Não incluído
+
+Decisão pendente.
+
+### Restrições
+
+Decisão pendente.
+
+## Requisitos
+
+### Requisitos funcionais
+
+Decisão pendente.
+
+### Requisitos não funcionais
+
+Decisão pendente.
+
+### Critérios de aceite
+
+Decisão pendente. Quando necessário, registre critérios observáveis no formato
+“Dado, Quando, Então”.
+
+## Arquitetura
+
+### Visão de alto nível
+
+Decisão pendente.
+
+### Componentes
+
+| Componente       | Responsabilidade | Interface        | Responsável      |
+| ---------------- | ---------------- | ---------------- | ---------------- |
+| Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente |
+
+### Dados e integrações
+
+- Dados principais: decisão pendente.
+- Fonte de verdade: decisão pendente.
+- Integrações externas: decisão pendente.
+- Retenção e exclusão: decisão pendente.
+
+### Decisões arquiteturais
+
+Nenhuma decisão arquitetural registrada inicialmente. Crie um ADR quando uma
+decisão ampla ou difícil de reverter for tomada.
+
+## Marcos de entrega
+
+| Marco    | Resultado        | Entregáveis      | Critério de conclusão | Status    |
+| -------- | ---------------- | ---------------- | --------------------- | --------- |
+| Fundação | Decisão pendente | Decisão pendente | Decisão pendente      | Planejado |
+
+## Critérios de sucesso
+
+| Resultado        | Métrica          | Meta             | Fonte            | Janela           |
+| ---------------- | ---------------- | ---------------- | ---------------- | ---------------- |
+| Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente |
+
+## Riscos e dependências
+
+| Risco ou dependência | Probabilidade    | Impacto          | Mitigação        | Responsável      |
+| -------------------- | ---------------- | ---------------- | ---------------- | ---------------- |
+| Decisão pendente     | Decisão pendente | Decisão pendente | Decisão pendente | Decisão pendente |
+
+## Backlog
+
+### Próximos itens
+
+Decisão pendente.
+
+### Melhorias futuras
+
+Decisão pendente.
+
+### Decisões pendentes
+
+- Refinar problema, público, escopo, requisitos, arquitetura e critérios de
+  sucesso conforme essas informações forem necessárias para o trabalho.
+
+## Refinamento
+
+Decisões marcadas como pendentes devem ser perguntadas somente quando afetarem
+a tarefa atual. Depois da resposta, este documento deve ser atualizado e passa
+a representar a fonte de verdade do projeto.
+
+## Histórico de alterações
+
+| Data             | Alteração         | Motivo               | Autor            |
+| ---------------- | ----------------- | -------------------- | ---------------- |
+| Decisão pendente | Documento inicial | Bootstrap do projeto | Decisão pendente |
+"
+`;

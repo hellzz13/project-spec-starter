@@ -28,7 +28,7 @@
 - [x] Criar perfil padrão e perguntas declarativas.
 - [x] Construir o modelo documental intermediário.
 - [x] Renderizar todos os documentos em memória.
-- [ ] Cobrir os cenários principais com snapshots e invariantes.
+- [x] Cobrir os cenários principais com snapshots e invariantes.
 
 ## Marco 4 — CLI interativa
 
