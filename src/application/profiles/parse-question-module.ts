@@ -6,8 +6,8 @@ import {
   type Question,
   type QuestionModule,
   type QuestionOption,
-} from "../../domain/question-module.js";
-import { parseProfileCondition } from "./parse-profile-condition.js";
+} from "../../domain/question-module.ts";
+import { parseProfileCondition } from "./parse-profile-condition.ts";
 
 export const QuestionModuleErrorCodes = {
   INVALID_QUESTION_MODULE: "INVALID_QUESTION_MODULE",

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { tokenTemplateRenderer } from "./render-token-template.js";
-import { TemplateRenderError } from "./template-render-error.js";
+import { tokenTemplateRenderer } from "./render-token-template.ts";
+import { TemplateRenderError } from "./template-render-error.ts";
 
 describe("tokenTemplateRenderer", () => {
   it("rejects markers without a supplied value", () => {

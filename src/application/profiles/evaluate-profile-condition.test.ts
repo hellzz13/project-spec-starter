@@ -3,8 +3,8 @@ import { describe, expect, it } from "vitest";
 import {
   ProfileConditionOperators,
   type ProfileCondition,
-} from "../../domain/profile.js";
-import { evaluateProfileCondition } from "./evaluate-profile-condition.js";
+} from "../../domain/profile.ts";
+import { evaluateProfileCondition } from "./evaluate-profile-condition.ts";
 
 const source = {
   project: {

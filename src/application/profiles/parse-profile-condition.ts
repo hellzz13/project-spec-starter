@@ -1,7 +1,7 @@
 import {
   ProfileConditionOperators,
   type ProfileCondition,
-} from "../../domain/profile.js";
+} from "../../domain/profile.ts";
 
 type InvalidProfileValue = (path: string, message: string) => never;
 

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-import { AnswersError, parseAnswers } from "./parse-answers.js";
+import { AnswersError, parseAnswers } from "./parse-answers.ts";
 
 describe("parseAnswers", () => {
   it("normalizes valid answers for a single application", () => {

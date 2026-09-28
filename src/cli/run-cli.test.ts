@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { formatHelp } from "./help.js";
-import { runCli } from "./run-cli.js";
+import { formatHelp } from "./help.ts";
+import { runCli } from "./run-cli.ts";
 
 function createOutput() {
   return {

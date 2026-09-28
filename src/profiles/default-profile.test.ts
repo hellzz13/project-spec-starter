@@ -2,14 +2,14 @@ import { readFile } from "node:fs/promises";
 
 import { describe, expect, it } from "vitest";
 
-import { FileSystemProfileResourceReader } from "../adapters/profiles/file-system-profile-resource-reader.js";
-import { tokenTemplateRenderer } from "../adapters/templates/render-token-template.js";
-import { parseAnswers } from "../application/answers/parse-answers.js";
-import { createDocumentModel } from "../application/documents/create-document-model.js";
-import { renderProfileDocuments } from "../application/documents/render-profile-documents.js";
-import { loadProfile } from "../application/profiles/load-profile.js";
-import { parseProfile } from "../application/profiles/parse-profile.js";
-import { parseQuestionModule } from "../application/profiles/parse-question-module.js";
+import { FileSystemProfileResourceReader } from "../adapters/profiles/file-system-profile-resource-reader.ts";
+import { tokenTemplateRenderer } from "../adapters/templates/render-token-template.ts";
+import { parseAnswers } from "../application/answers/parse-answers.ts";
+import { createDocumentModel } from "../application/documents/create-document-model.ts";
+import { renderProfileDocuments } from "../application/documents/render-profile-documents.ts";
+import { loadProfile } from "../application/profiles/load-profile.ts";
+import { parseProfile } from "../application/profiles/parse-profile.ts";
+import { parseQuestionModule } from "../application/profiles/parse-question-module.ts";
 
 const PROJECT_ROOT = new URL("../../", import.meta.url);
 const DEFAULT_PROFILE_PATH = "profiles/default/profile.json";

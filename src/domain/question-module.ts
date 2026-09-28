@@ -1,5 +1,5 @@
-import { DecisionStates } from "./decision.js";
-import type { ProfileCondition } from "./profile.js";
+import { DecisionStates } from "./decision.ts";
+import type { ProfileCondition } from "./profile.ts";
 
 export const QUESTION_MODULE_SCHEMA_VERSION = 1 as const;
 

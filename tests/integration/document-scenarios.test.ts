@@ -1,18 +1,18 @@
 import { beforeAll, describe, expect, it } from "vitest";
 
-import { FileSystemProfileResourceReader } from "../../src/adapters/profiles/file-system-profile-resource-reader.js";
-import { tokenTemplateRenderer } from "../../src/adapters/templates/render-token-template.js";
-import { parseAnswers } from "../../src/application/answers/parse-answers.js";
-import { createDocumentModel } from "../../src/application/documents/create-document-model.js";
+import { FileSystemProfileResourceReader } from "../../src/adapters/profiles/file-system-profile-resource-reader.ts";
+import { tokenTemplateRenderer } from "../../src/adapters/templates/render-token-template.ts";
+import { parseAnswers } from "../../src/application/answers/parse-answers.ts";
+import { createDocumentModel } from "../../src/application/documents/create-document-model.ts";
 import {
   renderProfileDocuments,
   type RenderedDocument,
-} from "../../src/application/documents/render-profile-documents.js";
+} from "../../src/application/documents/render-profile-documents.ts";
 import {
   loadProfile,
   type LoadedProfile,
-} from "../../src/application/profiles/load-profile.js";
-import { documentScenarios } from "../fixtures/document-scenarios.js";
+} from "../../src/application/profiles/load-profile.ts";
+import { documentScenarios } from "../fixtures/document-scenarios.ts";
 
 const PROJECT_ROOT = new URL("../../", import.meta.url);
 const DEFAULT_PROFILE_PATH = "profiles/default/profile.json";

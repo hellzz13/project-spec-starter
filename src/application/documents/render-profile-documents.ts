@@ -1,9 +1,9 @@
-import type { ProfileDocument } from "../../domain/profile.js";
-import type { DocumentModel } from "../../ports/document-model.js";
-import type { TemplateRenderer } from "../../ports/template-renderer.js";
-import { evaluateProfileCondition } from "../profiles/evaluate-profile-condition.js";
-import type { LoadedProfile } from "../profiles/load-profile.js";
-import { renderProjectTemplate } from "./render-project-template.js";
+import type { ProfileDocument } from "../../domain/profile.ts";
+import type { DocumentModel } from "../../ports/document-model.ts";
+import type { TemplateRenderer } from "../../ports/template-renderer.ts";
+import { evaluateProfileCondition } from "../profiles/evaluate-profile-condition.ts";
+import type { LoadedProfile } from "../profiles/load-profile.ts";
+import { renderProjectTemplate } from "./render-project-template.ts";
 
 export const DocumentRenderErrorCodes = {
   MISSING_TEMPLATE: "MISSING_TEMPLATE",

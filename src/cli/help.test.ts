@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { formatHelp } from "./help.js";
+import { formatHelp } from "./help.ts";
 
 describe("formatHelp", () => {
   it("describes the CLI and its initial commands", () => {

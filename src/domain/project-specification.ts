@@ -1,4 +1,4 @@
-import type { Decision } from "./decision.js";
+import type { Decision } from "./decision.ts";
 
 export const PROJECT_SPECIFICATION_SCHEMA_VERSION = 1;
 
