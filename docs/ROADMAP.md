@@ -27,7 +27,7 @@
 - [x] Criar manifesto central de documentos.
 - [x] Criar perfil padrão e perguntas declarativas.
 - [x] Construir o modelo documental intermediário.
-- [ ] Renderizar todos os documentos em memória.
+- [x] Renderizar todos os documentos em memória.
 - [ ] Cobrir os cenários principais com snapshots e invariantes.
 
 ## Marco 4 — CLI interativa

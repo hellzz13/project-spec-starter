@@ -3,11 +3,22 @@ import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 
 import { FileSystemProfileResourceReader } from "../adapters/profiles/file-system-profile-resource-reader.js";
+import { tokenTemplateRenderer } from "../adapters/templates/render-token-template.js";
+import { parseAnswers } from "../application/answers/parse-answers.js";
+import { createDocumentModel } from "../application/documents/create-document-model.js";
+import { renderProfileDocuments } from "../application/documents/render-profile-documents.js";
 import { loadProfile } from "../application/profiles/load-profile.js";
 import { parseProfile } from "../application/profiles/parse-profile.js";
 import { parseQuestionModule } from "../application/profiles/parse-question-module.js";
 
 const PROJECT_ROOT = new URL("../../", import.meta.url);
+const DEFAULT_PROFILE_PATH = "profiles/default/profile.json";
+
+async function loadDefaultProfile() {
+  const reader = new FileSystemProfileResourceReader(PROJECT_ROOT);
+
+  return loadProfile({ manifestPath: DEFAULT_PROFILE_PATH, reader });
+}
 
 async function readJsonRecord(path: string): Promise<Record<string, unknown>> {
   const contents = await readFile(new URL(path, PROJECT_ROOT), "utf8");
@@ -41,15 +52,39 @@ function requireRecord(value: unknown): Record<string, unknown> {
 
 describe("default profile", () => {
   it("loads all packaged profile resources through the filesystem adapter", async () => {
-    const reader = new FileSystemProfileResourceReader(PROJECT_ROOT);
-    const loadedProfile = await loadProfile({
-      manifestPath: "profiles/default/profile.json",
-      reader,
-    });
+    const loadedProfile = await loadDefaultProfile();
 
     expect(loadedProfile.profile.id).toBe("default");
     expect(loadedProfile.questionModules).toHaveLength(3);
     expect(Object.keys(loadedProfile.templates)).toHaveLength(8);
+  });
+
+  it("renders every packaged document in memory without unresolved markers", async () => {
+    const loadedProfile = await loadDefaultProfile();
+    const answers = await readJsonRecord("tests/fixtures/minimal-answers.json");
+    const model = createDocumentModel(parseAnswers(answers));
+    const renderedDocuments = renderProfileDocuments({
+      loadedProfile,
+      model,
+      renderer: tokenTemplateRenderer,
+    });
+    const getOutput = (document: (typeof renderedDocuments)[number]): string =>
+      document.output;
+    const hasNoTemplateMarkers = (
+      document: (typeof renderedDocuments)[number],
+    ): boolean => !/\{\{[^{}]+\}\}/u.test(document.content);
+
+    expect(renderedDocuments.map(getOutput)).toEqual([
+      "PROJECT.md",
+      "docs/ENGINEERING.md",
+      "docs/BUSINESS_RULES.md",
+      "docs/GITFLOW.md",
+      "docs/ENVIRONMENTS.md",
+      "AGENTS.md",
+      "CONTRIBUTING.md",
+      "docs/BOOTSTRAP_CHECKLIST.md",
+    ]);
+    expect(renderedDocuments.every(hasNoTemplateMarkers)).toBe(true);
   });
 
   it("offers an editable recommended engineering standard", async () => {
