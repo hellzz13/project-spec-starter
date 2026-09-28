@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   FileSystemProfileResourceReader,
   ProfileResourceErrorCodes,
-} from "./file-system-profile-resource-reader.js";
+} from "./file-system-profile-resource-reader.ts";
 
 describe("FileSystemProfileResourceReader", () => {
   it("rejects a resource outside the configured root", async () => {

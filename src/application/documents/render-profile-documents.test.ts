@@ -3,18 +3,18 @@ import { describe, expect, it } from "vitest";
 import {
   ProfileConditionOperators,
   type Profile,
-} from "../../domain/profile.js";
+} from "../../domain/profile.ts";
 import {
   ProjectNatures,
   ProjectOrganizationKinds,
-} from "../../domain/project-specification.js";
-import type { DocumentModel } from "../../ports/document-model.js";
-import type { TemplateRenderer } from "../../ports/template-renderer.js";
-import type { LoadedProfile } from "../profiles/load-profile.js";
+} from "../../domain/project-specification.ts";
+import type { DocumentModel } from "../../ports/document-model.ts";
+import type { TemplateRenderer } from "../../ports/template-renderer.ts";
+import type { LoadedProfile } from "../profiles/load-profile.ts";
 import {
   DocumentRenderErrorCodes,
   renderProfileDocuments,
-} from "./render-profile-documents.js";
+} from "./render-profile-documents.ts";
 
 const model: DocumentModel = {
   project: {

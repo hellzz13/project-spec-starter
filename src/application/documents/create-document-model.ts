@@ -1,8 +1,8 @@
 import {
   ProjectOrganizationKinds,
   type ProjectSpecification,
-} from "../../domain/project-specification.js";
-import type { DocumentModel } from "../../ports/document-model.js";
+} from "../../domain/project-specification.ts";
+import type { DocumentModel } from "../../ports/document-model.ts";
 
 export function createDocumentModel(
   specification: ProjectSpecification,

@@ -1,8 +1,8 @@
 import type {
   TemplateRenderer,
   TemplateRenderRequest,
-} from "../../ports/template-renderer.js";
-import { TemplateRenderError } from "./template-render-error.js";
+} from "../../ports/template-renderer.ts";
+import { TemplateRenderError } from "./template-render-error.ts";
 
 const TEMPLATE_MARKER_PATTERN = /\{\{([A-Z][A-Z0-9_]*)\}\}/gu;
 

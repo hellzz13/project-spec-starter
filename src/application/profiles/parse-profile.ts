@@ -3,11 +3,11 @@ import {
   type Profile,
   type ProfileDocument,
   type ProfileEngineeringStandard,
-} from "../../domain/profile.js";
-import { ProfileError, ProfileErrorCodes } from "./profile-error.js";
-import { parseProfileCondition } from "./parse-profile-condition.js";
+} from "../../domain/profile.ts";
+import { ProfileError, ProfileErrorCodes } from "./profile-error.ts";
+import { parseProfileCondition } from "./parse-profile-condition.ts";
 
-export { ProfileError } from "./profile-error.js";
+export { ProfileError } from "./profile-error.ts";
 
 export function parseProfile(input: unknown): Profile {
   const profile = requireRecord(input, "profile");

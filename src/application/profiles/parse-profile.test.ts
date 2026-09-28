@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { ProfileError, ProfileErrorCodes } from "./profile-error.js";
-import { parseProfile } from "./parse-profile.js";
+import { ProfileError, ProfileErrorCodes } from "./profile-error.ts";
+import { parseProfile } from "./parse-profile.ts";
 
 const validProfile = {
   schemaVersion: 1,

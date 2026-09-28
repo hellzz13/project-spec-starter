@@ -2,10 +2,10 @@ import { readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
 
-import { parseAnswers } from "../answers/parse-answers.js";
-import { createDocumentModel } from "./create-document-model.js";
-import { tokenTemplateRenderer } from "../../adapters/templates/render-token-template.js";
-import { renderProjectTemplate } from "../../adapters/templates/render-project-template.js";
+import { parseAnswers } from "../answers/parse-answers.ts";
+import { createDocumentModel } from "./create-document-model.ts";
+import { tokenTemplateRenderer } from "../../adapters/templates/render-token-template.ts";
+import { renderProjectTemplate } from "../../adapters/templates/render-project-template.ts";
 
 describe("renderProjectDocument", () => {
   it("renders the minimal answers fixture without unresolved markers", () => {

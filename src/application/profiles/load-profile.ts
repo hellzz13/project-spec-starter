@@ -1,9 +1,9 @@
-import type { Profile } from "../../domain/profile.js";
-import type { QuestionModule } from "../../domain/question-module.js";
-import type { ProfileResourceReader } from "../../ports/profile-resource-reader.js";
-import { parseProfile } from "./parse-profile.js";
-import { parseQuestionModule } from "./parse-question-module.js";
-import { ProfileError, ProfileErrorCodes } from "./profile-error.js";
+import type { Profile } from "../../domain/profile.ts";
+import type { QuestionModule } from "../../domain/question-module.ts";
+import type { ProfileResourceReader } from "../../ports/profile-resource-reader.ts";
+import { parseProfile } from "./parse-profile.ts";
+import { parseQuestionModule } from "./parse-question-module.ts";
+import { ProfileError, ProfileErrorCodes } from "./profile-error.ts";
 
 export interface LoadedProfile {
   readonly profile: Profile;

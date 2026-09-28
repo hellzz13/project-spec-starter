@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { AnswersError } from "./answers-error.js";
-import { migrateAnswers, type AnswersMigration } from "./migrate-answers.js";
+import { AnswersError } from "./answers-error.ts";
+import { migrateAnswers, type AnswersMigration } from "./migrate-answers.ts";
 
 describe("migrateAnswers", () => {
   it("preserves input already using the current schema", () => {

@@ -1,4 +1,4 @@
-import { formatHelp } from "./help.js";
+import { formatHelp } from "./help.ts";
 
 export interface CliOutput {
   error(message: string): void;

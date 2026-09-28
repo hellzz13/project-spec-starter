@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { ProfileResourceReader } from "../../ports/profile-resource-reader.js";
-import { loadProfile } from "./load-profile.js";
-import { ProfileErrorCodes } from "./profile-error.js";
+import type { ProfileResourceReader } from "../../ports/profile-resource-reader.ts";
+import { loadProfile } from "./load-profile.ts";
+import { ProfileErrorCodes } from "./profile-error.ts";
 
 const resources = {
   "profile.json": JSON.stringify({

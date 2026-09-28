@@ -1,8 +1,8 @@
-import type { Decision } from "../domain/decision.js";
+import type { Decision } from "../domain/decision.ts";
 import type {
   ProjectNature,
   ProjectOrganizationKind,
-} from "../domain/project-specification.js";
+} from "../domain/project-specification.ts";
 
 export interface DocumentUnitModel {
   readonly name: string;

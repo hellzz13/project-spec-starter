@@ -7,12 +7,12 @@ import {
   type ProjectOrganization,
   type ProjectSpecification,
   type ProjectUnit,
-} from "../../domain/project-specification.js";
-import { DecisionStates, type Decision } from "../../domain/decision.js";
-import { migrateAnswers, type AnswersMigration } from "./migrate-answers.js";
-import { AnswersError, AnswersErrorCodes } from "./answers-error.js";
+} from "../../domain/project-specification.ts";
+import { DecisionStates, type Decision } from "../../domain/decision.ts";
+import { migrateAnswers, type AnswersMigration } from "./migrate-answers.ts";
+import { AnswersError, AnswersErrorCodes } from "./answers-error.ts";
 
-export { AnswersError } from "./answers-error.js";
+export { AnswersError } from "./answers-error.ts";
 
 export function parseAnswers(
   input: unknown,

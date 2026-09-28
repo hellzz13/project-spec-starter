@@ -1,5 +1,5 @@
-import { PROJECT_SPECIFICATION_SCHEMA_VERSION } from "../../domain/project-specification.js";
-import { AnswersError, AnswersErrorCodes } from "./answers-error.js";
+import { PROJECT_SPECIFICATION_SCHEMA_VERSION } from "../../domain/project-specification.ts";
+import { AnswersError, AnswersErrorCodes } from "./answers-error.ts";
 
 export interface AnswersMigration {
   readonly fromVersion: number;

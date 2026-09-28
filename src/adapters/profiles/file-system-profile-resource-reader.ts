@@ -2,7 +2,7 @@ import { readFile, realpath } from "node:fs/promises";
 import { isAbsolute, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { ProfileResourceReader } from "../../ports/profile-resource-reader.js";
+import type { ProfileResourceReader } from "../../ports/profile-resource-reader.ts";
 
 export const ProfileResourceErrorCodes = {
   UNSAFE_PROFILE_RESOURCE_PATH: "UNSAFE_PROFILE_RESOURCE_PATH",

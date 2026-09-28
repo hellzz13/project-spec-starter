@@ -1,7 +1,7 @@
 import {
   ProfileConditionOperators,
   type ProfileCondition,
-} from "../../domain/profile.js";
+} from "../../domain/profile.ts";
 
 export function evaluateProfileCondition(options: {
   readonly condition: ProfileCondition;

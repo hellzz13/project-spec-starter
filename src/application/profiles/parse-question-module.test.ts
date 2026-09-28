@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   parseQuestionModule,
   QuestionModuleErrorCodes,
-} from "./parse-question-module.js";
+} from "./parse-question-module.ts";
 
 const validModule = {
   schemaVersion: 1,

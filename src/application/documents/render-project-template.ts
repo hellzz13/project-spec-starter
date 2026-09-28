@@ -2,16 +2,16 @@ import {
   DecisionStates,
   type Decision,
   type DecisionState,
-} from "../../domain/decision.js";
+} from "../../domain/decision.ts";
 import {
   ProjectNatures,
   ProjectOrganizationKinds,
   type ProjectNature,
   type ProjectNatureKind,
   type ProjectOrganizationKind,
-} from "../../domain/project-specification.js";
-import type { DocumentModel } from "../../ports/document-model.js";
-import type { TemplateRenderer } from "../../ports/template-renderer.js";
+} from "../../domain/project-specification.ts";
+import type { DocumentModel } from "../../ports/document-model.ts";
+import type { TemplateRenderer } from "../../ports/template-renderer.ts";
 
 type DecisionWithoutValueState = Exclude<
   DecisionState,
