@@ -121,7 +121,5 @@ npx project-spec-starter init
 ## Decisões pendentes
 
 - Biblioteca de parsing dos argumentos da CLI.
-- Biblioteca de prompts interativos.
 - Biblioteca de validação do schema.
 - Sintaxe de templates e condicionais.
-- Versões mínimas do Node.js suportadas.

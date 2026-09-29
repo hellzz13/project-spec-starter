@@ -7,7 +7,7 @@
     "runtime": {
       "node": {
         "appliesWhen": "runtime.node.enabled",
-        "version": "22",
+        "version": "24",
         "versionFile": ".nvmrc"
       }
     }
