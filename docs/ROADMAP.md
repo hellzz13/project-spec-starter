@@ -43,8 +43,9 @@
 
 - [x] Criar `GenerationPlan`.
 - [x] Implementar `--dry-run` e detecção de conflitos.
-- [ ] Garantir escrita atômica e caminhos seguros.
-- [ ] Preservar arquivos existentes e cancelamentos limpos.
+- [x] Publicar arquivos atomicamente, validar caminhos e recuperar falhas
+      observáveis conforme ADR-007.
+- [x] Preservar arquivos existentes e cancelamentos antes da escrita.
 
 ## Marco 6 — Versão 0.1.0
 

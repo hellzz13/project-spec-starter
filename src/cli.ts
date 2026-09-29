@@ -7,13 +7,19 @@ import { InquirerQuestionPrompter } from "./adapters/prompts/inquirer-question-p
 import { tokenTemplateRenderer } from "./adapters/templates/render-token-template.ts";
 import { initializeProject } from "./application/bootstrap/initialize-project.ts";
 import { planProjectGeneration } from "./application/generation/plan-project-generation.ts";
+import { FileSystemGenerationWriter } from "./adapters/generation/file-system-generation-writer.ts";
+import { confirmGeneration } from "./adapters/prompts/confirm-generation.ts";
 
 const packageRootUrl = new URL("../", import.meta.url);
 const profileReader = new FileSystemProfileResourceReader(packageRootUrl);
 const questionPrompter = new InquirerQuestionPrompter();
 const targetInspector = new FileSystemGenerationTargetInspector(process.cwd());
+const generationWriter = new FileSystemGenerationWriter(process.cwd());
 
 const exitCode = await runCli(process.argv.slice(2), {
+  confirmGeneration: (plan) =>
+    confirmGeneration({ count: plan.items.length, destination: process.cwd() }),
+  writeGeneration: (plan) => generationWriter.write(plan),
   initialize: async () => {
     const initializedProject = await initializeProject({
       manifestPath: "profiles/default/profile.json",
