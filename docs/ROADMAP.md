@@ -32,8 +32,8 @@
 
 ## Marco 4 — CLI interativa
 
-- [ ] Implementar entrevista curta e condicional.
-- [ ] Cadastrar unidades de monorepo.
+- [x] Implementar entrevista curta e condicional.
+- [x] Cadastrar unidades de monorepo.
 - [ ] Integrar runtime e padrão de engenharia ao contrato versionado de
       respostas.
 - [ ] Revisar respostas antes da geração.

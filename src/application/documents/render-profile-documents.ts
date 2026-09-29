@@ -35,18 +35,23 @@ export class DocumentRenderError extends Error {
 }
 
 export function renderProfileDocuments(options: {
+  readonly conditionSource?: unknown;
   readonly loadedProfile: LoadedProfile;
   readonly model: DocumentModel;
   readonly renderer: TemplateRenderer;
 }): readonly RenderedDocument[] {
   const { loadedProfile, model, renderer } = options;
+  const conditionSource = options.conditionSource ?? model;
 
   assertReferencedTemplatesAreLoaded(loadedProfile);
 
   const renderApplicableDocument = (
     document: ProfileDocument,
   ): readonly RenderedDocument[] => {
-    const documentIsApplicable = isDocumentApplicable(document, model);
+    const documentIsApplicable = isDocumentApplicable(
+      document,
+      conditionSource,
+    );
 
     if (!documentIsApplicable) {
       return [];
@@ -94,7 +99,7 @@ function assertReferencedTemplatesAreLoaded(
 
 function isDocumentApplicable(
   document: ProfileDocument,
-  model: DocumentModel,
+  conditionSource: unknown,
 ): boolean {
   const conditionIsAbsent = document.condition === undefined;
 
@@ -104,6 +109,6 @@ function isDocumentApplicable(
 
   return evaluateProfileCondition({
     condition: document.condition,
-    source: model,
+    source: conditionSource,
   });
 }

@@ -33,7 +33,12 @@
     {
       "id": "engineering",
       "output": "docs/ENGINEERING.md",
-      "template": "templates/project/ENGINEERING_TEMPLATE.md"
+      "template": "templates/project/ENGINEERING_TEMPLATE.md",
+      "condition": {
+        "operator": "equals",
+        "path": "engineeringStandard",
+        "value": "recommended"
+      }
     },
     {
       "id": "business-rules",

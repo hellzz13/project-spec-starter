@@ -64,6 +64,10 @@ describe("default profile", () => {
     const answers = await readJsonRecord("tests/fixtures/minimal-answers.json");
     const model = createDocumentModel(parseAnswers(answers));
     const renderedDocuments = renderProfileDocuments({
+      conditionSource: {
+        ...loadedProfile.profile.defaults,
+        ...answers,
+      },
       loadedProfile,
       model,
       renderer: tokenTemplateRenderer,
@@ -100,6 +104,21 @@ describe("default profile", () => {
       },
     });
     expect(profile.customizable).toContain("engineeringStandard");
+  });
+
+  it("omits the recommended engineering document when the standard is disabled", async () => {
+    const loadedProfile = await loadDefaultProfile();
+    const answers = await readJsonRecord("tests/fixtures/minimal-answers.json");
+    const model = createDocumentModel(parseAnswers(answers));
+    const renderedDocuments = renderProfileDocuments({
+      conditionSource: { ...answers, engineeringStandard: "disabled" },
+      loadedProfile,
+      model,
+      renderer: tokenTemplateRenderer,
+    });
+    const renderedDocumentIds = renderedDocuments.map(({ id }) => id);
+
+    expect(renderedDocumentIds).not.toContain("engineering");
   });
 
   it("declares the replaceable project document template", async () => {

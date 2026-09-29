@@ -34,6 +34,10 @@ function renderScenario(answers: Record<string, unknown>) {
   const model = createDocumentModel(parseAnswers(answers));
 
   return renderProfileDocuments({
+    conditionSource: {
+      ...loadedProfile.profile.defaults,
+      ...answers,
+    },
     loadedProfile,
     model,
     renderer: tokenTemplateRenderer,
