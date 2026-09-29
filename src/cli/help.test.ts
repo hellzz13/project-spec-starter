@@ -13,7 +13,7 @@ describe("formatHelp", () => {
         project-spec-starter <command> [options]
 
       Commands:
-        init       Run the interview and preview the initial documentation
+        init       Review and generate the initial documentation
         inspect    Inspect the current project specification
         validate   Validate a project answers file
 
