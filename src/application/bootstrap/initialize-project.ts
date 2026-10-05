@@ -10,7 +10,7 @@ import type { RenderedDocument } from "../documents/render-profile-documents.ts"
 import { createDocumentModel } from "../documents/create-document-model.ts";
 import { renderProfileDocuments } from "../documents/render-profile-documents.ts";
 import { runInterview } from "../interview/run-interview.ts";
-import { loadProfile } from "../profiles/load-profile.ts";
+import { loadProfile, type LoadedProfile } from "../profiles/load-profile.ts";
 
 export interface InitializeProjectOptions {
   readonly manifestPath: string;
@@ -36,6 +36,27 @@ export async function initializeProject(
     schemaVersion: PROJECT_SPECIFICATION_SCHEMA_VERSION,
     prompter,
   });
+  return renderInitializedProject({ answers, loadedProfile, renderer });
+}
+
+export async function initializeProjectFromAnswers(options: {
+  readonly answers: Readonly<Record<string, unknown>>;
+  readonly manifestPath: string;
+  readonly reader: ProfileResourceReader;
+  readonly renderer: TemplateRenderer;
+}): Promise<InitializedProject> {
+  const { answers, manifestPath, reader, renderer } = options;
+  const loadedProfile = await loadProfile({ manifestPath, reader });
+
+  return renderInitializedProject({ answers, loadedProfile, renderer });
+}
+
+function renderInitializedProject(options: {
+  readonly answers: Readonly<Record<string, unknown>>;
+  readonly loadedProfile: LoadedProfile;
+  readonly renderer: TemplateRenderer;
+}): InitializedProject {
+  const { answers, loadedProfile, renderer } = options;
   const specification = parseAnswers(answers);
   const model = createDocumentModel(specification);
   const documents = renderProfileDocuments({

@@ -5,7 +5,11 @@ import { FileSystemProfileResourceReader } from "./adapters/profiles/file-system
 import { FileSystemGenerationTargetInspector } from "./adapters/generation/file-system-generation-target-inspector.ts";
 import { InquirerQuestionPrompter } from "./adapters/prompts/inquirer-question-prompter.ts";
 import { tokenTemplateRenderer } from "./adapters/templates/render-token-template.ts";
-import { initializeProject } from "./application/bootstrap/initialize-project.ts";
+import {
+  initializeProject,
+  initializeProjectFromAnswers,
+} from "./application/bootstrap/initialize-project.ts";
+import { readAnswersFile } from "./adapters/answers/read-answers-file.ts";
 import { planProjectGeneration } from "./application/generation/plan-project-generation.ts";
 import { FileSystemGenerationWriter } from "./adapters/generation/file-system-generation-writer.ts";
 import { confirmGeneration } from "./adapters/prompts/confirm-generation.ts";
@@ -20,13 +24,21 @@ const exitCode = await runCli(process.argv.slice(2), {
   confirmGeneration: (plan) =>
     confirmGeneration({ count: plan.items.length, destination: process.cwd() }),
   writeGeneration: (plan) => generationWriter.write(plan),
-  initialize: async () => {
-    const initializedProject = await initializeProject({
-      manifestPath: "profiles/default/profile.json",
-      prompter: questionPrompter,
-      reader: profileReader,
-      renderer: tokenTemplateRenderer,
-    });
+  initialize: async (answersPath) => {
+    const hasAnswersPath = answersPath !== undefined;
+    const initializedProject = hasAnswersPath
+      ? await initializeProjectFromAnswers({
+          answers: await readAnswersFile(answersPath),
+          manifestPath: "profiles/default/profile.json",
+          reader: profileReader,
+          renderer: tokenTemplateRenderer,
+        })
+      : await initializeProject({
+          manifestPath: "profiles/default/profile.json",
+          prompter: questionPrompter,
+          reader: profileReader,
+          renderer: tokenTemplateRenderer,
+        });
     const plan = await planProjectGeneration({
       documents: initializedProject.documents,
       inspector: targetInspector,

@@ -21,7 +21,7 @@ export interface CliOutput {
 export interface RunCliOptions {
   confirmGeneration?: (plan: GenerationPlan) => Promise<boolean>;
   writeGeneration?: (plan: GenerationPlan) => Promise<void>;
-  initialize?: () => Promise<{
+  initialize?: (answersPath?: string) => Promise<{
     readonly plan: GenerationPlan;
     readonly specification: ProjectSpecification;
   }>;
@@ -52,13 +52,15 @@ export async function runCli(
 
   if (isInitRequested) {
     const requestedOptions = arguments_.slice(1);
-    const unsupportedOption = requestedOptions.find(isUnsupportedInitOption);
-    const hasUnsupportedOption = unsupportedOption !== undefined;
+    const parsedOptions = parseInitOptions(requestedOptions);
+    const optionsAreInvalid = !parsedOptions.ok;
 
-    if (hasUnsupportedOption) {
-      output.error(`Unknown option for init: ${unsupportedOption}`);
+    if (optionsAreInvalid) {
+      output.error(parsedOptions.message);
       return 1;
     }
+
+    const { answersPath, dryRun, yes } = parsedOptions;
 
     const initializeIsMissing = initialize === undefined;
 
@@ -70,7 +72,7 @@ export async function runCli(
     let result: Awaited<ReturnType<NonNullable<typeof initialize>>>;
 
     try {
-      result = await initialize();
+      result = await initialize(answersPath);
     } catch (error) {
       output.error(
         `Não foi possível iniciar o projeto: ${getErrorMessage(error)}`,
@@ -91,9 +93,7 @@ export async function runCli(
     output.log(
       `\n${total} documentos: ${available} novos, ${conflict} conflitos.`,
     );
-    const isDryRun = requestedOptions.includes("--dry-run");
-
-    if (isDryRun) {
+    if (dryRun) {
       return 0;
     }
 
@@ -106,16 +106,20 @@ export async function runCli(
       return 1;
     }
 
-    const writerIsUnavailable =
-      confirmGeneration === undefined || writeGeneration === undefined;
+    const confirmationIsRequired = !yes;
+    const writerIsUnavailable = writeGeneration === undefined;
+    const confirmationIsUnavailable =
+      confirmationIsRequired && confirmGeneration === undefined;
 
-    if (writerIsUnavailable) {
+    if (writerIsUnavailable || confirmationIsUnavailable) {
       output.error("A escrita não está disponível neste build. Use --dry-run.");
       return 1;
     }
 
     try {
-      const generationIsApproved = await confirmGeneration(result.plan);
+      const generationIsApproved = confirmationIsRequired
+        ? ((await confirmGeneration?.(result.plan)) ?? false)
+        : true;
 
       if (!generationIsApproved) {
         output.log("Geração cancelada. Nenhum arquivo foi escrito.");
@@ -151,8 +155,85 @@ function isConflictingTarget(item: GenerationPlan["items"][number]): boolean {
   return item.status === GenerationTargetStatuses.CONFLICT;
 }
 
-function isUnsupportedInitOption(option: string): boolean {
-  return option !== "--dry-run";
+type ParsedInitOptions =
+  | {
+      readonly ok: true;
+      readonly answersPath: string | undefined;
+      readonly dryRun: boolean;
+      readonly yes: boolean;
+    }
+  | { readonly ok: false; readonly message: string };
+
+function parseInitOptions(arguments_: readonly string[]): ParsedInitOptions {
+  let answersPath: string | undefined;
+  let dryRun = false;
+  let yes = false;
+  let index = 0;
+
+  let hasMoreOptions = index < arguments_.length;
+
+  while (hasMoreOptions) {
+    const option = arguments_[index];
+    const isDryRunOption = option === "--dry-run";
+    const isYesOption = option === "--yes";
+    const isAnswersOption = option === "--answers";
+
+    if (isDryRunOption) {
+      dryRun = true;
+      index += 1;
+      hasMoreOptions = index < arguments_.length;
+      continue;
+    }
+
+    if (isYesOption) {
+      yes = true;
+      index += 1;
+      hasMoreOptions = index < arguments_.length;
+      continue;
+    }
+
+    if (isAnswersOption) {
+      const answerOptionWasRepeated = answersPath !== undefined;
+      const nextArgument = arguments_[index + 1];
+      const pathIsMissing =
+        nextArgument === undefined || nextArgument.startsWith("--");
+
+      if (answerOptionWasRepeated || pathIsMissing) {
+        return {
+          ok: false,
+          message: "Informe um único arquivo após --answers.",
+        };
+      }
+
+      answersPath = nextArgument;
+      index += 2;
+      hasMoreOptions = index < arguments_.length;
+      continue;
+    }
+
+    return { ok: false, message: `Unknown option for init: ${option}` };
+  }
+
+  const hasAnswersPath = answersPath !== undefined;
+  const nonInteractiveModeIsMissing = hasAnswersPath && !dryRun && !yes;
+  const yesHasNoAnswers = yes && !hasAnswersPath;
+  const modesConflict = dryRun && yes;
+
+  if (nonInteractiveModeIsMissing) {
+    return {
+      ok: false,
+      message: "Use --dry-run para revisar ou --yes para gerar sem interação.",
+    };
+  }
+
+  if (yesHasNoAnswers || modesConflict) {
+    return {
+      ok: false,
+      message: "--yes exige --answers e não combina com --dry-run.",
+    };
+  }
+
+  return { ok: true, answersPath, dryRun, yes };
 }
 
 function printSpecificationReview(options: {

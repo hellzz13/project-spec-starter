@@ -1,13 +1,18 @@
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 import { FileSystemProfileResourceReader } from "../../adapters/profiles/file-system-profile-resource-reader.ts";
+import { readAnswersFile } from "../../adapters/answers/read-answers-file.ts";
 import { tokenTemplateRenderer } from "../../adapters/templates/render-token-template.ts";
 import {
   InterviewAnswerKinds,
   type InterviewAnswer,
   type QuestionPrompter,
 } from "../../ports/question-prompter.ts";
-import { initializeProject } from "./initialize-project.ts";
+import {
+  initializeProject,
+  initializeProjectFromAnswers,
+} from "./initialize-project.ts";
 
 const AnswersByQuestionId: Readonly<Record<string, InterviewAnswer>> = {
   "project-name": answer("Billing API"),
@@ -37,6 +42,27 @@ const prompter: QuestionPrompter = {
 };
 
 describe("initializeProject with the packaged default profile", () => {
+  it("renders versioned JSON answers without invoking a prompter", async () => {
+    const projectRootUrl = new URL("../../../", import.meta.url);
+    const reader = new FileSystemProfileResourceReader(projectRootUrl);
+    const answersPath = fileURLToPath(
+      new URL("../../../tests/fixtures/minimal-answers.json", import.meta.url),
+    );
+    const answers = await readAnswersFile(answersPath);
+
+    const result = await initializeProjectFromAnswers({
+      answers,
+      manifestPath: "profiles/default/profile.json",
+      reader,
+      renderer: tokenTemplateRenderer,
+    });
+
+    expect(result.specification.name).toBe("Billing API");
+    expect(result.documents.some(({ output }) => output === "PROJECT.md")).toBe(
+      true,
+    );
+  });
+
   it("renders the expected preview without writing files", async () => {
     const projectRootUrl = new URL("../../../", import.meta.url);
     const reader = new FileSystemProfileResourceReader(projectRootUrl);
