@@ -153,6 +153,7 @@ describe("initializeProject", () => {
       project: { name: "Billing API" },
     });
     expect(result.specification).toEqual({
+      engineeringStandard: "recommended",
       schemaVersion: PROJECT_SPECIFICATION_SCHEMA_VERSION,
       name: "Billing API",
       summary: {

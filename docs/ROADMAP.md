@@ -34,7 +34,7 @@
 
 - [x] Implementar entrevista curta e condicional.
 - [x] Cadastrar unidades de monorepo.
-- [ ] Integrar runtime e padrão de engenharia ao contrato versionado de
+- [x] Integrar runtime e padrão de engenharia ao contrato versionado de
       respostas.
 - [x] Revisar respostas antes da geração.
 - [ ] Aceitar configuração JSON sem interação.

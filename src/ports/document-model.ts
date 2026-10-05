@@ -2,6 +2,8 @@ import type { Decision } from "../domain/decision.ts";
 import type {
   ProjectNature,
   ProjectOrganizationKind,
+  ProjectRuntime,
+  EngineeringStandard,
 } from "../domain/project-specification.ts";
 
 export interface DocumentUnitModel {
@@ -12,6 +14,8 @@ export interface DocumentUnitModel {
 }
 
 export interface DocumentModel {
+  readonly runtime?: ProjectRuntime;
+  readonly engineeringStandard?: EngineeringStandard;
   readonly project: {
     readonly name: string;
     readonly summary: Decision<string>;

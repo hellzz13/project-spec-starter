@@ -4,6 +4,76 @@ import { describe, expect, it } from "vitest";
 import { AnswersError, parseAnswers } from "./parse-answers.ts";
 
 describe("parseAnswers", () => {
+  it("keeps confirmed Node runtime and engineering choice in the specification", () => {
+    const specification = parseAnswers({
+      schemaVersion: 1,
+      project: {
+        name: "Example",
+        summary: { state: "pending" },
+        organization: { kind: "single-app" },
+        nature: { kind: "backend" },
+        capabilities: [],
+        agentSupport: false,
+      },
+      runtime: { node: { enabled: true, version: "22.14.0" } },
+      engineeringStandard: "recommended",
+    });
+
+    expect(specification.runtime).toEqual({
+      node: { enabled: true, version: "22.14.0" },
+    });
+    expect(specification.engineeringStandard).toBe("recommended");
+  });
+
+  it("rejects a Node runtime without a version", () => {
+    expect(() =>
+      parseAnswers({
+        schemaVersion: 1,
+        project: {
+          name: "Example",
+          summary: { state: "pending" },
+          organization: { kind: "single-app" },
+          nature: { kind: "backend" },
+          capabilities: [],
+          agentSupport: false,
+        },
+        runtime: { node: { enabled: true } },
+      }),
+    ).toThrowError(expect.objectContaining({ path: "runtime.node.version" }));
+  });
+
+  it("rejects a Node version containing line breaks", () => {
+    expect(() =>
+      parseAnswers({
+        schemaVersion: 1,
+        project: {
+          name: "Example",
+          summary: { state: "pending" },
+          organization: { kind: "single-app" },
+          nature: { kind: "backend" },
+          capabilities: [],
+          agentSupport: false,
+        },
+        runtime: { node: { enabled: true, version: "24\nother" } },
+      }),
+    ).toThrowError(expect.objectContaining({ path: "runtime.node.version" }));
+  });
+
+  it("accepts an engineering choice defined by a local profile", () => {
+    const specification = parseAnswers({
+      schemaVersion: 1,
+      project: {
+        name: "Example",
+        summary: { state: "pending" },
+        organization: { kind: "single-app" },
+        nature: { kind: "backend" },
+        capabilities: [],
+        agentSupport: false,
+      },
+      engineeringStandard: "company-standard",
+    });
+    expect(specification.engineeringStandard).toBe("company-standard");
+  });
   it("normalizes valid answers for a single application", () => {
     const specification = parseAnswers({
       schemaVersion: 1,

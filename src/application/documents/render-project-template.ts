@@ -49,7 +49,10 @@ export function renderProjectTemplate(options: {
   const organization = OrganizationLabels[model.project.organizationKind];
   const nature = formatNature(model.project.nature);
   const agentSupport = hasAgentSupport ? "Habilitado" : "Desabilitado";
+  const nodeRuntimeIsEnabled = model.runtime?.node.enabled === true;
+  const nodeVersion = nodeRuntimeIsEnabled ? model.runtime.node.version : "";
   const values = {
+    NODE_VERSION: nodeVersion,
     PROJECT_NAME: model.project.name,
     PROJECT_SUMMARY: formatDecision(model.project.summary),
     PROJECT_ORGANIZATION: organization,

@@ -19,6 +19,22 @@ export const ProjectOrganizationKinds = {
   MONOREPO: "monorepo",
 } as const;
 
+export const EngineeringStandards = {
+  RECOMMENDED: "recommended",
+  CUSTOM: "custom",
+  DISABLED: "disabled",
+} as const;
+
+export type EngineeringStandard = string;
+
+export type NodeRuntime =
+  | { readonly enabled: false }
+  | { readonly enabled: true; readonly version: string };
+
+export interface ProjectRuntime {
+  readonly node: NodeRuntime;
+}
+
 type ProjectNatureValue = (typeof ProjectNatures)[keyof typeof ProjectNatures];
 
 export type ProjectNatureKind = Exclude<
@@ -58,4 +74,6 @@ export interface ProjectSpecification {
   readonly nature: ProjectNature;
   readonly capabilities: readonly string[];
   readonly agentSupport: boolean;
+  readonly runtime?: ProjectRuntime;
+  readonly engineeringStandard?: EngineeringStandard;
 }
