@@ -30,8 +30,16 @@ serão gerados, sem escrever arquivos no projeto:
 node dist/cli.js init --dry-run
 ```
 
-A escrita segura será habilitada depois da implementação do plano de geração,
-detecção de conflitos e `dry-run`.
+Para gerar, execute `node /caminho/do/project-spec-starter/dist/cli.js init`
+no diretório do projeto de destino. Depois da entrevista, a CLI apresenta o
+plano e pede confirmação, com resposta padrão negativa. Conflitos bloqueiam
+toda a geração; arquivos existentes não são sobrescritos.
+
+Os conteúdos são preparados antes de publicar os arquivos. Em caso de falha,
+a CLI tenta remover apenas os arquivos que criou e informa se a recuperação
+ficou incompleta. Essa recuperação não equivale a uma transação do filesystem:
+interrupção abrupta do processo pode exigir revisão manual. Evite alterações
+simultâneas no diretório durante a geração.
 
 ## Princípios
 
