@@ -10,6 +10,13 @@ export function createDocumentModel(
   const isMonorepo =
     specification.organization.kind === ProjectOrganizationKinds.MONOREPO;
   const hasAgentSupport = specification.agentSupport;
+  const hasRuntime = specification.runtime !== undefined;
+  const hasEngineeringStandard =
+    specification.engineeringStandard !== undefined;
+  const runtime = hasRuntime ? { runtime: specification.runtime } : {};
+  const engineeringStandard = hasEngineeringStandard
+    ? { engineeringStandard: specification.engineeringStandard }
+    : {};
   const units = isMonorepo
     ? specification.organization.units.map((unit) => ({
         name: unit.name,
@@ -20,6 +27,8 @@ export function createDocumentModel(
     : [];
 
   return {
+    ...runtime,
+    ...engineeringStandard,
     project: {
       name: specification.name,
       summary: specification.summary,

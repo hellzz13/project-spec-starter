@@ -56,7 +56,7 @@ describe("default profile", () => {
 
     expect(loadedProfile.profile.id).toBe("default");
     expect(loadedProfile.questionModules).toHaveLength(3);
-    expect(Object.keys(loadedProfile.templates)).toHaveLength(8);
+    expect(Object.keys(loadedProfile.templates)).toHaveLength(9);
   });
 
   it("renders every packaged document in memory without unresolved markers", async () => {
@@ -121,6 +121,38 @@ describe("default profile", () => {
     expect(renderedDocumentIds).not.toContain("engineering");
   });
 
+  it("renders the confirmed Node version and omits it when Node is disabled", async () => {
+    const loadedProfile = await loadDefaultProfile();
+    const answers = await readJsonRecord("tests/fixtures/minimal-answers.json");
+    const enabledAnswers = {
+      ...answers,
+      runtime: { node: { enabled: true, version: "22.14.0" } },
+    };
+    const enabledDocuments = renderProfileDocuments({
+      conditionSource: enabledAnswers,
+      loadedProfile,
+      model: createDocumentModel(parseAnswers(enabledAnswers)),
+      renderer: tokenTemplateRenderer,
+    });
+    expect(
+      enabledDocuments.find(({ output }) => output === ".nvmrc")?.content,
+    ).toBe("22.14.0\n");
+
+    const disabledAnswers = {
+      ...answers,
+      runtime: { node: { enabled: false } },
+    };
+    const disabledDocuments = renderProfileDocuments({
+      conditionSource: disabledAnswers,
+      loadedProfile,
+      model: createDocumentModel(parseAnswers(disabledAnswers)),
+      renderer: tokenTemplateRenderer,
+    });
+    expect(disabledDocuments.some(({ output }) => output === ".nvmrc")).toBe(
+      false,
+    );
+  });
+
   it("declares the replaceable project document template", async () => {
     const profile = parseProfile(
       await readJsonRecord("profiles/default/profile.json"),
@@ -152,6 +184,7 @@ describe("default profile", () => {
       "agents",
       "contributing",
       "bootstrap-checklist",
+      "node-version-file",
     ]);
 
     await Promise.all(

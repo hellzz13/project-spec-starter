@@ -52,6 +52,13 @@ describe("initializeProject with the packaged default profile", () => {
       engineeringStandard: "recommended",
       runtime: { node: { enabled: true, version: "24" } },
     });
+    expect(result.specification.runtime).toEqual({
+      node: { enabled: true, version: "24" },
+    });
+    expect(result.specification.engineeringStandard).toBe("recommended");
+    expect(
+      result.documents.find(({ output }) => output === ".nvmrc")?.content,
+    ).toBe("24\n");
     expect(result.documents.map(({ output }) => output)).toEqual([
       "PROJECT.md",
       "docs/ENGINEERING.md",
@@ -60,6 +67,7 @@ describe("initializeProject with the packaged default profile", () => {
       "docs/ENVIRONMENTS.md",
       "CONTRIBUTING.md",
       "docs/BOOTSTRAP_CHECKLIST.md",
+      ".nvmrc",
     ]);
     expect(
       result.documents.every(({ content }) => {

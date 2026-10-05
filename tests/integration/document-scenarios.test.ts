@@ -17,6 +17,7 @@ import { documentScenarios } from "../fixtures/document-scenarios.ts";
 const PROJECT_ROOT = new URL("../../", import.meta.url);
 const DEFAULT_PROFILE_PATH = "profiles/default/profile.json";
 const AGENT_DOCUMENT_OUTPUT = "AGENTS.md";
+const NODE_VERSION_OUTPUT = ".nvmrc";
 const MONOREPO_SECTION = "## Unidades do monorepo";
 const UNRESOLVED_TEMPLATE_MARKER_PATTERN = /\{\{[^{}]+\}\}/u;
 
@@ -74,10 +75,12 @@ describe("default profile document scenarios", () => {
       const expectedOutputs = loadedProfile.profile.documents
         .filter(({ output }) => {
           const isAgentDocument = output === AGENT_DOCUMENT_OUTPUT;
+          const isNodeVersionDocument = output === NODE_VERSION_OUTPUT;
           const shouldOmitAgentDocument =
             isAgentDocument && !scenario.expectsAgentDocument;
+          const shouldOmitNodeVersionDocument = isNodeVersionDocument;
 
-          return !shouldOmitAgentDocument;
+          return !shouldOmitAgentDocument && !shouldOmitNodeVersionDocument;
         })
         .map(({ output }) => output);
 

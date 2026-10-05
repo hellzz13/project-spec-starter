@@ -6,6 +6,8 @@ import {
   type ProjectNatureKind,
   type ProjectOrganization,
   type ProjectSpecification,
+  type ProjectRuntime,
+  type EngineeringStandard,
   type ProjectUnit,
 } from "../../domain/project-specification.ts";
 import { DecisionStates, type Decision } from "../../domain/decision.ts";
@@ -34,8 +36,25 @@ export function parseAnswers(
   }
 
   const project = requireRecord(migratedRoot.project, "project");
+  const runtimeIsPresent = Object.hasOwn(migratedRoot, "runtime");
+  const engineeringStandardIsPresent = Object.hasOwn(
+    migratedRoot,
+    "engineeringStandard",
+  );
+  const runtime = runtimeIsPresent
+    ? { runtime: parseRuntime(migratedRoot.runtime) }
+    : {};
+  const engineeringStandard = engineeringStandardIsPresent
+    ? {
+        engineeringStandard: parseEngineeringStandard(
+          migratedRoot.engineeringStandard,
+        ),
+      }
+    : {};
 
   return {
+    ...runtime,
+    ...engineeringStandard,
     schemaVersion,
     name: requireNonEmptyString(project.name, "project.name"),
     summary: parseStringDecision(project.summary, "project.summary"),
@@ -50,6 +69,39 @@ export function parseAnswers(
     ),
     agentSupport: requireBoolean(project.agentSupport, "project.agentSupport"),
   };
+}
+
+function parseRuntime(input: unknown): ProjectRuntime {
+  const runtime = requireRecord(input, "runtime");
+  const node = requireRecord(runtime.node, "runtime.node");
+  const enabled = requireBoolean(node.enabled, "runtime.node.enabled");
+
+  if (!enabled) {
+    return { node: { enabled: false } };
+  }
+
+  const version = requireNonEmptyString(node.version, "runtime.node.version");
+  const versionIsValid = /^v?\d+(?:\.\d+){0,2}$/u.test(version);
+
+  if (!versionIsValid) {
+    invalid(
+      "runtime.node.version",
+      "Expected a numeric Node.js version, for example 24 or 24.14.1.",
+    );
+  }
+
+  return { node: { enabled: true, version } };
+}
+
+function parseEngineeringStandard(input: unknown): EngineeringStandard {
+  const standard = requireNonEmptyString(input, "engineeringStandard");
+  const standardIdIsValid = /^[a-z][a-z0-9-]*$/u.test(standard);
+
+  if (!standardIdIsValid) {
+    invalid("engineeringStandard", "Expected a lowercase standard identifier.");
+  }
+
+  return standard;
 }
 
 function parseOrganization(input: unknown, path: string): ProjectOrganization {

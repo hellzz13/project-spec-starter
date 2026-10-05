@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "default",
-  "version": 1,
+  "version": 2,
   "defaults": {
     "engineeringStandard": "recommended",
     "runtime": {
@@ -15,6 +15,7 @@
   "customizable": [
     "engineeringStandard",
     "documents.project.template",
+    "documents.node-version-file.template",
     "questionModules",
     "runtime.node.version",
     "runtime.node.versionFile"
@@ -74,6 +75,16 @@
       "id": "bootstrap-checklist",
       "output": "docs/BOOTSTRAP_CHECKLIST.md",
       "template": "templates/project/BOOTSTRAP_CHECKLIST.md"
+    },
+    {
+      "id": "node-version-file",
+      "output": ".nvmrc",
+      "template": "templates/project/NVMRC_TEMPLATE",
+      "condition": {
+        "operator": "equals",
+        "path": "runtime.node.enabled",
+        "value": true
+      }
     }
   ],
   "engineeringStandards": {
