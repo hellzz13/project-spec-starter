@@ -36,7 +36,9 @@
 - [ ] Testar conflito, cancelamento, dry-run e escrita atômica.
 - [x] Configurar CI com permissões mínimas.
 - [x] Testar o conteúdo do pacote npm empacotado.
-- [ ] Documentar instalação, uso, perfis e sobrescritas locais.
+- [x] Documentar instalação para teste, uso e estrutura do perfil padrão.
+- [ ] Documentar o uso de perfis e sobrescritas locais após expor esse recurso
+      na CLI.
 
 ## Critério de conclusão
 

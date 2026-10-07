@@ -1,5 +1,12 @@
 # Uso da CLI
 
+## Antes de começar
+
+A CLI ainda não foi publicada no npm. Para testá-la, clone o repositório,
+execute `nvm use`, `npm ci` e `npm run build` com Node.js 24 ou superior.
+Use o caminho absoluto da CLI compilada nos exemplos abaixo. O comando
+`npx project-spec-starter init` só será uma opção pública depois da publicação.
+
 A CLI gera documentos no diretório em que o comando é executado. Ela oferece
 duas formas de fornecer as respostas iniciais:
 
@@ -96,3 +103,28 @@ um arquivo de destino existente. Não sobrescreve documentos editados. O JSON
 registra a entrada inicial; depois da geração, os documentos editados passam a
 ser a fonte de verdade do projeto. Não coloque segredos, tokens, senhas ou URLs
 privadas no arquivo de respostas.
+
+## Personalização disponível
+
+Durante a entrevista, é possível escolher o tipo de projeto, capacidades,
+unidades de monorepo, suporte a agentes, versão do Node.js e o padrão de
+engenharia. O modo JSON aceita as mesmas decisões pelo contrato versionado.
+Escolher `engineeringStandard: "custom"` registra que a pessoa fornecerá suas
+próprias regras; isso não cria automaticamente um arquivo de regras. Depois do
+bootstrap, edite os documentos gerados diretamente: eles são a fonte de verdade
+e a CLI não os mescla nem sobrescreve em uma nova execução.
+
+Autores do perfil padrão podem alterar, neste repositório, o manifesto em
+[`profiles/default/profile.json`](../profiles/default/profile.json), os módulos
+em [`profiles/default/questions/`](../profiles/default/questions/) e os
+arquivos em [`templates/project/`](../templates/project/). O manifesto declara
+a ordem, as condições e os caminhos dos documentos. Mudanças nesses recursos
+precisam passar por testes, build e `npm run test:package` antes de distribuir
+um pacote novo. O perfil e os módulos têm versões próprias; mudanças estruturais
+exigem migração explícita e não podem reinterpretar respostas antigas.
+
+A seleção de um perfil externo e as sobrescritas locais de perguntas ou
+templates **ainda não estão expostas pela CLI**. Editar arquivos dentro de um
+pacote instalado também não é um mecanismo suportado de personalização. Essa
+lacuna deve ser fechada antes de anunciar perfis locais substituíveis como
+recurso da versão 0.1.0.

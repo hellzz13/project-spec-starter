@@ -6,9 +6,34 @@ o projeto para ser refinado progressivamente por pessoas e agentes.
 
 ## Estado
 
-O projeto concluiu sua especificação inicial e está na fundação técnica. A
-primeira versão entregará o bootstrap documental; geradores de código serão
-adicionados posteriormente por meio de receitas e presets explícitos.
+O bootstrap documental funciona pela entrevista interativa ou por respostas
+JSON versionadas. A versão 0.1.0 ainda não foi publicada no npm. Geradores de
+código serão adicionados posteriormente por meio de receitas e presets
+explícitos.
+
+## Instalação para teste
+
+Use Node.js 24 ou superior. Enquanto o pacote não estiver publicado, clone o
+repositório e prepare a CLI com npm:
+
+```bash
+git clone https://github.com/hellzz13/project-spec-starter.git
+cd project-spec-starter
+nvm use
+npm ci
+npm run build
+```
+
+No diretório do projeto que receberá os documentos, execute a CLI compilada
+pelo caminho absoluto. Comece com `init --dry-run` para revisar o plano:
+
+```bash
+node /caminho/do/project-spec-starter/dist/cli.js init --dry-run
+```
+
+O pacote distribuível pode ser conferido com `npm run test:package`. A forma
+`npx project-spec-starter init` será indicada para uso público somente após a
+publicação no npm.
 
 ## Desenvolvimento
 
@@ -21,13 +46,6 @@ npm test
 npm run lint
 npm run typecheck
 npm run build
-```
-
-Para testar a entrevista interativa e revisar os caminhos dos documentos que
-serão gerados, sem escrever arquivos no projeto:
-
-```bash
-node dist/cli.js init --dry-run
 ```
 
 Para gerar, execute `node /caminho/do/project-spec-starter/dist/cli.js init`
@@ -66,7 +84,8 @@ registra a entrevista inicial, enquanto os documentos gerados passam a ser a
 fonte de verdade para decisões posteriores.
 
 O [guia de uso](docs/USAGE.md) detalha as duas formas de entrada, os campos
-aceitos no JSON, decisões pendentes, monorepos e tipos personalizados.
+aceitos no JSON, decisões pendentes, monorepos, tipos personalizados e as
+possibilidades atuais de personalização.
 
 Os conteúdos são preparados antes de publicar os arquivos. Em caso de falha,
 a CLI tenta remover apenas os arquivos que criou e informa se a recuperação
