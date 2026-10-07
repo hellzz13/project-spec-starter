@@ -1,6 +1,14 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import console from "node:console";
-import { access, cp, mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
+import {
+  access,
+  cp,
+  mkdir,
+  mkdtemp,
+  readFile,
+  rm,
+  writeFile,
+} from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import process from "node:process";
@@ -151,8 +159,52 @@ try {
     throw new Error("A segunda geração não preservou os arquivos existentes.");
   }
 
+  const customProjectRoot = join(temporaryRoot, "custom-project");
+  const selectedProfileRoot = join(temporaryRoot, "selected-profile");
+  const overridesRoot = join(temporaryRoot, "local-overrides");
+  const overriddenTemplate = join(
+    overridesRoot,
+    "templates/project/PROJECT_TEMPLATE.md",
+  );
+  await mkdir(customProjectRoot);
+  await mkdir(selectedProfileRoot);
+  await mkdir(join(overridesRoot, "templates/project"), { recursive: true });
+  await cp(fixturePath, join(customProjectRoot, "answers.json"));
+  await cp(
+    join(packageRoot, "profiles/default/profile.json"),
+    join(selectedProfileRoot, "profile.json"),
+  );
+  await writeFile(overriddenTemplate, "# Projeto local: {{PROJECT_NAME}}\n");
+
+  run(
+    process.execPath,
+    [
+      installedCli,
+      "init",
+      "--answers",
+      "answers.json",
+      "--profile",
+      join(selectedProfileRoot, "profile.json"),
+      "--overrides",
+      overridesRoot,
+      "--yes",
+    ],
+    { cwd: customProjectRoot },
+  );
+  const customProject = await readFile(
+    join(customProjectRoot, "PROJECT.md"),
+    "utf8",
+  );
+  const localTemplateWasUsed = customProject.includes(
+    "# Projeto local: Billing API",
+  );
+
+  if (!localTemplateWasUsed) {
+    throw new Error("O pacote instalado ignorou o template local.");
+  }
+
   console.log(
-    "Pacote instalado: help, dry-run, geração e conflitos validados.",
+    "Pacote instalado: help, dry-run, geração, sobrescritas locais e conflitos validados.",
   );
 } finally {
   await rm(temporaryRoot, { force: true, recursive: true });

@@ -37,7 +37,7 @@
 - [x] Configurar CI com permissões mínimas.
 - [x] Testar o conteúdo do pacote npm empacotado.
 - [x] Documentar instalação para teste, uso e estrutura do perfil padrão.
-- [ ] Documentar o uso de perfis e sobrescritas locais após expor esse recurso
+- [x] Documentar o uso de perfis e sobrescritas locais após expor esse recurso
       na CLI.
 
 ## Critério de conclusão

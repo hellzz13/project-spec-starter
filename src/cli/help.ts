@@ -15,6 +15,8 @@ Options:
   -v, --version  Show the installed version
   --dry-run      Inspect the init plan without writing files
   --answers FILE Read versioned answers from a JSON file
+  --profile FILE Use a local profile manifest
+  --overrides DIR Use local profile resources before selected and default ones
   --yes          Generate without prompts when --answers is provided`;
 
 export function formatHelp(): string {

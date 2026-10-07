@@ -50,7 +50,7 @@
 ## Marco 6 — Versão 0.1.0
 
 - [x] Documentar instalação para teste, uso e personalização disponível.
-- [ ] Expor seleção de perfil e sobrescritas locais pela CLI, com validação e
+- [x] Expor seleção de perfil e sobrescritas locais pela CLI, com validação e
       compatibilidade, antes de anunciá-las como recurso da 0.1.0.
 - [x] Configurar CI e matriz de Node.js.
 - [x] Validar o pacote npm em diretório temporário.

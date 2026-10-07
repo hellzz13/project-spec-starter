@@ -135,7 +135,11 @@ describe("runCli", () => {
       }),
     ).resolves.toBe(0);
 
-    expect(initialize).toHaveBeenCalledWith("answers.json");
+    expect(initialize).toHaveBeenCalledWith({
+      answersPath: "answers.json",
+      profilePath: undefined,
+      overridesPath: undefined,
+    });
     expect(confirmGeneration).not.toHaveBeenCalled();
     expect(writeGeneration).toHaveBeenCalledWith(plan);
   });
@@ -156,9 +160,62 @@ describe("runCli", () => {
       }),
     ).resolves.toBe(0);
 
-    expect(initialize).toHaveBeenCalledWith("answers.json");
+    expect(initialize).toHaveBeenCalledWith({
+      answersPath: "answers.json",
+      profilePath: undefined,
+      overridesPath: undefined,
+    });
     expect(confirmGeneration).not.toHaveBeenCalled();
     expect(writeGeneration).not.toHaveBeenCalled();
+  });
+
+  it("passes profile and override paths to initialization", async () => {
+    const output = createOutput();
+    const initialize = vi.fn().mockResolvedValue({ plan, specification });
+
+    await expect(
+      runCli(
+        [
+          "init",
+          "--answers",
+          "answers.json",
+          "--profile",
+          "custom/profile.json",
+          "--overrides",
+          "local-profile",
+          "--dry-run",
+        ],
+        { initialize, output, version: "0" },
+      ),
+    ).resolves.toBe(0);
+
+    expect(initialize).toHaveBeenCalledWith({
+      answersPath: "answers.json",
+      profilePath: "custom/profile.json",
+      overridesPath: "local-profile",
+    });
+  });
+
+  it("rejects missing or repeated profile options before initialization", async () => {
+    const output = createOutput();
+    const initialize = vi.fn();
+
+    await expect(
+      runCli(["init", "--profile"], {
+        initialize,
+        output,
+        version: "0",
+      }),
+    ).resolves.toBe(1);
+    await expect(
+      runCli(["init", "--overrides", "one", "--overrides", "two"], {
+        initialize,
+        output,
+        version: "0",
+      }),
+    ).resolves.toBe(1);
+
+    expect(initialize).not.toHaveBeenCalled();
   });
 
   it("requires an explicit mode for JSON answers before reading the file", async () => {
