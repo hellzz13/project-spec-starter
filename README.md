@@ -85,7 +85,7 @@ fonte de verdade para decisões posteriores.
 
 O [guia de uso](docs/USAGE.md) detalha as duas formas de entrada, os campos
 aceitos no JSON, decisões pendentes, monorepos, tipos personalizados e as
-possibilidades atuais de personalização.
+possibilidades de personalização por perfil e sobrescritas locais.
 
 Os conteúdos são preparados antes de publicar os arquivos. Em caso de falha,
 a CLI tenta remover apenas os arquivos que criou e informa se a recuperação

@@ -104,7 +104,7 @@ registra a entrada inicial; depois da geração, os documentos editados passam a
 ser a fonte de verdade do projeto. Não coloque segredos, tokens, senhas ou URLs
 privadas no arquivo de respostas.
 
-## Personalização disponível
+## Personalização
 
 Durante a entrevista, é possível escolher o tipo de projeto, capacidades,
 unidades de monorepo, suporte a agentes, versão do Node.js e o padrão de
@@ -113,6 +113,26 @@ Escolher `engineeringStandard: "custom"` registra que a pessoa fornecerá suas
 próprias regras; isso não cria automaticamente um arquivo de regras. Depois do
 bootstrap, edite os documentos gerados diretamente: eles são a fonte de verdade
 e a CLI não os mescla nem sobrescreve em uma nova execução.
+
+Para escolher um perfil local, passe o caminho de seu manifesto JSON. Caminhos
+de perguntas e templates declarados nesse arquivo são relativos à pasta do
+manifesto. Para substituir só alguns recursos, use uma pasta de sobrescritas
+com os mesmos caminhos relativos declarados pelo manifesto:
+
+```bash
+node /caminho/do/project-spec-starter/dist/cli.js init \
+  --answers answers.json --profile /caminho/do/meu-perfil/profile.json \
+  --overrides /caminho/do/minhas-sobrescritas --dry-run
+```
+
+A ordem de leitura é: sobrescritas locais, perfil selecionado e recursos do
+pacote. Se `--profile` for omitido, o manifesto padrão do pacote continua em
+uso; nesse caso, por exemplo, uma pasta de sobrescritas pode conter
+`templates/project/PROJECT_TEMPLATE.md` para alterar somente o documento do
+projeto. Recursos ausentes em uma camada são buscados na seguinte. Um perfil
+selecionado precisa ter seu próprio manifesto; arquivo inválido, referência
+insegura ou link simbólico que escape da pasta são erros, não motivos para
+ignorar a camada. Nenhuma dessas opções executa scripts locais.
 
 Autores do perfil padrão podem alterar, neste repositório, o manifesto em
 [`profiles/default/profile.json`](../profiles/default/profile.json), os módulos
@@ -123,8 +143,6 @@ precisam passar por testes, build e `npm run test:package` antes de distribuir
 um pacote novo. O perfil e os módulos têm versões próprias; mudanças estruturais
 exigem migração explícita e não podem reinterpretar respostas antigas.
 
-A seleção de um perfil externo e as sobrescritas locais de perguntas ou
-templates **ainda não estão expostas pela CLI**. Editar arquivos dentro de um
-pacote instalado também não é um mecanismo suportado de personalização. Essa
-lacuna deve ser fechada antes de anunciar perfis locais substituíveis como
-recurso da versão 0.1.0.
+Editar arquivos dentro de um pacote instalado não é um mecanismo suportado de
+personalização. Projetos já gerados continuam usando seus documentos editados;
+uma nova execução da CLI não os sobrescreve.

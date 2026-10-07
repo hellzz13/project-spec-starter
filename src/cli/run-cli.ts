@@ -21,7 +21,11 @@ export interface CliOutput {
 export interface RunCliOptions {
   confirmGeneration?: (plan: GenerationPlan) => Promise<boolean>;
   writeGeneration?: (plan: GenerationPlan) => Promise<void>;
-  initialize?: (answersPath?: string) => Promise<{
+  initialize?: (options: {
+    readonly answersPath: string | undefined;
+    readonly profilePath: string | undefined;
+    readonly overridesPath: string | undefined;
+  }) => Promise<{
     readonly plan: GenerationPlan;
     readonly specification: ProjectSpecification;
   }>;
@@ -60,7 +64,8 @@ export async function runCli(
       return 1;
     }
 
-    const { answersPath, dryRun, yes } = parsedOptions;
+    const { answersPath, profilePath, overridesPath, dryRun, yes } =
+      parsedOptions;
 
     const initializeIsMissing = initialize === undefined;
 
@@ -72,7 +77,7 @@ export async function runCli(
     let result: Awaited<ReturnType<NonNullable<typeof initialize>>>;
 
     try {
-      result = await initialize(answersPath);
+      result = await initialize({ answersPath, profilePath, overridesPath });
     } catch (error) {
       output.error(
         `Não foi possível iniciar o projeto: ${getErrorMessage(error)}`,
@@ -159,6 +164,8 @@ type ParsedInitOptions =
   | {
       readonly ok: true;
       readonly answersPath: string | undefined;
+      readonly profilePath: string | undefined;
+      readonly overridesPath: string | undefined;
       readonly dryRun: boolean;
       readonly yes: boolean;
     }
@@ -166,6 +173,8 @@ type ParsedInitOptions =
 
 function parseInitOptions(arguments_: readonly string[]): ParsedInitOptions {
   let answersPath: string | undefined;
+  let profilePath: string | undefined;
+  let overridesPath: string | undefined;
   let dryRun = false;
   let yes = false;
   let index = 0;
@@ -177,6 +186,8 @@ function parseInitOptions(arguments_: readonly string[]): ParsedInitOptions {
     const isDryRunOption = option === "--dry-run";
     const isYesOption = option === "--yes";
     const isAnswersOption = option === "--answers";
+    const isProfileOption = option === "--profile";
+    const isOverridesOption = option === "--overrides";
 
     if (isDryRunOption) {
       dryRun = true;
@@ -211,6 +222,33 @@ function parseInitOptions(arguments_: readonly string[]): ParsedInitOptions {
       continue;
     }
 
+    const isPathOption = isProfileOption || isOverridesOption;
+
+    if (isPathOption) {
+      const nextArgument = arguments_[index + 1];
+      const pathIsMissing =
+        nextArgument === undefined || nextArgument.startsWith("--");
+      const optionWasRepeated = isProfileOption
+        ? profilePath !== undefined
+        : overridesPath !== undefined;
+
+      if (pathIsMissing || optionWasRepeated) {
+        return {
+          ok: false,
+          message: `Informe um único caminho após ${option}.`,
+        };
+      }
+
+      if (isProfileOption) {
+        profilePath = nextArgument;
+      } else {
+        overridesPath = nextArgument;
+      }
+      index += 2;
+      hasMoreOptions = index < arguments_.length;
+      continue;
+    }
+
     return { ok: false, message: `Unknown option for init: ${option}` };
   }
 
@@ -233,7 +271,7 @@ function parseInitOptions(arguments_: readonly string[]): ParsedInitOptions {
     };
   }
 
-  return { ok: true, answersPath, dryRun, yes };
+  return { ok: true, answersPath, profilePath, overridesPath, dryRun, yes };
 }
 
 function printSpecificationReview(options: {
