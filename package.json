@@ -1,6 +1,6 @@
 {
   "name": "project-spec-starter",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "CLI for bootstrapping specification-driven projects",
   "type": "module",
   "bin": {
@@ -11,6 +11,7 @@
     "profiles",
     "templates",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "scripts": {
