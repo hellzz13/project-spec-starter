@@ -34,8 +34,8 @@
 
 - [ ] Cobrir os cenários definidos no roadmap.
 - [ ] Testar conflito, cancelamento, dry-run e escrita atômica.
-- [ ] Configurar CI com permissões mínimas.
-- [ ] Testar o conteúdo do pacote npm empacotado.
+- [x] Configurar CI com permissões mínimas.
+- [x] Testar o conteúdo do pacote npm empacotado.
 - [ ] Documentar instalação, uso, perfis e sobrescritas locais.
 
 ## Critério de conclusão

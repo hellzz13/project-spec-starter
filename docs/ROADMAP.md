@@ -50,8 +50,8 @@
 ## Marco 6 — Versão 0.1.0
 
 - [ ] Documentar instalação, uso e personalização.
-- [ ] Configurar CI e matriz de Node.js.
-- [ ] Validar o pacote npm em diretório temporário.
+- [x] Configurar CI e matriz de Node.js.
+- [x] Validar o pacote npm em diretório temporário.
 - [ ] Preparar changelog e publicação, mediante autorização.
 
 ## Marco 7 — Geradores

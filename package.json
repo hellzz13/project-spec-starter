@@ -19,6 +19,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "test": "vitest run",
+    "test:package": "node scripts/test-package.mjs",
     "test:watch": "vitest",
     "prepack": "npm run build",
     "typecheck": "tsc -p tsconfig.json --noEmit"
