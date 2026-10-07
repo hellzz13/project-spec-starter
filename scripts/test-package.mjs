@@ -46,6 +46,7 @@ try {
     "profiles/default/questions/project.json",
     "templates/project/PROJECT_TEMPLATE.md",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE",
   ];
 

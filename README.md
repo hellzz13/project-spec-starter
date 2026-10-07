@@ -111,6 +111,8 @@ simultâneas no diretório durante a geração.
 - [Ambientes](docs/ENVIRONMENTS.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Guia de uso](docs/USAGE.md)
+- [Changelog](CHANGELOG.md)
+- [Procedimento de release](docs/RELEASE.md)
 - [Checklist de bootstrap](docs/BOOTSTRAP_CHECKLIST.md)
 - [Decisões arquiteturais](docs/decisions/)
 - [Instruções para agentes](AGENTS.md)

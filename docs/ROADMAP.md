@@ -54,7 +54,8 @@
       compatibilidade, antes de anunciá-las como recurso da 0.1.0.
 - [x] Configurar CI e matriz de Node.js.
 - [x] Validar o pacote npm em diretório temporário.
-- [ ] Preparar changelog e publicação, mediante autorização.
+- [x] Preparar changelog e procedimento de publicação.
+- [ ] Publicar a versão 0.1.0 no npm, mediante autorização.
 
 ## Marco 7 — Geradores
 

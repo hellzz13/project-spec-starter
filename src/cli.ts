@@ -13,6 +13,7 @@ import { readAnswersFile } from "./adapters/answers/read-answers-file.ts";
 import { planProjectGeneration } from "./application/generation/plan-project-generation.ts";
 import { FileSystemGenerationWriter } from "./adapters/generation/file-system-generation-writer.ts";
 import { confirmGeneration } from "./adapters/prompts/confirm-generation.ts";
+import { readPackageVersion } from "./adapters/package/read-package-version.ts";
 
 const packageRootUrl = new URL("../", import.meta.url);
 const questionPrompter = new InquirerQuestionPrompter();
@@ -51,7 +52,7 @@ const exitCode = await runCli(process.argv.slice(2), {
     return { ...initializedProject, plan };
   },
   output: console,
-  version: "0.0.0",
+  version: await readPackageVersion(packageRootUrl),
 });
 
 process.exitCode = exitCode;
