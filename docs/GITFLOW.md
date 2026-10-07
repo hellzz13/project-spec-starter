@@ -57,8 +57,11 @@ Uma revisão deve verificar:
 - Publicação no npm exige autorização explícita até que exista um processo de
   release aprovado.
 
-## CI planejada
+## CI
 
-Pull requests executarão formatação, lint, typecheck, testes e build. Releases
-também validarão o conteúdo do pacote e uma execução completa da CLI instalada
-a partir do artefato.
+Pushes em `main` e pull requests executam formatação, lint, typecheck, testes,
+build e `npm run test:package` em Node.js 24 (mínimo e LTS) e 26 (linha Current
+para compatibilidade futura). O workflow usa apenas permissão de leitura do
+repositório. O teste de pacote cria um tarball com `npm pack`, instala-o em um
+diretório temporário e executa help, preview, geração e bloqueio de conflitos
+pela CLI instalada.

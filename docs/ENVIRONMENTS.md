@@ -29,8 +29,9 @@ O artefato deve incluir:
 - Perguntas, templates e manifestos distribuídos.
 - README, licença e metadados do pacote.
 
-Antes de publicar, o arquivo empacotado será instalado em um diretório temporário
-e usado para executar `--help`, validação e um bootstrap completo.
+O gate `npm run test:package` instala o arquivo empacotado em um diretório
+temporário e verifica `--help`, `--version`, preview, bootstrap completo e
+bloqueio de conflitos. Ele usa o perfil e os templates do tarball instalado.
 
 ## Compatibilidade
 
