@@ -119,6 +119,88 @@ describe("runCli", () => {
     expect(writeGeneration).not.toHaveBeenCalled();
   });
 
+  it("generates from JSON answers without interactive confirmation when --yes is explicit", async () => {
+    const output = createOutput();
+    const initialize = vi.fn().mockResolvedValue({ plan, specification });
+    const confirmGeneration = vi.fn();
+    const writeGeneration = vi.fn().mockResolvedValue(undefined);
+
+    await expect(
+      runCli(["init", "--answers", "answers.json", "--yes"], {
+        initialize,
+        confirmGeneration,
+        writeGeneration,
+        output,
+        version: "0",
+      }),
+    ).resolves.toBe(0);
+
+    expect(initialize).toHaveBeenCalledWith("answers.json");
+    expect(confirmGeneration).not.toHaveBeenCalled();
+    expect(writeGeneration).toHaveBeenCalledWith(plan);
+  });
+
+  it("previews JSON answers without writing or prompting", async () => {
+    const output = createOutput();
+    const initialize = vi.fn().mockResolvedValue({ plan, specification });
+    const confirmGeneration = vi.fn();
+    const writeGeneration = vi.fn();
+
+    await expect(
+      runCli(["init", "--answers", "answers.json", "--dry-run"], {
+        initialize,
+        confirmGeneration,
+        writeGeneration,
+        output,
+        version: "0",
+      }),
+    ).resolves.toBe(0);
+
+    expect(initialize).toHaveBeenCalledWith("answers.json");
+    expect(confirmGeneration).not.toHaveBeenCalled();
+    expect(writeGeneration).not.toHaveBeenCalled();
+  });
+
+  it("requires an explicit mode for JSON answers before reading the file", async () => {
+    const output = createOutput();
+    const initialize = vi.fn();
+
+    await expect(
+      runCli(["init", "--answers", "answers.json"], {
+        initialize,
+        output,
+        version: "0",
+      }),
+    ).resolves.toBe(1);
+
+    expect(initialize).not.toHaveBeenCalled();
+    expect(output.error).toHaveBeenCalledWith(
+      "Use --dry-run para revisar ou --yes para gerar sem interação.",
+    );
+  });
+
+  it("rejects a missing JSON path and --yes without JSON answers", async () => {
+    const output = createOutput();
+    const initialize = vi.fn();
+
+    await expect(
+      runCli(["init", "--answers", "--yes"], {
+        initialize,
+        output,
+        version: "0",
+      }),
+    ).resolves.toBe(1);
+    await expect(
+      runCli(["init", "--yes"], {
+        initialize,
+        output,
+        version: "0",
+      }),
+    ).resolves.toBe(1);
+
+    expect(initialize).not.toHaveBeenCalled();
+  });
+
   it("reports write failures without claiming success", async () => {
     const output = createOutput();
     await expect(

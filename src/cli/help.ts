@@ -13,7 +13,9 @@ Commands:
 Options:
   -h, --help     Show this help
   -v, --version  Show the installed version
-  --dry-run      Inspect the init plan without writing files`;
+  --dry-run      Inspect the init plan without writing files
+  --answers FILE Read versioned answers from a JSON file
+  --yes          Generate without prompts when --answers is provided`;
 
 export function formatHelp(): string {
   return HELP_TEXT;

@@ -37,7 +37,7 @@
 - [x] Integrar runtime e padrão de engenharia ao contrato versionado de
       respostas.
 - [x] Revisar respostas antes da geração.
-- [ ] Aceitar configuração JSON sem interação.
+- [x] Aceitar configuração JSON sem interação.
 
 ## Marco 5 — Escrita segura
 
