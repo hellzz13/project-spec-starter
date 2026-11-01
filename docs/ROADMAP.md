@@ -58,7 +58,54 @@
 - [x] Preparar metadados, documentação de uso público e política de upgrades.
 - [x] Publicar a versão 1.0.0 no npm, mediante autorização.
 
-## Próxima prioridade — Licença e autoria
+## Prioridade principal — Aplicação das convenções após o bootstrap
+
+**Causa observada:** no uso da CLI no portfólio hpndev, o bootstrap produziu a
+documentação inicial, mas isso não garantiu que as convenções de engenharia
+fossem aplicadas antes da implementação. O perfil já descreve parte das regras
+em `ENGINEERING_TEMPLATE.md` e `AGENTS_TEMPLATE.md`; os testes atuais verificam
+principalmente a presença de trechos, sem demonstrar a revisão do código e do
+diff. Orientação escrita, isoladamente, não é um gate de execução.
+
+**Escopo da entrega futura:** tornar explícito no perfil padrão o passo de ler
+as convenções aplicáveis antes de codificar e de confrontá-las com cada arquivo
+alterado antes da conclusão. Cobrir, quando a linguagem e o projeto permitirem,
+conjuntos fechados em objetos `as const` com tipos derivados, condições de fluxo
+nomeadas, separação entre constantes, conteúdo e regras, convenção de exports no
+fim do módulo e matriz de revisão do diff. Registrar exceções justificadas, sem
+impor essas convenções a linguagens ou projetos aos quais não se apliquem.
+
+**Mudanças propostas para revisão:**
+
+- [ ] Refinar os módulos de `templates/project/ENGINEERING_TEMPLATE.md` e
+      `templates/project/AGENTS_TEMPLATE.md` com instruções operacionais antes
+      da implementação e uma matriz explícita de regra, arquivos examinados,
+      evidência e exceção. Tratar posição dos exports como convenção proposta a
+      validar no padrão do projeto, pois ainda não está definida nos contratos
+      atuais.
+- [ ] Avaliar no perfil versionado como apresentar e permitir editar ou
+      desabilitar convenções condicionais sem alterar silenciosamente respostas
+      antigas. Não sobrescrever documentos já editados; disponibilizar diferenças
+      para incorporação manual, conforme ADR-004 e ADR-006.
+- [ ] Reforçar testes de contrato e cenários de geração para verificar instruções
+      completas, aplicabilidade e ausência de instruções contraditórias; avaliar
+      um gate estático para regras objetivamente detectáveis. Manter a matriz
+      humana obrigatória para regras que exigem julgamento.
+
+**Critérios de aceite:** um projeto novo com agentes habilitados recebe um
+procedimento claro de leitura, implementação e revisão; cada convenção aplicável
+tem evidência na matriz do diff ou exceção motivada; opções condicionais podem
+ser ajustadas sem escolher stack pelo usuário; projetos existentes continuam
+funcionando e seus documentos editados são preservados. A entrega identifica
+quais verificações são automáticas e quais dependem de revisão humana.
+
+**Validação planejada:** começar com testes que falhem pela ausência das
+instruções e casos condicionais, atualizar templates/perfil, executar formatação,
+lint, tipos, testes, build e `test:package`, inspecionar o tarball e gerar um
+projeto de exemplo. Revisar o diff desse exemplo pela matriz, incluindo um caso
+com exceção justificada e outro em que a convenção não se aplica.
+
+## Depois desta prioridade — Licença e autoria
 
 - [ ] Revisar a licença MIT publicada na versão 1.0.0, a atribuição de autoria
       no `LICENSE` e a consistência entre repositório, pacote npm e site.
