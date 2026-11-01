@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f4ed" />
+    <meta
+      name="description"
+      content="Comece um projeto com poucas perguntas e gere documentação clara, editável e pronta para orientar pessoas e agentes."
+    />
+    <title>project-spec-starter — Comece com clareza</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a
+          class="brand"
+          href="#inicio"
+          aria-label="project-spec-starter, início"
+        >
+          <span class="brand-mark" aria-hidden="true"
+            ><span></span><span></span><span></span
+          ></span>
+          <span>project-spec-starter</span>
+        </a>
+        <nav class="desktop-nav" aria-label="Navegação principal">
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#possibilidades">Possibilidades</a>
+          <button type="button" data-doc-open="quickstart">Documentação</button>
+        </nav>
+        <a
+          class="header-link"
+          href="https://github.com/hellzz13/project-spec-starter"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Ver no GitHub <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero shell" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span> CLI open source
+            · v1.0.0
+          </p>
+          <h1 id="hero-title">
+            Um começo claro para <em>qualquer projeto.</em>
+          </h1>
+          <p class="hero-lead">
+            Execute a CLI pelo npm com <code>npx</code>, responda às perguntas
+            essenciais e gere os documentos no diretório do seu projeto. Você e
+            seu agente podem evoluí-los depois.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#comecar"
+              >Instalação rápida via npm <span aria-hidden="true">↗</span></a
+            >
+            <button
+              type="button"
+              class="button button-text"
+              data-doc-open="quickstart"
+            >
+              Documentação completa<span aria-hidden="true">→</span>
+            </button>
+          </div>
+          <div class="hero-meta" aria-label="Características principais">
+            <span>Sem escolher stack por você</span
+            ><span>Arquivos editáveis</span><span>Node.js 24+</span>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Fluxo de exemplo da CLI">
+          <div class="visual-ribbon">
+            <span>01 / DA IDEIA AO PLANO</span><span>SPEC FIRST</span>
+          </div>
+          <div class="visual-content">
+            <div class="prompt-card">
+              <div class="prompt-top">
+                <span class="prompt-icon" aria-hidden="true">✳</span
+                ><span>project-spec-starter</span
+                ><span class="prompt-step">1 de 4</span>
+              </div>
+              <p>Que tipo de projeto você está criando?</p>
+              <div class="prompt-choice">
+                <span aria-hidden="true">◉</span> Backend
+              </div>
+              <div class="prompt-choice muted">
+                <span aria-hidden="true">○</span> Frontend
+              </div>
+              <div class="prompt-choice muted">
+                <span aria-hidden="true">○</span> Monorepo
+              </div>
+              <div class="prompt-choice muted">
+                <span aria-hidden="true">○</span> Outro tipo
+              </div>
+            </div>
+            <div class="visual-arrow" aria-hidden="true">↘</div>
+            <div class="output-card">
+              <span class="output-label">PLANO DE GERAÇÃO</span>
+              <div>
+                <span class="file-icon" aria-hidden="true">↳</span> PROJECT.md
+                <span class="file-state">novo</span>
+              </div>
+              <div>
+                <span class="file-icon" aria-hidden="true">↳</span>
+                BUSINESS_RULES.md <span class="file-state">novo</span>
+              </div>
+              <div>
+                <span class="file-icon" aria-hidden="true">↳</span> AGENTS.md
+                <span class="file-state">novo</span>
+              </div>
+            </div>
+          </div>
+          <div class="visual-footer">
+            <span>Você decide. A CLI documenta.</span
+            ><span aria-hidden="true">↗</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section-ink"
+        id="como-funciona"
+        aria-labelledby="flow-title"
+      >
+        <div class="shell">
+          <div class="section-heading light">
+            <p class="eyebrow">O PROCESSO</p>
+            <h2 id="flow-title">
+              Poucas perguntas.<br /><em>Um ponto de partida real.</em>
+            </h2>
+            <p>
+              A primeira execução prepara o contexto. O aprofundamento acontece
+              depois, quando cada decisão for necessária.
+            </p>
+          </div>
+          <div class="flow-grid">
+            <article class="flow-step">
+              <span class="step-number">01</span>
+              <div class="step-line" aria-hidden="true"></div>
+              <h3>Descreva o projeto</h3>
+              <p>
+                Informe nome, tipo, organização e capacidades. Perguntas
+                aparecem conforme as respostas anteriores.
+              </p>
+            </article>
+            <article class="flow-step">
+              <span class="step-number">02</span>
+              <div class="step-line" aria-hidden="true"></div>
+              <h3>Revise o plano</h3>
+              <p>
+                Veja as respostas e os arquivos previstos. Use
+                <code>--dry-run</code> para inspecionar sem escrever nada.
+              </p>
+            </article>
+            <article class="flow-step">
+              <span class="step-number">03</span>
+              <div class="step-line" aria-hidden="true"></div>
+              <h3>Evolua com clareza</h3>
+              <p>
+                Edite os documentos gerados. Decisões pendentes ficam explícitas
+                para pessoas e agentes retomarem no momento certo.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section-paper"
+        id="possibilidades"
+        aria-labelledby="possibilities-title"
+      >
+        <div class="shell split-section">
+          <div class="section-heading">
+            <p class="eyebrow">FEITO PARA SE ADAPTAR</p>
+            <h2 id="possibilities-title">
+              A estrutura acompanha <em>a sua ideia.</em>
+            </h2>
+            <p>
+              Comece por um tipo conhecido ou descreva o seu. Capacidades e
+              decisões são registradas sem presumir um framework.
+            </p>
+            <button type="button" class="text-link" data-doc-open="questions">
+              Ver todas as opções <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <div class="type-grid" aria-label="Tipos de projeto suportados">
+            <div class="type-card featured">
+              <span class="type-symbol" aria-hidden="true">{ }</span>
+              <h3>Backend</h3>
+              <p>APIs, jobs e serviços.</p>
+            </div>
+            <div class="type-card">
+              <span class="type-symbol" aria-hidden="true">▣</span>
+              <h3>Frontend</h3>
+              <p>Interfaces e aplicações web.</p>
+            </div>
+            <div class="type-card">
+              <span class="type-symbol" aria-hidden="true">▦</span>
+              <h3>Monorepo</h3>
+              <p>Unidades de tipos diferentes.</p>
+            </div>
+            <div class="type-card">
+              <span class="type-symbol" aria-hidden="true">✳</span>
+              <h3>Seu tipo</h3>
+              <p>Descreva o que não cabe em uma categoria.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section-sand"
+        id="comecar"
+        aria-labelledby="start-title"
+      >
+        <div class="shell start-grid">
+          <div class="section-heading">
+            <p class="eyebrow">INSTALAÇÃO VIA NPM</p>
+            <h2 id="start-title">Execute a CLI. <em>Crie os arquivos.</em></h2>
+            <p>
+              Com Node.js 24 ou superior, entre no diretório do projeto que
+              receberá a documentação. O <code>npx</code> executa o pacote do
+              npm sem instalação global. A CLI escreve nesse diretório; ela não
+              cria outra pasta.
+            </p>
+            <div class="install-alternative">
+              <strong>Prefere instalar globalmente?</strong>
+              <code>npm install --global project-spec-starter@1.0.0</code>
+              <span
+                >Depois, no diretório do projeto, rode
+                <code>project-spec-starter init</code>.</span
+              >
+            </div>
+          </div>
+          <div
+            class="terminal"
+            role="region"
+            aria-label="Comandos para começar"
+          >
+            <div class="terminal-bar">
+              <div class="terminal-dots" aria-hidden="true">
+                <i></i><i></i><i></i>
+              </div>
+              <span>terminal</span
+              ><button
+                type="button"
+                class="copy-button"
+                data-copy="npx project-spec-starter@1.0.0 init --dry-run\nnpx project-spec-starter@1.0.0 init"
+                aria-label="Copiar comandos"
+              >
+                Copiar
+              </button>
+            </div>
+            <div class="terminal-body">
+              <p class="terminal-note">
+                # 1. Revise o plano, sem criar arquivos
+              </p>
+              <pre><code><span>$</span> npx project-spec-starter@1.0.0 init --dry-run</code></pre>
+              <p class="terminal-note">
+                # 2. Responda, confirme e gere os documentos
+              </p>
+              <pre><code><span>$</span> npx project-spec-starter@1.0.0 init</code></pre>
+            </div>
+            <div class="terminal-bottom">
+              <span aria-hidden="true">✓</span> Arquivos existentes são
+              preservados.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section-paper"
+        id="documentacao"
+        aria-labelledby="docs-title"
+      >
+        <div class="shell">
+          <div class="section-heading docs-heading">
+            <p class="eyebrow">DOCUMENTAÇÃO</p>
+            <h2 id="docs-title">Aprofunde quando <em>precisar.</em></h2>
+            <p>O fluxo é simples para começar e aberto para adaptar.</p>
+          </div>
+          <div class="docs-grid">
+            <button type="button" class="doc-card" data-doc-open="quickstart">
+              <span class="doc-number">01 / GUIA</span>
+              <span class="doc-title"
+                >Uso da CLI <span aria-hidden="true">↗</span></span
+              >
+              <p>
+                Entrevista, JSON versionado, comandos, opções e exemplos
+                completos.
+              </p>
+            </button>
+            <button
+              type="button"
+              class="doc-card"
+              data-doc-open="customization"
+            >
+              <span class="doc-number">02 / EXTENSÃO</span>
+              <span class="doc-title"
+                >Personalização <span aria-hidden="true">↗</span></span
+              >
+              <p>
+                Perfis locais, sobrescritas de recursos e padrão de engenharia
+                editável.
+              </p>
+            </button>
+            <button type="button" class="doc-card" data-doc-open="roadmap">
+              <span class="doc-number">03 / FUTURO</span>
+              <span class="doc-title"
+                >Roadmap <span aria-hidden="true">↗</span></span
+              >
+              <p>
+                Geradores e integrações opcionais com agentes planejados para
+                próximos marcos.
+              </p>
+            </button>
+          </div>
+          <div class="note-strip">
+            <span class="note-star" aria-hidden="true">✳</span>
+            <p>
+              <strong>Primeira vez respondendo?</strong> Veja o
+              <button
+                type="button"
+                class="inline-doc-link"
+                data-doc-open="questions"
+              >
+                guia de cada pergunta
+              </button>
+              antes de começar. Depois do bootstrap, os documentos editados são
+              a fonte de verdade e não são sobrescritos em outra execução.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <a class="brand" href="#inicio"
+          ><span class="brand-mark" aria-hidden="true"
+            ><span></span><span></span><span></span></span
+          ><span>project-spec-starter</span></a
+        >
+        <p>Documentação para começar. Liberdade para evoluir.</p>
+        <div>
+          <a
+            href="https://www.npmjs.com/package/project-spec-starter"
+            target="_blank"
+            rel="noopener noreferrer"
+            >npm ↗</a
+          ><a
+            href="https://github.com/hellzz13/project-spec-starter"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub ↗</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <dialog class="docs-drawer" data-doc-dialog aria-labelledby="drawer-title">
+      <div class="drawer-shell">
+        <div class="drawer-handle" aria-hidden="true"></div>
+        <header class="drawer-header">
+          <div>
+            <p class="eyebrow">DOCUMENTAÇÃO · V1.0.0</p>
+            <h2 id="drawer-title">Tudo para <em>começar bem.</em></h2>
+          </div>
+          <button
+            type="button"
+            class="drawer-close"
+            data-doc-close
+            aria-label="Fechar documentação"
+          >
+            Fechar <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <nav class="drawer-nav" aria-label="Seções da documentação">
+          <button type="button" data-doc-open="quickstart">Começar</button>
+          <button type="button" data-doc-open="questions">Perguntas</button>
+          <button type="button" data-doc-open="customization">
+            Personalizar
+          </button>
+          <button type="button" data-doc-open="roadmap">Próximos passos</button>
+        </nav>
+        <div class="drawer-body">
+          <article data-doc-panel="quickstart">
+            <p class="drawer-kicker">01 / GUIA RÁPIDO</p>
+            <h3>Instale pelo npm e gere a documentação</h3>
+            <p>
+              Tenha Node.js 24 ou superior. Entre na pasta do projeto que
+              receberá os documentos; a CLI não cria uma pasta nova.
+            </p>
+            <div class="drawer-command">
+              <div>
+                <span>Revisar sem escrever arquivos</span
+                ><button
+                  type="button"
+                  data-copy="npx project-spec-starter@1.0.0 init --dry-run"
+                >
+                  Copiar
+                </button>
+              </div>
+              <code>npx project-spec-starter@1.0.0 init --dry-run</code>
+            </div>
+            <div class="drawer-command">
+              <div>
+                <span>Responder e gerar os arquivos</span
+                ><button
+                  type="button"
+                  data-copy="npx project-spec-starter@1.0.0 init"
+                >
+                  Copiar
+                </button>
+              </div>
+              <code>npx project-spec-starter@1.0.0 init</code>
+            </div>
+            <p>
+              O <code>npx</code> executa o pacote do npm sem instalação global.
+              O primeiro comando mostra apenas o plano. O segundo faz a
+              entrevista, apresenta o plano e pede confirmação antes de
+              escrever.
+            </p>
+            <h4>Instalação global, se preferir</h4>
+            <div class="drawer-command">
+              <div>
+                <span>Instalar a versão 1.0.0</span
+                ><button
+                  type="button"
+                  data-copy="npm install --global project-spec-starter@1.0.0"
+                >
+                  Copiar
+                </button>
+              </div>
+              <code>npm install --global project-spec-starter@1.0.0</code>
+            </div>
+            <p>
+              Depois, execute <code>project-spec-starter init</code> dentro da
+              pasta do projeto. A instalação, sozinha, não gera documentos.
+            </p>
+            <h4>O que será criado?</h4>
+            <p>
+              O perfil padrão prepara documentos como <code>PROJECT.md</code>,
+              <code>docs/BUSINESS_RULES.md</code> e
+              <code>docs/GITFLOW.md</code>. <code>AGENTS.md</code> aparece
+              quando você habilita agentes; <code>.nvmrc</code> aparece quando
+              escolhe Node.js. O plano mostra a lista exata para suas respostas.
+            </p>
+            <p class="drawer-callout">
+              <strong>Arquivos existentes são preservados.</strong> Se houver
+              conflito, a geração é bloqueada para você revisar o destino.
+            </p>
+          </article>
+
+          <article data-doc-panel="questions" hidden>
+            <p class="drawer-kicker">02 / ENTREVISTA</p>
+            <h3>O que significa cada pergunta?</h3>
+            <p>
+              A entrevista mostra apenas as perguntas aplicáveis. Você pode
+              registrar um objetivo ou caminho como
+              <strong>pendente</strong> quando ainda não decidiu.
+            </p>
+            <h4>Projeto</h4>
+            <dl class="question-list">
+              <div>
+                <dt>Qual é o nome do projeto?</dt>
+                <dd>
+                  Nome usado nos documentos, como
+                  <code>Portal de clientes</code>. Não precisa ser o nome de um
+                  pacote npm.
+                </dd>
+              </div>
+              <div>
+                <dt>Como você resume o objetivo inicial do projeto?</dt>
+                <dd>
+                  Descreva o problema e o resultado esperado em uma ou duas
+                  frases. Você pode deixar essa decisão pendente.
+                </dd>
+              </div>
+              <div>
+                <dt>Como o projeto será organizado?</dt>
+                <dd>
+                  Escolha <strong>Aplicação única</strong> para uma aplicação ou
+                  pacote; <strong>Monorepo</strong> para várias unidades no
+                  mesmo repositório.
+                </dd>
+              </div>
+            </dl>
+            <h4>Unidades de monorepo</h4>
+            <h5>Quais unidades fazem parte do monorepo?</h5>
+            <p>
+              Uma unidade é cada aplicação ou pacote, como
+              <code>apps/web</code>, <code>apps/api</code> ou
+              <code>packages/ui</code>. A quantidade indica quantas você quer
+              <strong>descrever agora</strong>, não quantas pastas serão
+              criadas. O mínimo é uma.
+            </p>
+            <dl class="question-list">
+              <div>
+                <dt>Qual é o nome da unidade?</dt>
+                <dd>
+                  Um identificador para os documentos, como <code>Web</code> ou
+                  <code>API</code>.
+                </dd>
+              </div>
+              <div>
+                <dt>Qual será o caminho da unidade?</dt>
+                <dd>
+                  O caminho relativo planejado, como <code>apps/api</code>. Pode
+                  ficar pendente; a CLI não cria esse diretório.
+                </dd>
+              </div>
+              <div>
+                <dt>Qual é a natureza da unidade?</dt>
+                <dd>
+                  Seu papel: frontend, backend, full-stack, biblioteca, CLI,
+                  worker, infraestrutura, mobile ou outro.
+                </dd>
+              </div>
+              <div>
+                <dt>Como você descreve esse outro tipo de unidade?</dt>
+                <dd>
+                  Só aparece quando escolhe <strong>Outro</strong>. Descreva o
+                  tipo com suas palavras.
+                </dd>
+              </div>
+              <div>
+                <dt>Quais capacidades essa unidade possui?</dt>
+                <dd>
+                  Escolha o que ela faz, como interface web, API HTTP ou tarefas
+                  agendadas. É possível informar uma capacidade própria.
+                </dd>
+              </div>
+            </dl>
+            <h4>Conjunto do projeto</h4>
+            <dl class="question-list">
+              <div>
+                <dt>Qual é a natureza principal do projeto?</dt>
+                <dd>
+                  O tipo do conjunto. Em um monorepo com site e API, pode ser
+                  <strong>Full-stack</strong>; cada unidade mantém seu tipo.
+                </dd>
+              </div>
+              <div>
+                <dt>Como você descreve esse outro tipo de projeto?</dt>
+                <dd>
+                  Só aparece quando escolhe <strong>Outro</strong>. Escreva uma
+                  descrição curta.
+                </dd>
+              </div>
+              <div>
+                <dt>Quais capacidades o projeto precisa ter inicialmente?</dt>
+                <dd>
+                  Marque características do conjunto, como interface web, API
+                  HTTP, persistência ou autenticação. Isso não instala
+                  frameworks.
+                </dd>
+              </div>
+              <div>
+                <dt>O projeto usará agentes de desenvolvimento?</dt>
+                <dd>
+                  Responda sim se agentes de código participarão. O perfil
+                  padrão incluirá <code>AGENTS.md</code>; não é preciso escolher
+                  um fornecedor.
+                </dd>
+              </div>
+            </dl>
+            <h4>Runtime e padrão</h4>
+            <dl class="question-list">
+              <div>
+                <dt>O projeto usa Node.js?</dt>
+                <dd>
+                  Refere-se ao projeto gerado. A CLI usa Node.js, mas seu
+                  projeto pode usar outro runtime.
+                </dd>
+              </div>
+              <div>
+                <dt>Qual versão do Node.js o projeto deve usar?</dt>
+                <dd>
+                  Aparece após responder sim. O padrão sugere <code>24</code> e
+                  gera <code>.nvmrc</code> com a versão escolhida.
+                </dd>
+              </div>
+              <div>
+                <dt>Qual padrão de engenharia deve orientar o projeto?</dt>
+                <dd>
+                  Use o padrão recomendado e editável, registre que fornecerá um
+                  padrão próprio ou escolha não gerar um padrão inicial.
+                </dd>
+              </div>
+            </dl>
+          </article>
+
+          <article data-doc-panel="customization" hidden>
+            <p class="drawer-kicker">03 / PERSONALIZAÇÃO</p>
+            <h3>Adapte sem perder o controle</h3>
+            <p>
+              A entrevista ou um JSON versionado podem fornecer as mesmas
+              decisões. Em JSON, informe <code>--dry-run</code> para revisar ou
+              <code>--yes</code> para gerar sem perguntas.
+            </p>
+            <div class="drawer-command">
+              <div>
+                <span>Revisar respostas em JSON</span
+                ><button
+                  type="button"
+                  data-copy="npx project-spec-starter@1.0.0 init --answers answers.json --dry-run"
+                >
+                  Copiar
+                </button>
+              </div>
+              <code
+                >npx project-spec-starter@1.0.0 init --answers answers.json
+                --dry-run</code
+              >
+            </div>
+            <div class="drawer-command">
+              <div>
+                <span>Gerar com respostas em JSON</span
+                ><button
+                  type="button"
+                  data-copy="npx project-spec-starter@1.0.0 init --answers answers.json --yes"
+                >
+                  Copiar
+                </button>
+              </div>
+              <code
+                >npx project-spec-starter@1.0.0 init --answers answers.json
+                --yes</code
+              >
+            </div>
+            <p>
+              O arquivo <code>answers.json</code> deve existir. O schema inicial
+              é <code>1</code>. Não inclua senhas, tokens nem URLs privadas
+              nele.
+            </p>
+            <h4>Perfis e sobrescritas</h4>
+            <p>
+              Use <code>--profile caminho/profile.json</code> para escolher um
+              perfil local. Use <code>--overrides caminho/pasta</code> para
+              substituir apenas recursos específicos. As camadas são lidas nesta
+              ordem: sobrescritas locais, perfil selecionado e perfil padrão.
+              Nenhuma delas executa scripts locais.
+            </p>
+            <p>
+              Depois da geração, edite os documentos diretamente. Eles passam a
+              ser a fonte de verdade e a CLI não os mescla nem sobrescreve em
+              outra execução.
+            </p>
+          </article>
+
+          <article data-doc-panel="roadmap" hidden>
+            <p class="drawer-kicker">04 / EVOLUÇÃO</p>
+            <h3>O que já existe e o que vem depois</h3>
+            <p>
+              A versão <strong>1.0.0</strong> entrega o bootstrap documental:
+              entrevista condicional, respostas JSON versionadas, plano de
+              geração, <code>--dry-run</code>, perfis locais e escrita que
+              preserva arquivos existentes.
+            </p>
+            <p>
+              Geradores de código, receitas de componentes ou serviços e
+              integrações opcionais com Skills estão planejados para marcos
+              futuros. Eles ainda não fazem parte desta versão.
+            </p>
+            <p>
+              Para acompanhar decisões técnicas e contribuir, consulte o
+              <a
+                href="https://github.com/hellzz13/project-spec-starter"
+                target="_blank"
+                rel="noopener noreferrer"
+                >repositório no GitHub ↗</a
+              >.
+            </p>
+          </article>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

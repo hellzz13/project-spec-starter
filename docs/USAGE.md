@@ -1,5 +1,8 @@
 # Uso da CLI
 
+Se estiver fazendo a entrevista pela primeira vez, consulte o
+[guia das perguntas](QUESTIONS.md) para entender cada resposta e ver exemplos.
+
 ## Antes de começar
 
 Use Node.js 24 ou superior. A versão pública pode ser executada com
