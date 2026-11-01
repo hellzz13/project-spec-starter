@@ -1,9 +1,12 @@
 # Site do projeto
 
 A landing page pública fica em [`website/`](../website/). É HTML, CSS e
-JavaScript estáticos, sem build nem dependências adicionais. O site apresenta
-somente recursos já publicados na CLI; a referência completa continua em
-[`docs/USAGE.md`](USAGE.md).
+JavaScript estáticos, sem build nem dependências adicionais. A documentação
+principal abre em um drawer na própria página, com guia de instalação via npm,
+perguntas, personalização e comandos copiáveis. O conteúdo acompanha
+[`docs/USAGE.md`](USAGE.md), [`docs/QUESTIONS.md`](QUESTIONS.md) e o perfil
+padrão. Uma mudança nas perguntas, opções ou comandos públicos exige revisão
+do conteúdo do drawer na mesma entrega.
 
 ## Prévia local
 
