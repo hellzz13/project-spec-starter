@@ -7,14 +7,33 @@ o projeto para ser refinado progressivamente por pessoas e agentes.
 ## Estado
 
 O bootstrap documental funciona pela entrevista interativa ou por respostas
-JSON versionadas. A versão 0.1.0 ainda não foi publicada no npm. Geradores de
+JSON versionadas. A versão 1.0.0 entrega o bootstrap documental; geradores de
 código serão adicionados posteriormente por meio de receitas e presets
 explícitos.
 
-## Instalação para teste
+## Uso
 
-Use Node.js 24 ou superior. Enquanto o pacote não estiver publicado, clone o
-repositório e prepare a CLI com npm:
+Use Node.js 24 ou superior. No diretório do projeto que receberá os documentos,
+revise primeiro o plano sem escrever arquivos:
+
+```bash
+npx project-spec-starter@1.0.0 init --dry-run
+```
+
+Para gerar os documentos, execute o comando sem `--dry-run`. A CLI mostra o
+plano e pede confirmação antes da escrita:
+
+```bash
+npx project-spec-starter@1.0.0 init
+```
+
+A CLI não cria uma pasta de projeto: ela escreve no diretório em que o comando
+é executado. Arquivos existentes geram conflito e não são sobrescritos.
+
+## Teste a partir do repositório
+
+Para testar uma versão ainda não publicada, clone o repositório e prepare a CLI
+com npm:
 
 ```bash
 git clone https://github.com/hellzz13/project-spec-starter.git
@@ -31,9 +50,7 @@ pelo caminho absoluto. Comece com `init --dry-run` para revisar o plano:
 node /caminho/do/project-spec-starter/dist/cli.js init --dry-run
 ```
 
-O pacote distribuível pode ser conferido com `npm run test:package`. A forma
-`npx project-spec-starter init` será indicada para uso público somente após a
-publicação no npm.
+O pacote distribuível pode ser conferido com `npm run test:package`.
 
 ## Desenvolvimento
 

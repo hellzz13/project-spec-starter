@@ -47,15 +47,16 @@
       observáveis conforme ADR-007.
 - [x] Preservar arquivos existentes e cancelamentos antes da escrita.
 
-## Marco 6 — Versão 0.1.0
+## Marco 6 — Primeira versão pública 1.0.0
 
 - [x] Documentar instalação para teste, uso e personalização disponível.
 - [x] Expor seleção de perfil e sobrescritas locais pela CLI, com validação e
-      compatibilidade, antes de anunciá-las como recurso da 0.1.0.
+      compatibilidade, antes de anunciá-las como recurso da 1.0.0.
 - [x] Configurar CI e matriz de Node.js.
 - [x] Validar o pacote npm em diretório temporário.
 - [x] Preparar changelog e procedimento de publicação.
-- [ ] Publicar a versão 0.1.0 no npm, mediante autorização.
+- [x] Preparar metadados, documentação de uso público e política de upgrades.
+- [ ] Publicar a versão 1.0.0 no npm, mediante autorização.
 
 ## Marco 7 — Geradores
 
@@ -81,3 +82,11 @@
       manter uma segunda cópia das regras.
 - [ ] Testar instalação, atualização e compatibilidade das integrações em um
       projeto gerado.
+
+## Manutenção de releases
+
+- [ ] Reavaliar os avisos de auditoria das ferramentas de desenvolvimento
+      quando houver versões compatíveis corrigidas; manter zero avisos nas
+      dependências distribuídas.
+- [ ] Após a primeira publicação manual, preparar publicação opcional por
+      trusted publishing com revisão e proveniência, sem token permanente.
