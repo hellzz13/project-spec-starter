@@ -18,14 +18,7 @@ explícitos.
 ## Uso
 
 Use Node.js 24 ou superior. No diretório do projeto que receberá os documentos,
-revise primeiro o plano sem escrever arquivos:
-
-```bash
-npx project-spec-starter@1.0.0 init --dry-run
-```
-
-Para gerar os documentos, execute o comando sem `--dry-run`. A CLI mostra o
-plano e pede confirmação antes da escrita:
+execute a entrevista. A CLI mostra o plano e pede confirmação antes da escrita:
 
 ```bash
 npx project-spec-starter@1.0.0 init
@@ -33,6 +26,9 @@ npx project-spec-starter@1.0.0 init
 
 A CLI não cria uma pasta de projeto: ela escreve no diretório em que o comando
 é executado. Arquivos existentes geram conflito e não são sobrescritos.
+Se você já preparou respostas em JSON, pode usar `--dry-run` para inspecionar o
+plano e depois gerar com o mesmo arquivo, sem repetir a entrevista. Veja o
+[guia de uso](docs/USAGE.md#arquivo-json).
 
 ## Teste a partir do repositório
 
@@ -48,10 +44,10 @@ npm run build
 ```
 
 No diretório do projeto que receberá os documentos, execute a CLI compilada
-pelo caminho absoluto. Comece com `init --dry-run` para revisar o plano:
+pelo caminho absoluto. A entrevista mostra o plano antes de pedir confirmação:
 
 ```bash
-node /caminho/do/project-spec-starter/dist/cli.js init --dry-run
+node /caminho/do/project-spec-starter/dist/cli.js init
 ```
 
 O pacote distribuível pode ser conferido com `npm run test:package`.
