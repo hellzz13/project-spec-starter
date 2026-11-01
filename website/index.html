@@ -154,8 +154,8 @@
               <div class="step-line" aria-hidden="true"></div>
               <h3>Revise o plano</h3>
               <p>
-                Veja as respostas e os arquivos previstos. Use
-                <code>--dry-run</code> para inspecionar sem escrever nada.
+                Veja as respostas e os arquivos previstos antes de confirmar a
+                escrita.
               </p>
             </article>
             <article class="flow-step">
@@ -239,11 +239,7 @@
               >
             </div>
           </div>
-          <div
-            class="terminal"
-            role="region"
-            aria-label="Comandos para começar"
-          >
+          <div class="terminal" role="region" aria-label="Comando para começar">
             <div class="terminal-bar">
               <div class="terminal-dots" aria-hidden="true">
                 <i></i><i></i><i></i>
@@ -252,19 +248,15 @@
               ><button
                 type="button"
                 class="copy-button"
-                data-copy="npx project-spec-starter@1.0.0 init --dry-run\nnpx project-spec-starter@1.0.0 init"
-                aria-label="Copiar comandos"
+                data-copy="npx project-spec-starter@1.0.0 init"
+                aria-label="Copiar comando"
               >
                 Copiar
               </button>
             </div>
             <div class="terminal-body">
               <p class="terminal-note">
-                # 1. Revise o plano, sem criar arquivos
-              </p>
-              <pre><code><span>$</span> npx project-spec-starter@1.0.0 init --dry-run</code></pre>
-              <p class="terminal-note">
-                # 2. Responda, confirme e gere os documentos
+                # Responda, revise o plano e confirme a geração
               </p>
               <pre><code><span>$</span> npx project-spec-starter@1.0.0 init</code></pre>
             </div>
@@ -349,7 +341,16 @@
             ><span></span><span></span><span></span></span
           ><span>project-spec-starter</span></a
         >
-        <p>Documentação para começar. Liberdade para evoluir.</p>
+        <p>
+          Documentação para começar. Liberdade para evoluir.<br />
+          Criado por
+          <a
+            href="https://github.com/hellzz13"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Hélio Palença Neto</a
+          >.
+        </p>
         <div>
           <a
             href="https://www.npmjs.com/package/project-spec-starter"
@@ -401,18 +402,6 @@
             </p>
             <div class="drawer-command">
               <div>
-                <span>Revisar sem escrever arquivos</span
-                ><button
-                  type="button"
-                  data-copy="npx project-spec-starter@1.0.0 init --dry-run"
-                >
-                  Copiar
-                </button>
-              </div>
-              <code>npx project-spec-starter@1.0.0 init --dry-run</code>
-            </div>
-            <div class="drawer-command">
-              <div>
                 <span>Responder e gerar os arquivos</span
                 ><button
                   type="button"
@@ -425,9 +414,8 @@
             </div>
             <p>
               O <code>npx</code> executa o pacote do npm sem instalação global.
-              O primeiro comando mostra apenas o plano. O segundo faz a
-              entrevista, apresenta o plano e pede confirmação antes de
-              escrever.
+              A entrevista apresenta as respostas e o plano antes de pedir
+              confirmação. Você pode cancelar sem criar arquivos.
             </p>
             <h4>Instalação global, se preferir</h4>
             <div class="drawer-command">
@@ -604,8 +592,10 @@
             <h3>Adapte sem perder o controle</h3>
             <p>
               A entrevista ou um JSON versionado podem fornecer as mesmas
-              decisões. Em JSON, informe <code>--dry-run</code> para revisar ou
-              <code>--yes</code> para gerar sem perguntas.
+              decisões. Com respostas já salvas em JSON, use
+              <code>--dry-run</code> para revisar o plano e depois
+              <code>--yes</code> com o mesmo arquivo para gerar sem responder
+              novamente.
             </p>
             <div class="drawer-command">
               <div>

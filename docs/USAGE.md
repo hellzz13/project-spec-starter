@@ -27,12 +27,13 @@ formatos exigiriam um contrato próprio antes de serem oferecidos.
 ## Entrevista
 
 ```bash
-node /caminho/do/project-spec-starter/dist/cli.js init --dry-run
 node /caminho/do/project-spec-starter/dist/cli.js init
 ```
 
-A primeira execução mostra as respostas e o plano sem escrever. A segunda
-mostra o plano e pede confirmação antes de criar os arquivos.
+O comando mostra as respostas e o plano antes de escrever. Você pode confirmar
+a geração ou cancelar sem criar arquivos. Usar `--dry-run` na entrevista também
+encerra antes da escrita, mas uma execução posterior exige responder às
+perguntas novamente. Por isso, a entrevista normal é o caminho recomendado.
 
 ## Arquivo JSON
 
@@ -63,10 +64,11 @@ node /caminho/do/project-spec-starter/dist/cli.js init --answers answers.json --
 node /caminho/do/project-spec-starter/dist/cli.js init --answers answers.json --yes
 ```
 
-`--dry-run` apenas inspeciona. `--yes` autoriza a geração sem perguntas. No modo
-JSON, uma dessas opções é obrigatória; elas não podem ser combinadas. A CLI
-valida as respostas antes de planejar a geração. Um schema não suportado ou
-campos inválidos encerram o comando com erro.
+Com JSON, `--dry-run` é útil para inspecionar as mesmas respostas sem escrever
+arquivos. Depois, use o mesmo `answers.json` com `--yes` para gerar sem repetir
+perguntas. No modo JSON, uma dessas opções é obrigatória; elas não podem ser
+combinadas. A CLI valida as respostas antes de planejar a geração. Um schema
+não suportado ou campos inválidos encerram o comando com erro.
 
 ## Campos e possibilidades de resposta
 
