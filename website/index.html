@@ -53,13 +53,13 @@
             Um começo claro para <em>qualquer projeto.</em>
           </h1>
           <p class="hero-lead">
-            Seu projeto já tem uma ideia. A CLI faz as perguntas essenciais,
-            mostra o que será criado e transforma as respostas em documentos que
-            você e seu agente podem evoluir.
+            Execute a CLI pelo npm com <code>npx</code>, responda às perguntas
+            essenciais e gere os documentos no diretório do seu projeto. Você e
+            seu agente podem evoluí-los depois.
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="#comecar"
-              >Começar agora <span aria-hidden="true">↗</span></a
+              >Usar pelo npm <span aria-hidden="true">↗</span></a
             >
             <a
               class="button button-text"
@@ -226,14 +226,22 @@
       >
         <div class="shell start-grid">
           <div class="section-heading">
-            <p class="eyebrow">PRONTO PARA COMEÇAR?</p>
-            <h2 id="start-title">
-              Do terminal ao contexto <em>em dois comandos.</em>
-            </h2>
+            <p class="eyebrow">INSTALAÇÃO VIA NPM</p>
+            <h2 id="start-title">Execute a CLI. <em>Crie os arquivos.</em></h2>
             <p>
-              Use Node.js 24 ou superior. Entre no diretório do projeto que
-              receberá os documentos: a CLI escreve ali e não cria outra pasta.
+              Com Node.js 24 ou superior, entre no diretório do projeto que
+              receberá a documentação. O <code>npx</code> executa o pacote do
+              npm sem instalação global. A CLI escreve nesse diretório; ela não
+              cria outra pasta.
             </p>
+            <div class="install-alternative">
+              <strong>Prefere instalar globalmente?</strong>
+              <code>npm install --global project-spec-starter@1.0.0</code>
+              <span
+                >Depois, no diretório do projeto, rode
+                <code>project-spec-starter init</code>.</span
+              >
+            </div>
           </div>
           <div
             class="terminal"
@@ -255,9 +263,13 @@
               </button>
             </div>
             <div class="terminal-body">
-              <p class="terminal-note"># Primeiro, revise sem criar arquivos</p>
+              <p class="terminal-note">
+                # 1. Revise o plano, sem criar arquivos
+              </p>
               <pre><code><span>$</span> npx project-spec-starter@1.0.0 init --dry-run</code></pre>
-              <p class="terminal-note"># Depois, gere os documentos</p>
+              <p class="terminal-note">
+                # 2. Responda, confirme e gere os documentos
+              </p>
               <pre><code><span>$</span> npx project-spec-starter@1.0.0 init</code></pre>
             </div>
             <div class="terminal-bottom">
