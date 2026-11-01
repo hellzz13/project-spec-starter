@@ -1,5 +1,7 @@
 # project-spec-starter
 
+[Site e guia rápido](https://hellzz13.github.io/project-spec-starter/) · [Pacote no npm](https://www.npmjs.com/package/project-spec-starter) · [Documentação completa](docs/USAGE.md)
+
 CLI compartilhável para iniciar projetos orientados por especificações. A
 ferramenta conduz uma entrevista curta, gera documentação definitiva e prepara
 o projeto para ser refinado progressivamente por pessoas e agentes.

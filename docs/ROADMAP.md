@@ -56,7 +56,7 @@
 - [x] Validar o pacote npm em diretório temporário.
 - [x] Preparar changelog e procedimento de publicação.
 - [x] Preparar metadados, documentação de uso público e política de upgrades.
-- [ ] Publicar a versão 1.0.0 no npm, mediante autorização.
+- [x] Publicar a versão 1.0.0 no npm, mediante autorização.
 
 ## Marco 7 — Geradores
 
