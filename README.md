@@ -137,7 +137,8 @@ simultâneas no diretório durante a geração.
 
 ## Licença e participação
 
-Este repositório é mantido por [@hellzz13](https://github.com/hellzz13) e aceita
-contribuições. Veja [como contribuir](CONTRIBUTING.md) antes de abrir um PR. O
+Este repositório é mantido por [Hélio Palença Neto](https://hpndev.vercel.app/)
+([@hellzz13](https://github.com/hellzz13)) e aceita contribuições. Veja
+[como contribuir](CONTRIBUTING.md) antes de abrir um PR. O
 código e a documentação do repositório são distribuídos sob a
 [licença MIT](LICENSE); o histórico de commits e PRs registra quem contribuiu.
