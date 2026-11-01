@@ -2,18 +2,18 @@
 
 ## Stack definida
 
-| Área              | Escolha    | Estado   |
-| ----------------- | ---------- | -------- |
-| Runtime           | Node.js    | Definido |
-| Linguagem         | TypeScript | Definido |
-| Gerenciador       | npm        | Definido |
-| Testes            | Vitest     | Definido |
-| Argumentos da CLI | A decidir  | Pendente |
-| Prompts           | Inquirer   | Definido |
-| Validação         | A decidir  | Pendente |
-| Renderização      | A decidir  | Pendente |
+| Área              | Escolha                | Estado   |
+| ----------------- | ---------------------- | -------- |
+| Runtime           | Node.js                | Definido |
+| Linguagem         | TypeScript             | Definido |
+| Gerenciador       | npm                    | Definido |
+| Testes            | Vitest                 | Definido |
+| Argumentos da CLI | Parser próprio         | Definido |
+| Prompts           | Inquirer               | Definido |
+| Validação         | Parser do núcleo       | Definido |
+| Renderização      | Marcadores `{{TOKEN}}` | Definido |
 
-Dependências pendentes só serão escolhidas quando existir um comportamento e um
+Novas dependências só serão escolhidas quando existir um comportamento e um
 teste que demonstrem a necessidade.
 
 ## Runtime

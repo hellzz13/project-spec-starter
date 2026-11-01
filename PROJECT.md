@@ -118,8 +118,9 @@ npx project-spec-starter init
 | Extensibilidade virar execução insegura | Extensões declarativas antes de plugins executáveis |
 | Presets imporem uma stack               | Ativação explícita e compatibilidade declarada      |
 
-## Decisões pendentes
+## Decisões de implementação
 
-- Biblioteca de parsing dos argumentos da CLI.
-- Biblioteca de validação do schema.
-- Sintaxe de templates e condicionais.
+- Argumentos da CLI são interpretados pelo adaptador próprio de `init`.
+- Respostas JSON são validadas pelo parser do núcleo antes do planejamento.
+- Templates usam marcadores `{{TOKEN}}`; condições de documentos e perguntas
+  são declarativas e versionadas nos recursos de perfil.

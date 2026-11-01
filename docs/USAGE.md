@@ -2,13 +2,13 @@
 
 ## Antes de começar
 
-A CLI ainda não foi publicada no npm. Para testá-la, clone o repositório,
-execute `nvm use`, `npm ci` e `npm run build` com Node.js 24 ou superior.
-Use o caminho absoluto da CLI compilada nos exemplos abaixo. O comando
-`npx project-spec-starter init` só será uma opção pública depois da publicação.
+Use Node.js 24 ou superior. A versão pública pode ser executada com
+`npx project-spec-starter@1.0.0 init`. Para testar uma versão ainda não
+publicada, clone o repositório, execute `nvm use`, `npm ci` e `npm run build` e
+use o caminho absoluto da CLI compilada nos exemplos abaixo.
 
-A CLI gera documentos no diretório em que o comando é executado. Ela oferece
-duas formas de fornecer as respostas iniciais:
+A CLI gera documentos no diretório em que o comando é executado e não cria uma
+pasta de projeto. Ela oferece duas formas de fornecer as respostas iniciais:
 
 | Entrada                 | Quando usar                                                                  | Comando                                                  |
 | ----------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------- |

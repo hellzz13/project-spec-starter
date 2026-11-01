@@ -1,7 +1,19 @@
 {
   "name": "project-spec-starter",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "CLI for bootstrapping specification-driven projects",
+  "keywords": [
+    "cli",
+    "project-starter",
+    "specification",
+    "templates"
+  ],
+  "homepage": "https://github.com/hellzz13/project-spec-starter#readme",
+  "bugs": "https://github.com/hellzz13/project-spec-starter/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellzz13/project-spec-starter.git"
+  },
   "type": "module",
   "bin": {
     "project-spec-starter": "dist/cli.js"
@@ -29,6 +41,9 @@
     "node": ">=24"
   },
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.19.0",

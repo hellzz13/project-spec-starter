@@ -4,7 +4,7 @@ Mudanças relevantes do projeto são registradas por versão. Schema de resposta
 perfil e módulos de perguntas mantêm versões próprias, independentes da versão
 da CLI.
 
-## 0.1.0 — publicação pendente
+## 1.0.0
 
 Primeira versão do bootstrap documental.
 

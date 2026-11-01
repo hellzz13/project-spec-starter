@@ -52,8 +52,13 @@ Uma revisão deve verificar:
 ## Releases
 
 - Versões seguem versionamento semântico.
+- Depois da primeira publicação, correções compatíveis incrementam `patch`,
+  recursos compatíveis incrementam `minor` e quebras do contrato público
+  incrementam `major`, conforme ADR-009.
 - Mudanças do schema e do perfil são registradas no changelog.
 - Releases validam o pacote empacotado em um diretório temporário.
+- A versão publicada recebe uma tag `vX.Y.Z` apontando para o commit revisado
+  somente depois de verificada no registro. Nunca se reutiliza uma versão.
 - Publicação no npm exige autorização explícita até que exista um processo de
   release aprovado.
 
