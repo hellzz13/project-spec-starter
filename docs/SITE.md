@@ -30,6 +30,8 @@ Antes do primeiro deploy, em **Settings → Pages → Build and deployment**, es
 **Publish documentation site** e o endereço publicado em
 `https://hellzz13.github.io/project-spec-starter/`.
 
-Alterações no site passam por PR e revisão. Não coloque tokens, dados pessoais
-ou conteúdo privado na pasta `website/`: tudo nela será público. A publicação
-do site é independente do pacote npm e não altera projetos já gerados.
+Alterações no site passam por PR e revisão. Não coloque tokens ou conteúdo
+privado na pasta `website/`: tudo nela será público. Dados pessoais só entram
+com autorização explícita do titular; a identificação do criador no rodapé foi
+solicitada pelo mantenedor. A publicação do site é independente do pacote npm e
+não altera projetos já gerados.

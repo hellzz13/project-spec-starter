@@ -58,6 +58,31 @@
 - [x] Preparar metadados, documentação de uso público e política de upgrades.
 - [x] Publicar a versão 1.0.0 no npm, mediante autorização.
 
+## Próxima prioridade — Licença e autoria
+
+- [ ] Revisar a licença MIT publicada na versão 1.0.0, a atribuição de autoria
+      no `LICENSE` e a consistência entre repositório, pacote npm e site.
+- [ ] Definir, com decisão explícita do mantenedor, a estratégia para versões
+      futuras: manter MIT, adotar outra licença para contribuições futuras ou
+      separar licenças por componentes. Revisar a proposta no ADR-010 e registrar
+      impactos para usuários atuais, contribuições de terceiros e eventual
+      distribuição comercial.
+- [ ] Definir e documentar a licença aplicável aos documentos gerados e às
+      contribuições, sem presumir que a licença do código resolva esses casos.
+- [ ] Implementar a decisão aprovada em uma entrega própria, com revisão do
+      pacote distribuível e comunicação clara de qualquer mudança de licença.
+
+## Depois da licença — Conteúdo em inglês
+
+- [ ] Traduzir a página e sua documentação em drawer para inglês, mantendo
+      português disponível e oferecendo seleção de idioma acessível.
+- [ ] Oferecer specs e instruções geradas em inglês como opção explícita do
+      perfil, preservando português como padrão para respostas antigas.
+- [ ] Manter chaves e estados do schema independentes do idioma; versionar
+      recursos alterados e testar os dois idiomas no pacote distribuível.
+- [ ] Revisar perguntas da CLI e documentação de uso para que idioma de
+      interface e idioma dos documentos sejam decisões claras para o usuário.
+
 ## Marco 7 — Geradores
 
 - [ ] Criar manifesto declarativo de geradores.

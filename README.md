@@ -138,3 +138,10 @@ simultâneas no diretório durante a geração.
 - [Decisões arquiteturais](docs/decisions/)
 - [Instruções para agentes](AGENTS.md)
 - [Como contribuir](CONTRIBUTING.md)
+
+## Licença e participação
+
+Este repositório é mantido por [@hellzz13](https://github.com/hellzz13) e aceita
+contribuições. Veja [como contribuir](CONTRIBUTING.md) antes de abrir um PR. O
+código e a documentação do repositório são distribuídos sob a
+[licença MIT](LICENSE); o histórico de commits e PRs registra quem contribuiu.
