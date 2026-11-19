@@ -155,6 +155,33 @@ com exceção justificada e outro em que a convenção não se aplica.
 - [ ] Testar instalação, atualização e compatibilidade das integrações em um
       projeto gerado.
 
+### Orquestração adaptativa de agentes — refinamento futuro
+
+Proposta pendente de refinamento, dentro das integrações opcionais do Marco 8.
+
+- [ ] Definir política opcional e configurável de papéis: Tech lead com a maior
+      capacidade disponível para planejamento e riscos; Sênior para trabalho
+      complexo aprovado; Júnior econômico para tarefas delimitadas; QA em
+      contexto independente, proporcional ao risco, com revisão final do principal.
+- [ ] Identificar ferramentas, modelos, subagentes, permissões de contexto e
+      preferências de custo por configuração explícita ou descoberta realmente
+      suportada, sem inventar capacidades, coletar credenciais ou exigir provedor.
+- [ ] Permitir seleção autônoma dentro da tarefa autorizada e dos limites
+      configurados; manter ambiguidades e riscos críticos com o agente principal
+      e solicitar decisões ao usuário quando necessário.
+- [ ] Selecionar o modelo de menor custo suficientemente capaz para cada papel,
+      sem fixar nomes ou versões nem reduzir padrões de qualidade, segurança,
+      acessibilidade, testes ou arquitetura em nome da economia.
+- [ ] Ativar somente os papéis necessários, sem exigir quatro agentes; oferecer
+      orientação documental portável quando a ferramenta não suportar
+      orquestração, explicitando os limites reais da execução em agente único.
+- [ ] Preservar documentos gerados e editados e os contratos versionados de
+      schema, perfis e integrações; refinar opções compatíveis conforme ADR-004
+      e ADR-006, sem reinterpretar configurações antigas silenciosamente.
+- [ ] Definir aceite futuro para agente único, múltiplos agentes e modelos
+      indisponíveis, validando limites, revisão independente quando suportada e
+      ausência de alegações falsas sobre capacidades ou verificações realizadas.
+
 ## Manutenção de releases
 
 - [ ] Reavaliar os avisos de auditoria das ferramentas de desenvolvimento
